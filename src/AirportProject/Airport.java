@@ -24,6 +24,10 @@ public class Airport {
 				: a.getNumPassengers() == b.getNumPassengers() ? 0 : -1);
 	}
 
+	public void sortByDate() {
+		Collections.sort(flights, (a, b) -> a.getDate().compareTo(b.getDate()));
+	}
+
 	public boolean removeFlight(Flight flight) {
 		return flights.remove(flight);
 	}
