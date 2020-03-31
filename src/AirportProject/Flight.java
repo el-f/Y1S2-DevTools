@@ -22,6 +22,10 @@ public class Flight {
 		this("", null, null, "", "");
 	}
 
+	public LocalDate getDate() {
+		return date;
+	}
+
 	public int getNumPassengers() {
 		return plane.getNumPassengers();
 	}

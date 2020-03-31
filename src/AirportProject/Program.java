@@ -27,6 +27,7 @@ public class Program {
 		Flight F7 = new Flight("KSD556Q", P7, D1, "Israel", "Iran");
 
 		Airport ap = new Airport();
+		System.out.println("All:");
 		ap.addFlight(F1);
 		ap.addFlight(F2);
 		ap.addFlight(F3);
@@ -37,12 +38,18 @@ public class Program {
 		ap.show();
 
 		// remove by ref
+		System.out.println("\nremoved even numbers:");
 		ap.removeFlight(F2);
 		ap.removeFlight(F4);
 		ap.removeFlight(F6);
 		ap.show();
 
+		System.out.println("\nsorted by number of Passengers:");
 		ap.sortByNumOfPassengers();
+		ap.show();
+		
+		System.out.println("\nsorted by date:");
+		ap.sortByDate();
 		ap.show();
 
 	}
