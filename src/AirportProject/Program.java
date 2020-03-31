@@ -8,7 +8,7 @@ public class Program {
 		LocalDate D2 = LocalDate.of(2020, 11, 22);
 		LocalDate D3 = LocalDate.of(2020, 11, 21);
 		LocalDate D4 = LocalDate.of(2020, 11, 20);
-		// plane
+		// plane....
 		Plane P1 = new Plane("Wright Flyer", 4);
 		Plane P2 = new Plane("Supermarine Spitfire", 15);
 		Plane P3 = new Plane("Boeing 787", 150);
