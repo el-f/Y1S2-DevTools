@@ -37,6 +37,7 @@ public class Program {
 
 		ap.show();
 		
+		//remove by ref
 		ap.removeFlight(F2);
 		ap.removeFlight(F4);
 		ap.removeFlight(F6);
