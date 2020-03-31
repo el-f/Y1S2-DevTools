@@ -47,11 +47,10 @@ public class Program {
 		System.out.println("\nsorted by number of Passengers:");
 		ap.sortByNumOfPassengers();
 		ap.show();
-		
+
 		System.out.println("\nsorted by date:");
 		ap.sortByDate();
 		ap.show();
-
 	}
 
 }
