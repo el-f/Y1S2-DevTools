@@ -36,6 +36,12 @@ public class Program {
 		ap.addFlight(F7);
 
 		ap.show();
+		
+		ap.removeFlight(F2);
+		ap.removeFlight(F4);
+		ap.removeFlight(F6);
+		
+		ap.show();
 	}
 
 }
