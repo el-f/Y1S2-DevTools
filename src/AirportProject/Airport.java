@@ -22,6 +22,7 @@ public class Airport {
 	}
 
 	public void show() {
+		System.out.println();
 		flights.forEach(System.out::println);
 	}
 }
