@@ -29,7 +29,7 @@ public class Flight {
 	}
 
 	public String toString() {
-		return "Flight: " + flightNum + ", " + plane.toString() + " date: " + date + ", Origin: " + origin
+		return "Flight: " + flightNum + " | " + plane.toString() + ", date: " + date + ", Origin: " + origin
 				+ ", Destination: " + destination;
 	}
 

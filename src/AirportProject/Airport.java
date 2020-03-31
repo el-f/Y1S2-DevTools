@@ -9,6 +9,7 @@ public class Airport {
 	public Airport() {
 		flights = new ArrayList<Flight>();
 	}
+
 	public boolean addFlight(Flight flight) {
 		if (flights.size() < MAX_FLIGHTS) {
 			flights.add(flight);

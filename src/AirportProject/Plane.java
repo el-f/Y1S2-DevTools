@@ -41,7 +41,7 @@ public class Plane {
 	}
 
 	public String toString() {
-		return "Model: " + model + " Passengers: " + passengers + "/" + MAX_PASSENGERS;
+		return "Model: " + model + ", Passengers: " + passengers + "/" + MAX_PASSENGERS;
 	}
 
 }
