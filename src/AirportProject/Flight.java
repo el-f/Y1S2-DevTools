@@ -22,6 +22,10 @@ public class Flight {
 		this("", null, null, "", "");
 	}
 
+	public int getNumPassengers() {
+		return plane.getNumPassengers();
+	}
+
 	public void changeDirection() {
 		String temp = origin;
 		origin = destination;

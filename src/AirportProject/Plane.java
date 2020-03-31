@@ -19,11 +19,14 @@ public class Plane {
 		model = _model;
 	}
 
+	public int getNumPassengers() {
+		return passengers;
+	}
+
 	public Plane() {
 		this("", 0);
 	}
-	
-	
+
 	public boolean addPassengers(int add) {
 		if (passengers + add <= MAX_PASSENGERS) {
 			passengers += add;

@@ -1,6 +1,7 @@
 package AirportProject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Airport {
 	private ArrayList<Flight> flights;
@@ -16,6 +17,11 @@ public class Airport {
 			return true;
 		}
 		return false;
+	}
+
+	public void sortByNumOfPassengers() {
+		Collections.sort(flights, (a, b) -> a.getNumPassengers() < b.getNumPassengers() ? 1
+				: a.getNumPassengers() == b.getNumPassengers() ? 0 : -1);
 	}
 
 	public boolean removeFlight(Flight flight) {

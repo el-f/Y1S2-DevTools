@@ -34,15 +34,17 @@ public class Program {
 		ap.addFlight(F5);
 		ap.addFlight(F6);
 		ap.addFlight(F7);
-
 		ap.show();
-		
-		//remove by ref
+
+		// remove by ref
 		ap.removeFlight(F2);
 		ap.removeFlight(F4);
 		ap.removeFlight(F6);
-		
 		ap.show();
+
+		ap.sortByNumOfPassengers();
+		ap.show();
+
 	}
 
 }
