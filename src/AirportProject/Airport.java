@@ -13,8 +13,7 @@ public class Airport {
 
 	public boolean addFlight(Flight flight) {
 		if (flights.size() < MAX_FLIGHTS) {
-			flights.add(flight);
-			return true;
+			return flights.add(flight);
 		}
 		return false;
 	}
@@ -36,13 +35,11 @@ public class Airport {
 		flights.forEach(System.out::println);
 	}
 
-	// not needed but just in case
-	// public String toString() {
-	// StringBuilder res = new StringBuilder();
-	// flights.forEach(f -> {
-	// res.append(f + "\n");
-	// });
-	// return res.toString();
-	// }
+	// same as show()
+//	public String toString() {
+//		StringBuilder res = new StringBuilder();
+//		flights.forEach(f -> res.append(f + "\n"));
+//		return res.toString();
+//	}
 
 }

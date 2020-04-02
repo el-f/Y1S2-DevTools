@@ -3,7 +3,6 @@ package AirportProject;
 import java.time.LocalDate;
 
 public class Program {
-	//final comment test
 	public static void main(String[] args) {
 		LocalDate D1 = LocalDate.of(2020, 11, 23);
 		LocalDate D2 = LocalDate.of(2020, 11, 22);
