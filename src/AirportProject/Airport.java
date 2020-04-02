@@ -8,7 +8,7 @@ public class Airport {
 	public final static int MAX_FLIGHTS = 200;
 
 	public Airport() {
-		flights = new ArrayList<Flight>();
+		flights = new ArrayList<>();
 	}
 
 	public boolean addFlight(Flight flight) {
