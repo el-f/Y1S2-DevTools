@@ -53,7 +53,6 @@ public class Program {
         ap.sortByDate();
         ap.show();
 
-        /* intelliJ git integration test */
     }
 
 }
