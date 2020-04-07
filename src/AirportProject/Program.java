@@ -9,10 +9,9 @@ public class Program {
 
         /*
         To Do:
-        1. sort by outgoing and incoming - DONE
-        2. get input from user
-        3. write and read from file - DONE
-        4. tests
+        1. test
+        2. add hours, minutes
+        3. create Menu() (show, add, remove, exit, etc)
          */
 
         LocalDate D1 = LocalDate.of(2020, 11, 23);
