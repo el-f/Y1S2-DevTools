@@ -23,10 +23,15 @@ public class Flight {
         if (_destination.toLowerCase().equals("israel") || _origin.toLowerCase().equals("israel")) {
             destination = _destination;
             origin = _origin;
-            outgoing = _destination.toLowerCase().equals("israel") ? false : true;
+            outgoing = !_destination.toLowerCase().equals("israel");
         }
 
     }
+
+    public boolean isOutgoing() {
+        return outgoing;
+    }
+
 
     public Flight() {
         this("", null, null, "", "");

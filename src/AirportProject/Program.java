@@ -7,7 +7,7 @@ public class Program {
 
         /*
         To Do:
-        1. sort by outgoing and incoming
+        1. sort by outgoing and incoming - DONE
         2. get input from user
         3. write and read from file
         4. tests
@@ -60,6 +60,15 @@ public class Program {
         System.out.println("\nsorted by date:");
         ap.sortByDate();
         ap.show();
+
+        System.out.println("\nsorted by direction");
+        ap.sortByDirection();
+        ap.show();
+
+        System.out.println("\noutgoing:");
+        ap.showOutgoingFlights();
+        System.out.println("\nincoming:");
+        ap.showIncomingFlights();
 
     }
 
