@@ -47,6 +47,16 @@ public class Airport {
         writer.close();
     }
 
+    public void save(String filepath) throws FileNotFoundException {
+        File file = new File(filepath);
+        PrintWriter writer = new PrintWriter(file);
+        writer.println(flights.size());
+        for (Flight f : flights) {
+            f.save(writer);
+        }
+        writer.close();
+    }
+
     public Airport() {
         flights = new ArrayList<>();
     }
@@ -94,10 +104,10 @@ public class Airport {
     }
 
     // same as show()
-//	public String toString() {
-//		StringBuilder res = new StringBuilder();
-//		flights.forEach(f -> res.append(f + "\n"));
-//		return res.toString();
-//	}
+	public String toString() {
+		StringBuilder res = new StringBuilder();
+		flights.forEach(f -> res.append(f + "\n"));
+		return res.toString();
+	}
 
 }
