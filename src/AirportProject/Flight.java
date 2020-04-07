@@ -9,6 +9,7 @@ public class Flight {
     private LocalDate date;
     private String origin;
     private String destination;
+    private boolean outgoing;
 
     public Flight(String _flightNum, Plane _plane, LocalDate _date, String _origin, String _destination) {
         flightNum = _flightNum;
@@ -22,7 +23,9 @@ public class Flight {
         if (_destination.toLowerCase().equals("israel") || _origin.toLowerCase().equals("israel")) {
             destination = _destination;
             origin = _origin;
+            outgoing = _destination.toLowerCase().equals("israel") ? false : true;
         }
+
     }
 
     public Flight() {
@@ -41,6 +44,7 @@ public class Flight {
         String temp = origin;
         origin = destination;
         destination = temp;
+        outgoing = !outgoing;
     }
 
     public String toString() {
