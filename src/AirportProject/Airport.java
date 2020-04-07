@@ -18,6 +18,8 @@ public class Airport {
     public void initializeFromUser() {
         Scanner scan = new Scanner(System.in);
 
+
+        scan.close();
     }
 
     public Airport(File file) throws FileNotFoundException {
@@ -27,6 +29,7 @@ public class Airport {
         for (int i = 0; i < currentFlightsNum; i++) {
             flights.add(new Flight(s));
         }
+        s.close();
     }
 
     public void save() throws FileNotFoundException {
@@ -37,6 +40,7 @@ public class Airport {
         for (Flight f : flights) {
             f.save(writer);
         }
+        writer.close();
     }
 
     public Airport() {
