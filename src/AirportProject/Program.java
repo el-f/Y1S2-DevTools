@@ -1,9 +1,11 @@
 package AirportProject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         /*
         To Do:
@@ -70,6 +72,12 @@ public class Program {
         System.out.println("\nincoming:");
         ap.showIncomingFlights();
 
+
+        ap.save();
+        Airport ap2 = new Airport(new File("airport"));
+
+        System.out.println("\nairport 2");
+        ap2.show();
     }
 
 }

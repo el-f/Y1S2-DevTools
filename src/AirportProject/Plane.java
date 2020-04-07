@@ -57,7 +57,8 @@ public class Plane {
     }
 
     public Plane(Scanner input) {
-        setModel(input.next());
+        setModel(input.nextLine());
+        input.nextLine();
         setPassengers(input.nextInt());
     }
 

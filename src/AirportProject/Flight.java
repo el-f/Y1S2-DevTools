@@ -37,7 +37,7 @@ public class Flight {
     public void save(PrintWriter writer) throws FileNotFoundException {
         writer.println(flightNum);
         plane.save(writer);
-        writer.println(date.getYear() + " " + date.getMonth() + " " + date.getDayOfMonth());
+        writer.println(date.getYear() + " " + date.getMonth().getValue() + " " + date.getDayOfMonth());
         writer.println(origin);
         writer.println(destination);
         writer.println(outgoing);

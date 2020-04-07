@@ -40,7 +40,6 @@ public class Airport {
     public void save() throws FileNotFoundException {
         File file = new File("airport");
         PrintWriter writer = new PrintWriter(file);
-        flights = new ArrayList<>();
         writer.println(flights.size());
         for (Flight f : flights) {
             f.save(writer);
