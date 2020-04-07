@@ -23,6 +23,17 @@ public class Flight {
         outgoing = Boolean.parseBoolean(input.next());
     }
 
+    public Flight(Scanner scan, String user) {
+        System.out.println("please enter flight Num (letters + digits)");
+        flightNum = scan.next();
+        System.out.println("please enter plane details: (model and then num of passengers):");
+        plane = new Plane(scan.next(), scan.nextInt());
+        System.out.println("please enter date of flight: (year, month, day)");
+        date = LocalDate.of(scan.nextInt(), scan.nextInt(), scan.nextInt());
+        System.out.println("please enter country of origin and destination");
+        setDirection(scan.next(), scan.next());
+    }
+
     public void save(PrintWriter writer) throws FileNotFoundException {
         writer.println(flightNum);
         plane.save(writer);

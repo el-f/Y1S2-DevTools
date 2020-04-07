@@ -17,7 +17,12 @@ public class Airport {
 
     public void initializeFromUser() {
         Scanner scan = new Scanner(System.in);
-
+        System.out.println("Enter number of flights");
+        currentFlightsNum = scan.nextInt();
+        for (int i = 0; i < currentFlightsNum; i++) {
+            System.out.println("please enter flight #" + i + " details:");
+            flights.add(new Flight(scan, "user"));
+        }
 
         scan.close();
     }
