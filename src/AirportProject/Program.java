@@ -9,7 +9,7 @@ public class Program {
         To Do:
         1. sort by outgoing and incoming - DONE
         2. get input from user
-        3. write and read from file
+        3. write and read from file - DONE
         4. tests
          */
 

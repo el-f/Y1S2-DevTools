@@ -1,13 +1,43 @@
 package AirportProject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 import static java.util.Collections.*;
 
 public class Airport {
     private ArrayList<Flight> flights;
+    private int currentFlightsNum;
     public final static int MAX_FLIGHTS = 200;
+
+
+    public void initializeFromUser() {
+        Scanner scan = new Scanner(System.in);
+
+    }
+
+    public Airport(File file) throws FileNotFoundException {
+        Scanner s = new Scanner(file);
+        currentFlightsNum = s.nextInt();
+        flights = new ArrayList<>();
+        for (int i = 0; i < currentFlightsNum; i++) {
+            flights.add(new Flight(s));
+        }
+    }
+
+    public void save() throws FileNotFoundException {
+        File file = new File("airport");
+        PrintWriter writer = new PrintWriter(file);
+        flights = new ArrayList<>();
+        writer.println(flights.size());
+        for (Flight f : flights) {
+            f.save(writer);
+        }
+    }
 
     public Airport() {
         flights = new ArrayList<>();

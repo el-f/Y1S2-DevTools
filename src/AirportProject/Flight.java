@@ -1,6 +1,9 @@
 package AirportProject;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Flight {
 
@@ -10,6 +13,24 @@ public class Flight {
     private String origin;
     private String destination;
     private boolean outgoing;
+
+    public Flight(Scanner input) {
+        flightNum = input.next();
+        plane = new Plane(input);
+        date = LocalDate.of(input.nextInt(), input.nextInt(), input.nextInt());
+        origin = input.next();
+        destination = input.next();
+        outgoing = Boolean.parseBoolean(input.next());
+    }
+
+    public void save(PrintWriter writer) throws FileNotFoundException {
+        writer.println(flightNum);
+        plane.save(writer);
+        writer.println(date.getYear() + " " + date.getMonth() + " " + date.getDayOfMonth());
+        writer.println(origin);
+        writer.println(destination);
+        writer.println(outgoing);
+    }
 
     public Flight(String _flightNum, Plane _plane, LocalDate _date, String _origin, String _destination) {
         flightNum = _flightNum;
