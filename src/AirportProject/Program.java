@@ -5,6 +5,14 @@ import java.time.LocalDate;
 public class Program {
     public static void main(String[] args) {
 
+        /*
+        To Do:
+        1. sort by outgoing and incoming
+        2. get input from user
+        3. write and read from file
+        4. tests
+         */
+
         LocalDate D1 = LocalDate.of(2020, 11, 23);
         LocalDate D2 = LocalDate.of(2020, 11, 22);
         LocalDate D3 = LocalDate.of(2020, 11, 21);
