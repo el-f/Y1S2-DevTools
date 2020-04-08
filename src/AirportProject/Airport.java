@@ -37,16 +37,6 @@ public class Airport {
         s.close();
     }
 
-    public void save() throws FileNotFoundException {
-        File file = new File("airport");
-        PrintWriter writer = new PrintWriter(file);
-        writer.println(flights.size());
-        for (Flight f : flights) {
-            f.save(writer);
-        }
-        writer.close();
-    }
-
     public void save(String filepath) throws FileNotFoundException {
         File file = new File(filepath);
         PrintWriter writer = new PrintWriter(file);
@@ -85,10 +75,7 @@ public class Airport {
     }
 
     public void showOutgoingFlights() {
-        flights.forEach(f -> {
-            if (f.isOutgoing())
-                System.out.println(f);
-        });
+        flights.stream().filter(Flight::isOutgoing).forEach(System.out::println);
     }
 
     public void showIncomingFlights() {
@@ -104,10 +91,10 @@ public class Airport {
     }
 
     // same as show()
-	public String toString() {
-		StringBuilder res = new StringBuilder();
-		flights.forEach(f -> res.append(f + "\n"));
-		return res.toString();
-	}
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        flights.forEach(f -> res.append(f).append("\n"));
+        return res.toString();
+    }
 
 }

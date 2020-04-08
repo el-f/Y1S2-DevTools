@@ -72,7 +72,7 @@ public class Program {
         ap.showIncomingFlights();
 
 
-        ap.save();
+        ap.save("airport");
         Airport ap2 = new Airport(new File("airport"));
 
         System.out.println("\nairport 2");
