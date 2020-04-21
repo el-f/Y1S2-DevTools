@@ -3,6 +3,7 @@ package AirportProject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Program {
     public static void main(String[] args) throws FileNotFoundException {
@@ -10,14 +11,13 @@ public class Program {
         /*
         To Do:
         1. test
-        2. add hours, minutes
         3. create Menu() (show, add, remove, exit, etc)
          */
 
-        LocalDate D1 = LocalDate.of(2020, 11, 23);
-        LocalDate D2 = LocalDate.of(2020, 11, 22);
-        LocalDate D3 = LocalDate.of(2020, 11, 21);
-        LocalDate D4 = LocalDate.of(2020, 11, 20);
+        LocalDateTime D1 = LocalDateTime.of(2020, 11, 23, 2, 3);
+        LocalDateTime D2 = LocalDateTime.of(2020, 11, 22, 14, 30);
+        LocalDateTime D3 = LocalDateTime.of(2020, 11, 21, 19, 59);
+        LocalDateTime D4 = LocalDateTime.of(2020, 11, 20, 11, 16);
         // plane
         Plane P1 = new Plane("Wright Flyer", 4);
         Plane P2 = new Plane("Supermarine Spitfire", 15);
@@ -58,8 +58,8 @@ public class Program {
         ap.sortByNumOfPassengers();
         ap.show();
 
-        System.out.println("\nsorted by date:");
-        ap.sortByDate();
+        System.out.println("\nsorted by date and time:");
+        ap.sortByDateTime();
         ap.show();
 
         System.out.println("\nsorted by direction");

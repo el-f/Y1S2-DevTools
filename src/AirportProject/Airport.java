@@ -66,7 +66,7 @@ public class Airport {
         flights.sort((f1, f2) -> Boolean.compare(f2.isOutgoing(), f1.isOutgoing()));
     }
 
-    public void sortByDate() {
+    public void sortByDateTime() {
         flights.sort(Comparator.comparing(Flight::getDate));
     }
 
