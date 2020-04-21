@@ -27,13 +27,13 @@ public class Program {
         Plane P7 = new Plane("F-35", 2);
 
         // flight
-        Flight F1 = new Flight("SAD1978", P1, D1, "Israel", "Albania");
-        Flight F2 = new Flight("HASF1238", P2, D1, "Austria", "Israel");
-        Flight F3 = new Flight("ASD41IDA", P3, D2, "Guinea", "Israel");
-        Flight F4 = new Flight("ASD41IDA", P4, D3, "Israel", "Ireland");
-        Flight F5 = new Flight("DFWQ41F", P5, D4, "Israel", "Italy");
-        Flight F6 = new Flight("UR24EE", P6, D3, "Laos", "Israel");
-        Flight F7 = new Flight("KSD556Q", P7, D1, "Israel", "Iran");
+        Flight F1 = new Flight("SAD1978", P1, D1, "Albania", true);
+        Flight F2 = new Flight("HASF1238", P2, D1, "Austria", false);
+        Flight F3 = new Flight("ASD41IDA", P3, D2, "Guinea", true);
+        Flight F4 = new Flight("ASD41IDA", P4, D3, "Ireland", false);
+        Flight F5 = new Flight("DFWQ41F", P5, D4, "Italy", true);
+        Flight F6 = new Flight("UR24EE", P6, D3, "Laos", false);
+        Flight F7 = new Flight("KSD556Q", P7, D1, "Iran", true);
 
         Airport ap = new Airport();
         System.out.println("All:");

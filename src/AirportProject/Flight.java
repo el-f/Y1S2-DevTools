@@ -50,6 +50,7 @@ public class Flight {
         flightNum = _flightNum;
         plane = _plane;
         dateTime = _date;
+        country = _country;
         outgoing = _outgoing;
 
     }
@@ -77,7 +78,7 @@ public class Flight {
 
     public String toString() {
         String dir = outgoing ? "to" : "from";
-        return "Flight: " + flightNum + " | " + plane.toString() + ", date and time: " + dateTime + "Direction: " + dir + ", country: " + country;
+        return "Flight: " + flightNum + " | " + plane.toString() + ", date and time: " + dateTime + " Direction: " + dir + " country: " + country;
     }
 
 }
