@@ -3,6 +3,7 @@ package AirportProject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -75,10 +76,12 @@ public class Airport {
     }
 
     public void showOutgoingFlights() {
+        sortByDateTime();
         flights.stream().filter(Flight::isOutgoing).forEach(System.out::println);
     }
 
     public void showIncomingFlights() {
+        sortByDateTime();
         flights.forEach(f -> {
             if (!f.isOutgoing())
                 System.out.println(f);
@@ -96,5 +99,26 @@ public class Airport {
         flights.forEach(f -> res.append(f).append("\n"));
         return res.toString();
     }
+
+    void getFlightFromUser(Scanner s, boolean _outgoing) {
+        String dir = _outgoing ? " destination" : " origin";
+        Flight input = new Flight();
+        input.setOutgoing(_outgoing);
+        System.out.println("Enter terminal num");
+        input.setTerminal(s.nextInt());
+        System.out.println("Enter flight num");
+        input.setFlightNum(s.next());
+        System.out.println("Enter model of plane");
+        input.setPlane(new Plane());
+        input.getPlane().setModel(s.next());
+        System.out.println("Enter num passengers (up to: " + Plane.MAX_PASSENGERS + " passengers)");
+        input.getPlane().setPassengers(s.nextInt());
+        System.out.println("Please enter date and time FORMAT:[year month day hour minutes]");
+        input.setDateTime(LocalDateTime.of(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+        System.out.println("Please enter country of" + dir);
+        input.setCountry(s.next());
+        flights.add(input);
+    }
+
 
 }

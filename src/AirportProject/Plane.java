@@ -15,11 +15,11 @@ public class Plane {
         setPassengers(_passengers);
     }
 
-    private void setPassengers(int _passengers) {
+    public void setPassengers(int _passengers) {
         passengers = _passengers > 0 && _passengers < MAX_PASSENGERS ? _passengers : 0;
     }
 
-    private void setModel(String _model) {
+    public void setModel(String _model) {
         model = _model;
     }
 
@@ -56,9 +56,9 @@ public class Plane {
         writer.println(passengers);
     }
 
+
     public Plane(Scanner input) {
-        setModel(input.nextLine());
-        input.nextLine();
+        setModel(input.next());
         setPassengers(input.nextInt());
     }
 

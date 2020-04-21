@@ -3,10 +3,12 @@ package AirportProject;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.Formatter;
 import java.util.Scanner;
 
 public class Flight {
 
+    private int terminal;
     private String flightNum;
     private Plane plane;
     private LocalDateTime dateTime;
@@ -14,6 +16,7 @@ public class Flight {
     private boolean outgoing;
 
     public Flight(Scanner input) {
+        terminal = input.nextInt();
         flightNum = input.next();
         plane = new Plane(input);
         dateTime = LocalDateTime.of(input.nextInt(), input.nextInt(),
@@ -22,7 +25,20 @@ public class Flight {
         outgoing = Boolean.parseBoolean(input.next());
     }
 
+    public void save(PrintWriter writer) throws FileNotFoundException {
+        writer.println(terminal);
+        writer.println(flightNum);
+        plane.save(writer);
+        writer.println(dateTime.getYear() + " " + dateTime.getMonth().getValue() +
+                " " + dateTime.getDayOfMonth() + " " + dateTime.getHour() + " " +
+                dateTime.getMinute());
+        writer.println(country);
+        writer.println(outgoing);
+    }
+
     public Flight(Scanner scan, String user) {
+        System.out.println("please enter terminal number:");
+        terminal = scan.nextInt();
         System.out.println("please enter flight Num (letters + digits)");
         flightNum = scan.next();
         System.out.println("please enter plane details: (model and then num of passengers):");
@@ -36,17 +52,8 @@ public class Flight {
         country = scan.next();
     }
 
-    public void save(PrintWriter writer) throws FileNotFoundException {
-        writer.println(flightNum);
-        plane.save(writer);
-        writer.println(dateTime.getYear() + " " + dateTime.getMonth().getValue() +
-                " " + dateTime.getDayOfMonth() + " " + dateTime.getHour() + " " +
-                dateTime.getMinute());
-        writer.println(country);
-        writer.println(outgoing);
-    }
-
-    public Flight(String _flightNum, Plane _plane, LocalDateTime _date, String _country, boolean _outgoing) {
+    public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, boolean _outgoing) {
+        terminal = _terminal;
         flightNum = _flightNum;
         plane = _plane;
         dateTime = _date;
@@ -59,9 +66,36 @@ public class Flight {
         return outgoing;
     }
 
+    public void setTerminal(int terminal) {
+        this.terminal = terminal;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setFlightNum(String flightNum) {
+        this.flightNum = flightNum;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setOutgoing(boolean outgoing) {
+        this.outgoing = outgoing;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    public Plane getPlane() {
+        return plane;
+    }
 
     public Flight() {
-        this("", null, null, "", false);
+        this(0, "", null, null, "", false);
     }
 
     public LocalDateTime getDate() {
@@ -76,9 +110,16 @@ public class Flight {
         outgoing = !outgoing;
     }
 
+    public String showDateTime() {
+        return "Date: " + dateTime.getDayOfMonth() + "/" + dateTime.getMonthValue() +
+                "/" + dateTime.getYear() + " Time: " + dateTime.getHour() + ":" + dateTime.getMinute();
+    }
+
+
     public String toString() {
-        String dir = outgoing ? "to" : "from";
-        return "Flight: " + flightNum + " | " + plane.toString() + ", date and time: " + dateTime + " Direction: " + dir + " country: " + country;
+        String dir = outgoing ? " To" : " From";
+        return "Flight: " + flightNum + ", Terminal: " + terminal +
+                " | " + plane.toString() + ", date and time: " + dateTime + dir + " country: " + country;
     }
 
 }
