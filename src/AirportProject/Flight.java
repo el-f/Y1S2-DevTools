@@ -10,8 +10,7 @@ public class Flight {
     private String flightNum;
     private Plane plane;
     private LocalDateTime dateTime;
-    private String origin;
-    private String destination;
+    private String country;
     private boolean outgoing;
 
     public Flight(Scanner input) {
@@ -19,8 +18,7 @@ public class Flight {
         plane = new Plane(input);
         dateTime = LocalDateTime.of(input.nextInt(), input.nextInt(),
                 input.nextInt(), input.nextInt(), input.nextInt());
-        origin = input.next();
-        destination = input.next();
+        country = input.next();
         outgoing = Boolean.parseBoolean(input.next());
     }
 
@@ -32,8 +30,10 @@ public class Flight {
         System.out.println("please enter date of flight: (year, month, day)");
         dateTime = LocalDateTime.of(scan.nextInt(), scan.nextInt(),
                 scan.nextInt(), scan.nextInt(), scan.nextInt());
-        System.out.println("please enter country of origin and destination");
-        setDirection(scan.next(), scan.next());
+        System.out.println("Please enter and if outgoing (true/false)");
+        outgoing = Boolean.parseBoolean(scan.next());
+        System.out.println("please enter country");
+        country = scan.next();
     }
 
     public void save(PrintWriter writer) throws FileNotFoundException {
@@ -42,25 +42,15 @@ public class Flight {
         writer.println(dateTime.getYear() + " " + dateTime.getMonth().getValue() +
                 " " + dateTime.getDayOfMonth() + " " + dateTime.getHour() + " " +
                 dateTime.getMinute());
-        writer.println(origin);
-        writer.println(destination);
+        writer.println(country);
         writer.println(outgoing);
     }
 
-    public Flight(String _flightNum, Plane _plane, LocalDateTime _date, String _origin, String _destination) {
+    public Flight(String _flightNum, Plane _plane, LocalDateTime _date, String _country, boolean _outgoing) {
         flightNum = _flightNum;
         plane = _plane;
         dateTime = _date;
-        setDirection(_origin, _destination);
-
-    }
-
-    private void setDirection(String _origin, String _destination) {
-        if (_destination.toLowerCase().equals("israel") || _origin.toLowerCase().equals("israel")) {
-            destination = _destination;
-            origin = _origin;
-            outgoing = !_destination.toLowerCase().equals("israel");
-        }
+        outgoing = _outgoing;
 
     }
 
@@ -70,7 +60,7 @@ public class Flight {
 
 
     public Flight() {
-        this("", null, null, "", "");
+        this("", null, null, "", false);
     }
 
     public LocalDateTime getDate() {
@@ -82,15 +72,12 @@ public class Flight {
     }
 
     public void changeDirection() {
-        String temp = origin;
-        origin = destination;
-        destination = temp;
         outgoing = !outgoing;
     }
 
     public String toString() {
-        return "Flight: " + flightNum + " | " + plane.toString() + ", date: " + dateTime + ", Origin: " + origin
-                + ", Destination: " + destination;
+        String dir = outgoing ? "to" : "from";
+        return "Flight: " + flightNum + " | " + plane.toString() + ", date and time: " + dateTime + "Direction: " + dir + ", country: " + country;
     }
 
 }
