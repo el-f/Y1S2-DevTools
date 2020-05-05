@@ -1,8 +1,8 @@
 # Y1S2-Homework
-Authors:
+**Authors:**
 
-Elazar Fine
+- Elazar Fine
 
-Gal Karasnty
+- Gal Karasnty
 
-Maor Ofek
+- Maor Ofek
