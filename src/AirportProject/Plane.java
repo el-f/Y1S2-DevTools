@@ -48,10 +48,10 @@ public class Plane {
     }
 
     public String toString() {
-        return "Model: " + model + ", Passengers: " + passengers + "/" + MAX_PASSENGERS;
+        return "Model: " + model + " | Passengers: " + passengers + "/" + MAX_PASSENGERS;
     }
 
-    public void save(PrintWriter writer) throws FileNotFoundException {
+    public void save(PrintWriter writer) {
         writer.println(model);
         writer.println(passengers);
     }

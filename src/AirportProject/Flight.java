@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Flight {
@@ -16,6 +17,7 @@ public class Flight {
     private String city;
     private String airportName;
     private boolean outgoing;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public String getCountry() {
         return country;
@@ -45,7 +47,7 @@ public class Flight {
         outgoing = Boolean.parseBoolean(input.next());
     }
 
-    public void save(PrintWriter writer) throws FileNotFoundException {
+    public void save(PrintWriter writer) {
         writer.println(terminal);
         writer.println(flightNum);
         plane.save(writer);
@@ -147,9 +149,9 @@ public class Flight {
 
     public String toString() {
         String dir = outgoing ? " To" : " From";
-        return "Flight: " + flightNum + ", Terminal: " + terminal +
-                " | " + plane.toString() + ", date and time: " + dateTime + dir + " country: " +
-                country + ", city: " + city + ", airport: " + airportName;
+        return "Flight: " + flightNum + " | Terminal: " + terminal +
+                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " | "+ dir + ": (country: " +
+                country + ", city: " + city + ", airport: " + airportName+")";
     }
 
 
