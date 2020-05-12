@@ -91,20 +91,7 @@ public class Menu {
 
     }
 
-    private static LocalDateTime getDateTimeFromUser(Scanner s) {
-        int year, month, day, hour, minutes;
-        System.out.println("enter year");
-        year = s.nextInt();
-        System.out.println("enter month");
-        month = s.nextInt();
-        System.out.println("enter day");
-        day = s.nextInt();
-        System.out.println("enter hour");
-        hour = s.nextInt();
-        System.out.println("enter minutes");
-        minutes = s.nextInt();
-        return LocalDateTime.of(year, month, day, hour, minutes);
-    }
+
 
     private static void showCustomRangeFlights(Scanner s) throws MyException {
         List<Flight> result = new ArrayList<>(ap.getFlights());
@@ -161,9 +148,9 @@ public class Menu {
         System.out.println("if you want to filter by date and time range enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please enter start date");
-            LocalDateTime start = getDateTimeFromUser(s);
+            LocalDateTime start = Flight.getDateTimeFromUser(s);
             System.out.println("Please enter end date");
-            LocalDateTime end = getDateTimeFromUser(s);
+            LocalDateTime end = Flight.getDateTimeFromUser(s);
             result.removeIf(f -> f.getDate().isBefore(start) || f.getDate().isAfter(end));
         }
         result.forEach(System.out::println);

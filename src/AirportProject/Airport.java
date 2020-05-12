@@ -153,7 +153,7 @@ public class Airport {
         System.out.println("Enter num passengers (up to: " + Plane.MAX_PASSENGERS + " passengers)");
         input.getPlane().setPassengers(s.nextInt());
         System.out.println("Please enter date and time FORMAT:[year month day hour minutes]");
-        input.setDateTime(LocalDateTime.of(s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));
+        input.setDateTime(Flight.getDateTimeFromUser(s));
         System.out.println("Please enter country of" + dir);
         input.setCountry(s.next());
         flights.add(input);
