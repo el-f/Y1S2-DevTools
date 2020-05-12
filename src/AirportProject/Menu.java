@@ -75,7 +75,7 @@ public class Menu {
                         ap.show();
                         break;
                     case 0:
-                        choice = 0;
+                        System.out.println("~~~end of program~~~");
                         break;
                     default:
                         System.out.println("invalid input");
