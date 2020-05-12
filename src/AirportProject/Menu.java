@@ -152,6 +152,12 @@ public class Menu {
             oc.num = s.nextInt();
             result.removeIf(f -> f.getTerminal() != oc.num);
         }
+        System.out.println("if you want to filter by day of the week range enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please enter day of the week by name");
+            oc.str = s.next();
+            result.removeIf(f -> !f.getDate().getDayOfWeek().name().equals(oc.str.toUpperCase()));
+        }
         System.out.println("if you want to filter by date and time range enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please enter start date");
