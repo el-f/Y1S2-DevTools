@@ -84,7 +84,12 @@ public class Airport {
 
     public void showOutgoingFlights() {
         sortByDateTime();
-        flights.stream().filter(Flight::isOutgoing).forEach(System.out::println);
+        getOutgoingFlights().forEach(System.out::println);
+    }
+
+    public void showIncomingFlights() {
+        sortByDateTime();
+        getIncomingFlights().forEach(System.out::println);
     }
 
 
@@ -120,15 +125,6 @@ public class Airport {
 
     public List<Flight> getFlightsByDayOfWeek(DayOfWeek dayOfWeek) {
         return flights.stream().filter(f -> f.getDate().getDayOfWeek().name().equals(dayOfWeek.name())).collect(Collectors.toList());
-    }
-
-
-    public void showIncomingFlights() {
-        sortByDateTime();
-        flights.forEach(f -> {
-            if (!f.isOutgoing())
-                System.out.println(f);
-        });
     }
 
 
