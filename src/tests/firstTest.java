@@ -50,7 +50,7 @@ public class firstTest {
         Airport ap = new Airport();
         ap.addFlight(F5);
         ap.addFlight(F6);
-        ap.addFlight(F7);
+        ap.addFlight(F6);
         ap.addFlight(F7);
         ap.addFlight(F7);
         ap.addFlight(F7);
