@@ -3,48 +3,62 @@
 SAD1978
 Wright-Flyer
 4
-2020 11 23 2 3
+2020 11 20 2 3
 Albania
+albania_city
+albania_airport
+true
+1
+KSD556Q
+F-35
+2
+2020 11 20 2 3
+Iran
+Iran_city
+Iran_airport
 true
 1
 HASF1238
 Supermarine-Spitfire
 15
-2020 11 23 2 3
+2020 11 20 2 3
 Austria
+Austria_city
+Austria_airport
 false
 2
 ASD41IDA
 Boeing-787
 0
-2020 11 22 14 30
+2020 11 21 14 30
 Guinea
+Guinea_city
+Guinea_airpot
 true
 1
 ASD41IDA
 Learjet-23
 16
-2020 11 21 19 59
+2020 11 22 19 59
 Ireland
+Ireland_city
+Ireland_airport
+false
+3
+UR24EE
+Boeing_B-29
+0
+2020 11 22 19 59
+Laos
+Laos_city
+Laos_airport
 false
 2
 DFWQ41F
 C-130
 94
-2020 11 20 11 16
+2020 11 23 11 16
 Italy
-true
-3
-UR24EE
-Boeing_B-29
-0
-2020 11 21 19 59
-Laos
-false
-1
-KSD556Q
-F-35
-2
-2020 11 23 2 3
-Iran
+Italy_city
+Italy_airport
 true

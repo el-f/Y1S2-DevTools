@@ -1,62 +1,180 @@
 package AirportProject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Menu {
-    private static Airport ap = new Airport();
+    private static Airport ap;
 
-    public static void showMenu() throws FileNotFoundException {
+    public static void showMenu(){
+        ap = new Airport();
         Scanner s = new Scanner(System.in);
         int choice;
+        try {
 
-        do {
-            System.out.println("Menu:");
-            System.out.println("1) Create outgoing Flight");
-            System.out.println("2) Create incoming Flight");
-            System.out.println("3) Show all outgoing flights");
-            System.out.println("4) Show all incoming flights");
-            System.out.println("5) Save airport to file");
-            System.out.println("6) Load airport from file");
-            System.out.println("\n0) To exit");
-            choice = s.nextInt();
-            switch (choice) {
+
+            do {
+                System.out.println("Menu:");
+                System.out.println("1) Create outgoing Flight");
+                System.out.println("2) Create incoming Flight");
+                System.out.println("3) Show all outgoing flights");
+                System.out.println("4) Show all incoming flights");
+                System.out.println("5) Save airport to file");
+                System.out.println("6) Load airport from file");
+                System.out.println("7) Show Custom Selected flights");
+                System.out.println("8) Show all flights");
+                System.out.println("\n0) To exit");
+                choice = s.nextInt();
+                switch (choice) {
+                    case 1:
+                        ap.getFlightFromUser(s, true);
+                        break;
+                    case 2:
+                        ap.getFlightFromUser(s, false);
+                        break;
+                    case 3:
+                        System.out.println("Outgoing flights: ");
+                        ap.showOutgoingFlights();
+                        break;
+                    case 4:
+                        System.out.println("Incoming flights: ");
+                        ap.showIncomingFlights();
+                        break;
+                    case 5:
+                        System.out.println("Please enter file name or file path to create");
+                        ap.save(s.next());
+                        break;
+                    case 6:
+                        System.out.println("Choose: ");
+                        System.out.println("1) enter file name/path yourself");
+                        System.out.println("2) load default file");
+                        switch (s.nextInt()) {
+                            case 1:
+                                System.out.println("Please enter file name or file path to read from");
+                                File f = new File(s.next());
+                                if (!f.exists()) {
+                                    System.out.println("no such file!");
+                                    break;
+                                }
+                                ap = new Airport(f);
+                                break;
+                            case 2:
+                                ap = new Airport(new File("airport"));
+                                System.out.println("Loaded default file!");
+                                break;
+                            default:
+                                System.out.println("Invalid Input");
+                                break;
+                        }
+                        break;
+                    case 7:
+                        showCustomRangeFlights(s);
+                        break;
+                    case 8:
+                        ap.show();
+                        break;
+                    case 0:
+                        choice = 0;
+                        break;
+                    default:
+                        System.out.println("invalid input");
+                        break;
+                }
+            } while (choice != 0);
+        } catch (MyException e) {
+            System.out.println(e.getMessage());
+            System.out.println("please try again");
+        } catch (Exception e) {
+            System.out.println("oops! error: " + e.getClass().getSimpleName());
+            System.out.println("please try again");
+        }
+
+
+    }
+
+    private static LocalDateTime getDateTimeFromUser(Scanner s) {
+        int year, month, day, hour, minutes;
+        System.out.println("enter year");
+        year = s.nextInt();
+        System.out.println("enter month");
+        month = s.nextInt();
+        System.out.println("enter day");
+        day = s.nextInt();
+        System.out.println("enter hour");
+        hour = s.nextInt();
+        System.out.println("enter minutes");
+        minutes = s.nextInt();
+        return LocalDateTime.of(year, month, day, hour, minutes);
+    }
+
+    private static void showCustomRangeFlights(Scanner s) throws MyException {
+        List<Flight> result = new ArrayList<>(ap.getFlights());
+        String str;
+        int size = result.size();
+        System.out.println("if you want to filter by Direction enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please Select direction: ");
+            System.out.println("1) Outgoing");
+            System.out.println("2) Incoming");
+            switch (s.nextInt()) {
                 case 1:
-                    ap.getFlightFromUser(s, true);
+                    result.removeAll(ap.getIncomingFlights());
                     break;
                 case 2:
-                    ap.getFlightFromUser(s, false);
-                    break;
-                case 3:
-                    System.out.println("Outgoing flights: ");
-                    ap.showOutgoingFlights();
-                    break;
-                case 4:
-                    System.out.println("Incoming flights: ");
-                    ap.showIncomingFlights();
-                    break;
-                case 5:
-                    System.out.println("Please enter file name or file path to create");
-                    ap.save(s.next());
-                    break;
-                case 6:
-                    System.out.println("Please enter file name or file path to read from");
-                    File f = new File(s.next());
-                    if (!f.exists()) {
-                        System.out.println("no such file!");
-                        break;
-                    }
-                    ap = new Airport(f);
-                    break;
-                case 0:
-                    choice = 0;
+                    result.removeAll(ap.getOutgoingFlights());
                     break;
                 default:
-                    System.out.println("invalid input");
-                    break;
+                    throw new MyException("Unexpected Value!");
             }
-        } while (choice != 0);
-
+        }
+        System.out.println("if you want to filter by country enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please Enter country:");
+            str = s.next().toLowerCase();
+            for (int i = 0; i < result.size(); )
+                if (!(result.get(i).getCountry().toLowerCase().equals(str)))
+                    result.remove(result.get(i));
+                else i++;
+        }
+        System.out.println("if you want to filter by city enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please Enter city:");
+            str = s.next().toLowerCase();
+            for (int i = 0; i < result.size(); )
+                if (!result.get(i).getCity().toLowerCase().equals(str))
+                    result.remove(result.get(i));
+                else i++;
+        }
+        System.out.println("if you want to filter by airport enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please Enter airport name:");
+            str = s.next().toLowerCase();
+            for (int i = 0; i < result.size(); )
+                if (!result.get(i).getAirportName().toLowerCase().equals(str))
+                    result.remove(result.get(i));
+                else i++;
+        }
+        System.out.println("if you want to filter by terminal num enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please Enter terminal number:");
+            int num = s.nextInt();
+            for (int i = 0; i < result.size(); )
+                if (!(result.get(i).getTerminal() == num))
+                    result.remove(result.get(i));
+                else i++;
+        }
+        System.out.println("if you want to filter by date and time range enter 'y'. 'n' for no");
+        if (s.next().equals("y")) {
+            System.out.println("Please enter start date");
+            LocalDateTime start = getDateTimeFromUser(s);
+            System.out.println("Please enter end date");
+            LocalDateTime end = getDateTimeFromUser(s);
+            for (int i = 0; i < result.size(); )
+                if (result.get(i).getDate().isBefore(start) || result.get(i).getDate().isAfter(end))
+                    result.remove(result.get(i));
+                else i++;
+        }
+        result.forEach(System.out::println);
     }
 }

@@ -2,8 +2,8 @@ package AirportProject;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.Formatter;
 import java.util.Scanner;
 
 public class Flight {
@@ -13,7 +13,25 @@ public class Flight {
     private Plane plane;
     private LocalDateTime dateTime;
     private String country;
+    private String city;
+    private String airportName;
     private boolean outgoing;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public int getTerminal() {
+        return terminal;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getAirportName() {
+        return airportName;
+    }
 
     public Flight(Scanner input) {
         terminal = input.nextInt();
@@ -22,6 +40,8 @@ public class Flight {
         dateTime = LocalDateTime.of(input.nextInt(), input.nextInt(),
                 input.nextInt(), input.nextInt(), input.nextInt());
         country = input.next();
+        city = input.next();
+        airportName = input.next();
         outgoing = Boolean.parseBoolean(input.next());
     }
 
@@ -33,6 +53,8 @@ public class Flight {
                 " " + dateTime.getDayOfMonth() + " " + dateTime.getHour() + " " +
                 dateTime.getMinute());
         writer.println(country);
+        writer.println(city);
+        writer.println(airportName);
         writer.println(outgoing);
     }
 
@@ -50,14 +72,21 @@ public class Flight {
         outgoing = Boolean.parseBoolean(scan.next());
         System.out.println("please enter country");
         country = scan.next();
+        System.out.println("please enter city name");
+        city = scan.next();
+        String dir = outgoing ? "destination" : "origin";
+        System.out.println("please enter " + dir + " airport name ");
+        airportName = scan.next();
     }
 
-    public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, boolean _outgoing) {
+    public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, String _city, String _airportName, boolean _outgoing) {
         terminal = _terminal;
         flightNum = _flightNum;
         plane = _plane;
         dateTime = _date;
         country = _country;
+        city = _city;
+        airportName = _airportName;
         outgoing = _outgoing;
 
     }
@@ -95,7 +124,7 @@ public class Flight {
     }
 
     public Flight() {
-        this(0, "", null, null, "", false);
+        this(0, "", null, null, "", "", "", false);
     }
 
     public LocalDateTime getDate() {
@@ -119,7 +148,9 @@ public class Flight {
     public String toString() {
         String dir = outgoing ? " To" : " From";
         return "Flight: " + flightNum + ", Terminal: " + terminal +
-                " | " + plane.toString() + ", date and time: " + dateTime + dir + " country: " + country;
+                " | " + plane.toString() + ", date and time: " + dateTime + dir + " country: " +
+                country + ", city: " + city + ", airport: " + airportName;
     }
+
 
 }

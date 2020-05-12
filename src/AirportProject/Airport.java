@@ -3,12 +3,13 @@ package AirportProject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
-
-import static java.util.Collections.*;
+import java.util.stream.Collectors;
 
 public class Airport {
     private ArrayList<Flight> flights;
@@ -26,6 +27,10 @@ public class Airport {
         }
 
         scan.close();
+    }
+
+    public ArrayList<Flight> getFlights() {
+        return flights;
     }
 
     public Airport(File file) throws FileNotFoundException {
@@ -53,6 +58,8 @@ public class Airport {
     }
 
     public boolean addFlight(Flight flight) {
+        if (flights.contains(flight))
+            return false;
         if (flights.size() < MAX_FLIGHTS) {
             return flights.add(flight);
         }
@@ -79,6 +86,42 @@ public class Airport {
         sortByDateTime();
         flights.stream().filter(Flight::isOutgoing).forEach(System.out::println);
     }
+
+
+    public List<Flight> getOutgoingFlights() {
+        return flights.stream().filter(Flight::isOutgoing).collect(Collectors.toList());
+
+    }
+
+    public List<Flight> getIncomingFlights() {
+        return flights.stream().filter(f -> !f.isOutgoing()).collect(Collectors.toList());
+    }
+
+    public List<Flight> getFlightsByCountry(String country) {
+        return flights.stream().filter(f -> f.getCountry().toLowerCase().equals(country)).collect(Collectors.toList());
+    }
+
+    public List<Flight> getFlightsByCity(String city) {
+        return flights.stream().filter(f -> f.getCity().toLowerCase().equals(city)).collect(Collectors.toList());
+    }
+
+    public List<Flight> getFlightsByAirport(String airport) {
+        return flights.stream().filter(f -> f.getAirportName().toLowerCase().equals(airport)).collect(Collectors.toList());
+    }
+
+    public List<Flight> getFlightsByDateRange(LocalDateTime start, LocalDateTime end) {
+        return flights.stream().filter(f -> (f.getDate().isAfter(start) || f.getDate().isEqual(start)) &&
+                (f.getDate().isBefore(end) || f.getDate().isEqual(end))).collect(Collectors.toList());
+    }
+
+    public List<Flight> getFlightsByTerminal(int terminalNum) {
+        return flights.stream().filter(f -> f.getTerminal() == terminalNum).collect(Collectors.toList());
+    }
+
+    public List<Flight> getFlightsByDayOfWeek(DayOfWeek dayOfWeek) {
+        return flights.stream().filter(f -> f.getDate().getDayOfWeek().name().equals(dayOfWeek.name())).collect(Collectors.toList());
+    }
+
 
     public void showIncomingFlights() {
         sortByDateTime();
