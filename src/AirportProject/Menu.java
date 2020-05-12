@@ -7,7 +7,7 @@ import java.util.*;
 public class Menu {
     private static Airport ap;
 
-    public static void showMenu(){
+    public static void showMenu() {
         ap = new Airport();
         Scanner s = new Scanner(System.in);
         int choice;
@@ -110,8 +110,10 @@ public class Menu {
 
     private static void showCustomRangeFlights(Scanner s) throws MyException {
         List<Flight> result = new ArrayList<>(ap.getFlights());
-        String str;
-        int size = result.size();
+        var oc = new Object() {
+            String str;
+            int num;
+        };
         System.out.println("if you want to filter by Direction enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please Select direction: ");
@@ -131,38 +133,26 @@ public class Menu {
         System.out.println("if you want to filter by country enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please Enter country:");
-            str = s.next().toLowerCase();
-            for (int i = 0; i < result.size(); )
-                if (!(result.get(i).getCountry().toLowerCase().equals(str)))
-                    result.remove(result.get(i));
-                else i++;
+            oc.str = s.next().toLowerCase();
+            result.removeIf(f -> !f.getCountry().toLowerCase().equals(oc.str));
         }
         System.out.println("if you want to filter by city enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please Enter city:");
-            str = s.next().toLowerCase();
-            for (int i = 0; i < result.size(); )
-                if (!result.get(i).getCity().toLowerCase().equals(str))
-                    result.remove(result.get(i));
-                else i++;
+            oc.str = s.next().toLowerCase();
+            result.removeIf(f -> !f.getCity().toLowerCase().equals(oc.str));
         }
         System.out.println("if you want to filter by airport enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please Enter airport name:");
-            str = s.next().toLowerCase();
-            for (int i = 0; i < result.size(); )
-                if (!result.get(i).getAirportName().toLowerCase().equals(str))
-                    result.remove(result.get(i));
-                else i++;
+            oc.str = s.next().toLowerCase();
+            result.removeIf(f -> !f.getAirportName().toLowerCase().equals(oc.str));
         }
         System.out.println("if you want to filter by terminal num enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
             System.out.println("Please Enter terminal number:");
-            int num = s.nextInt();
-            for (int i = 0; i < result.size(); )
-                if (!(result.get(i).getTerminal() == num))
-                    result.remove(result.get(i));
-                else i++;
+            oc.num = s.nextInt();
+            result.removeIf(f -> f.getTerminal() != oc.num);
         }
         System.out.println("if you want to filter by date and time range enter 'y'. 'n' for no");
         if (s.next().equals("y")) {
@@ -170,10 +160,7 @@ public class Menu {
             LocalDateTime start = getDateTimeFromUser(s);
             System.out.println("Please enter end date");
             LocalDateTime end = getDateTimeFromUser(s);
-            for (int i = 0; i < result.size(); )
-                if (result.get(i).getDate().isBefore(start) || result.get(i).getDate().isAfter(end))
-                    result.remove(result.get(i));
-                else i++;
+            result.removeIf(f -> f.getDate().isBefore(start) || f.getDate().isAfter(end));
         }
         result.forEach(System.out::println);
     }
