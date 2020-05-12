@@ -15,27 +15,27 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class firstTest {
-    private LocalDateTime D1 = LocalDateTime.of(2020, 11, 20, 2, 3);
-    private LocalDateTime D2 = LocalDateTime.of(2020, 11, 21, 14, 30);
-    private LocalDateTime D3 = LocalDateTime.of(2020, 11, 22, 19, 59);
-    private LocalDateTime D4 = LocalDateTime.of(2020, 11, 23, 11, 16);
+    private final LocalDateTime D1 = LocalDateTime.of(2020, 11, 20, 2, 3);
+    private final LocalDateTime D2 = LocalDateTime.of(2020, 11, 21, 14, 30);
+    private final LocalDateTime D3 = LocalDateTime.of(2020, 11, 22, 19, 59);
+    private final LocalDateTime D4 = LocalDateTime.of(2020, 11, 23, 11, 16);
     // plane
-    private Plane P1 = new Plane("Wright-Flyer", 4);
-    private Plane P2 = new Plane("Supermarine-Spitfire", 15);
-    private Plane P3 = new Plane("Boeing-787", 150);
-    private Plane P4 = new Plane("Learjet-23", 16);
-    private Plane P5 = new Plane("C-130", 94);
-    private Plane P6 = new Plane("Boeing_B-29", 120);
-    private Plane P7 = new Plane("F-35", 2);
+    private final Plane P1 = new Plane("Wright-Flyer", 4);
+    private final Plane P2 = new Plane("Supermarine-Spitfire", 15);
+    private final Plane P3 = new Plane("Boeing-787", 150);
+    private final Plane P4 = new Plane("Learjet-23", 16);
+    private final Plane P5 = new Plane("C-130", 94);
+    private final Plane P6 = new Plane("Boeing_B-29", 120);
+    private final Plane P7 = new Plane("F-35", 2);
 
     // flight
-    private Flight F1 = new Flight(3, "SAD1978", P1, D1, "Albania", "albania_city", "albania_airport", true);
-    private Flight F2 = new Flight(1, "HASF1238", P2, D1, "Austria", "Austria_city", "Austria_airport", false);
-    private Flight F3 = new Flight(2, "ASD41IDA", P3, D2, "Guinea", "Guinea_city", "Guinea_airpot", true);
-    private Flight F4 = new Flight(1, "ASD41IDA", P4, D3, "Ireland", "Ireland_city", "Ireland_airport", false);
-    private Flight F5 = new Flight(2, "DFWQ41F", P5, D4, "Italy", "Italy_city", "Italy_airport", true);
-    private Flight F6 = new Flight(3, "UR24EE", P6, D3, "Laos", "Laos_city", "Laos_airport", false);
-    private Flight F7 = new Flight(1, "KSD556Q", P7, D1, "Iran", "Iran_city", "Iran_airport", true);
+    private final Flight F1 = new Flight(3, "SAD1978", P1, D1, "Albania", "albania_city", "albania_airport", true);
+    private final Flight F2 = new Flight(1, "HASF1238", P2, D1, "Austria", "Austria_city", "Austria_airport", false);
+    private final Flight F3 = new Flight(2, "ASD41IDA", P3, D2, "Guinea", "Guinea_city", "Guinea_airpot", true);
+    private final Flight F4 = new Flight(1, "ASD41IDA", P4, D3, "Ireland", "Ireland_city", "Ireland_airport", false);
+    private final Flight F5 = new Flight(2, "DFWQ41F", P5, D4, "Italy", "Italy_city", "Italy_airport", true);
+    private final Flight F6 = new Flight(3, "UR24EE", P6, D3, "Laos", "Laos_city", "Laos_airport", false);
+    private final Flight F7 = new Flight(1, "KSD556Q", P7, D1, "Iran", "Iran_city", "Iran_airport", true);
 
     @Test
     public void testFileLoadAndSave() throws FileNotFoundException {
