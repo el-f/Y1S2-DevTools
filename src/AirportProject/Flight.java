@@ -17,7 +17,7 @@ public class Flight {
     private String city;
     private String airportName;
     private boolean outgoing;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm (EEEE)");
 
     public String getCountry() {
         return country;
@@ -164,7 +164,7 @@ public class Flight {
     public String toString() {
         String dir = outgoing ? " To" : " From";
         return "Flight: " + flightNum + " | Terminal: " + terminal +
-                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " (" + dateTime.getDayOfWeek() + ") | " + dir + ": (country: " +
+                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " | " + dir + ": (country: " +
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
