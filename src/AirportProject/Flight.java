@@ -17,7 +17,7 @@ public class Flight {
     private String city;
     private String airportName;
     private boolean outgoing;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public String getCountry() {
         return country;
