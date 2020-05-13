@@ -164,7 +164,7 @@ public class Flight {
     public String toString() {
         String dir = outgoing ? " To" : " From";
         return "Flight: " + flightNum + " | Terminal: " + terminal +
-                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " | " + dir + ": (country: " +
+                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " |" + dir + ": (country: " +
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
