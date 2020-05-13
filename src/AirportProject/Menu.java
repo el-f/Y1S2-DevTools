@@ -78,17 +78,13 @@ public class Menu {
                     System.out.println("invalid input");
                     break;
             }
-        } catch (
-                MyException e) {
+        } catch (MyException e) {
             System.out.println(e.getMessage());
             System.out.println("please try again");
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             System.out.println("oops! error: " + e.getClass().getSimpleName());
             System.out.println("please try again");
         }
-
-
     }
 
 
