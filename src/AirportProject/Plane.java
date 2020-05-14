@@ -62,4 +62,8 @@ public class Plane {
         setPassengers(input.nextInt());
     }
 
+    public void saveToCSV(StringBuilder output) {
+        output.append(model).append(",");
+        output.append(passengers).append(",");
+    }
 }

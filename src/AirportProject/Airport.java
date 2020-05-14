@@ -1,8 +1,7 @@
 package AirportProject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,6 +28,26 @@ public class Airport {
         scan.close();
     }
 
+
+    /*
+    TODO:
+      - make it useful
+      - make it look not like a pile of shit
+      - add loading from the file
+      - implement in menu
+     */
+    public void saveToCSV(String filename) throws FileNotFoundException {
+        StringBuilder output = new StringBuilder();
+        output.append(flights.size()).append(",");
+        flights.forEach(f -> f.saveToCSV(output));
+        FileOutputStream outputStream = new FileOutputStream(filename + ".csv");
+        try {
+            outputStream.write(output.toString().getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Flight> getFlights() {
         return flights;
     }
@@ -47,9 +66,7 @@ public class Airport {
         File file = new File(filepath);
         PrintWriter writer = new PrintWriter(file);
         writer.println(flights.size());
-        for (Flight f : flights) {
-            f.save(writer);
-        }
+        flights.forEach(f -> f.save(writer));
         writer.close();
     }
 

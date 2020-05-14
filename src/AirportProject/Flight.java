@@ -169,4 +169,15 @@ public class Flight {
     }
 
 
+    public void saveToCSV(StringBuilder output) {
+        output.append(terminal).append(",");
+        output.append(flightNum).append(",");
+        plane.saveToCSV(output);
+        output.append(dateTime.getYear()).append(",").append(dateTime.getMonth().getValue()).append(" ").append(dateTime.getDayOfMonth()).append(",").append(dateTime.getHour()).append(",").append(dateTime.getMinute()).append(",");
+        output.append(country).append(",");
+        output.append(city).append(",");
+        output.append(airportName).append(",");
+        output.append(outgoing).append(",");
+
+    }
 }
