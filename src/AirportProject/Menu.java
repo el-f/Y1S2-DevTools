@@ -78,15 +78,14 @@ public class Menu {
                     System.out.println("invalid input");
                     break;
             }
-        } catch (MyException e) {
-            System.out.println(e.getMessage());
-            System.out.println("please try again");
         } catch (Exception e) {
-            System.out.println("oops! error: " + e.getClass().getSimpleName());
+            if (e instanceof MyException)
+                System.out.println(e.getMessage());
+            else
+                System.out.println("oops! error: " + e.getClass().getSimpleName());
             System.out.println("please try again");
         }
     }
-
 
 
     private static void showCustomRangeFlights(Scanner s) throws MyException {
