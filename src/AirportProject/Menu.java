@@ -94,8 +94,8 @@ public class Menu {
             String str;
             int num;
         };
-        System.out.println("if you want to filter by Direction enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by Direction?");
+        if (scanBoolean(s)) {
             System.out.println("Please Select direction: ");
             System.out.println("1) Outgoing");
             System.out.println("2) Incoming");
@@ -110,38 +110,38 @@ public class Menu {
                     throw new MyException("Unexpected Value!");
             }
         }
-        System.out.println("if you want to filter by country enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by country?");
+        if (scanBoolean(s)) {
             System.out.println("Please Enter country:");
             oc.str = s.next().toLowerCase();
             result.removeIf(f -> !f.getCountry().toLowerCase().equals(oc.str));
         }
-        System.out.println("if you want to filter by city enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by city?");
+        if (scanBoolean(s)) {
             System.out.println("Please Enter city:");
             oc.str = s.next().toLowerCase();
             result.removeIf(f -> !f.getCity().toLowerCase().equals(oc.str));
         }
-        System.out.println("if you want to filter by airport enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by airport?");
+        if (scanBoolean(s)) {
             System.out.println("Please Enter airport name:");
             oc.str = s.next().toLowerCase();
             result.removeIf(f -> !f.getAirportName().toLowerCase().equals(oc.str));
         }
-        System.out.println("if you want to filter by terminal num enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by terminal num?");
+        if (scanBoolean(s)) {
             System.out.println("Please Enter terminal number:");
             oc.num = s.nextInt();
             result.removeIf(f -> f.getTerminal() != oc.num);
         }
-        System.out.println("if you want to filter by day of the week range enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by day of the week?");
+        if (scanBoolean(s)) {
             System.out.println("Please enter day of the week by name");
             oc.str = s.next();
             result.removeIf(f -> !f.getDate().getDayOfWeek().name().equals(oc.str.toUpperCase()));
         }
-        System.out.println("if you want to filter by date and time range enter 'y'. 'n' for no");
-        if (s.next().equals("y")) {
+        System.out.println("Do you want to filter by date and time range?");
+        if (scanBoolean(s)) {
             System.out.println("Please enter start date");
             LocalDateTime start = Flight.getDateTimeFromUser(s);
             System.out.println("Please enter end date");
@@ -149,5 +149,20 @@ public class Menu {
             result.removeIf(f -> f.getDate().isBefore(start) || f.getDate().isAfter(end));
         }
         result.forEach(System.out::println);
+    }
+
+    public static boolean scanBoolean(Scanner scanner) {
+        boolean input = false, gotInput = false;
+        do {
+            System.out.println("Enter 'y' for yes, 'n' for no");
+            if (scanner.next().toLowerCase().equals("y")) {
+                input = true;
+                gotInput = true;
+            } else if (scanner.next().toLowerCase().equals("n")) {
+                gotInput = true;
+            } else
+                System.out.println("invalid input!");
+        } while (!gotInput);
+        return input;
     }
 }
