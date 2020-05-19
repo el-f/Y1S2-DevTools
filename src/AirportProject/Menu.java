@@ -153,12 +153,14 @@ public class Menu {
 
     public static boolean scanBoolean(Scanner scanner) {
         boolean input = false, gotInput = false;
+        String scanned;
         do {
             System.out.println("Enter 'y' for yes, 'n' for no");
-            if (scanner.next().toLowerCase().equals("y")) {
+            scanned = scanner.next().toLowerCase();
+            if (scanned.equals("y")) {
                 input = true;
                 gotInput = true;
-            } else if (scanner.next().toLowerCase().equals("n")) {
+            } else if (scanned.equals("n")) {
                 gotInput = true;
             } else
                 System.out.println("invalid input!");
