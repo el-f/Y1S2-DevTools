@@ -90,7 +90,7 @@ public class firstTest {
     public void testUserFilteredList() throws IOException {
         InputStream backupIn = System.in;
         PrintStream backupOut = System.out;
-        String simulatedInput = "6\n2\n7\ny\n2\nn\nn\nn\ny\n3\nn\nn\n0\n";
+        String simulatedInput = "6\n 2\n 7\n y\n 2\n n\n n\n n\n y\n 3\n n\n n\n 0\n";
         PrintStream outputPrintStream = new PrintStream(new File("outputStream"));
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(inputStream);
