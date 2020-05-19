@@ -87,18 +87,24 @@ public class firstTest {
     }
 
     @Test
-    public void testUserFilteredList() throws IOException {
+    public void testUserFilteredList() {
         InputStream backupIn = System.in;
         PrintStream backupOut = System.out;
         String simulatedInput = "6\n 2\n 7\n y\n 2\n n\n n\n n\n y\n 3\n n\n n\n 0\n";
-        PrintStream outputPrintStream = new PrintStream(new File("outputStream"));
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream outputPrintStream = new PrintStream(outputStream);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(inputStream);
         System.setOut(outputPrintStream);
         Menu.showMenu();
-        String outfileString = Files.readString(Paths.get("outputStream"));
-        String expectedFile = Files.readString(Paths.get("expectedOutputStream"));
-        assertEquals(expectedFile, outfileString);
+        String outputString = outputStream.toString();
+        assertTrue(outputString.contains(F6.toString()));//only expected result
+        assertFalse(outputString.contains(F1.toString()));
+        assertFalse(outputString.contains(F2.toString()));
+        assertFalse(outputString.contains(F3.toString()));
+        assertFalse(outputString.contains(F4.toString()));
+        assertFalse(outputString.contains(F5.toString()));
+        assertFalse(outputString.contains(F7.toString()));
         System.setOut(backupOut);
         System.setIn(backupIn);
 
