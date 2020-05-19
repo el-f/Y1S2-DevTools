@@ -1,0 +1,57 @@
+Menu:
+1) Create outgoing Flight
+2) Create incoming Flight
+3) Show all outgoing flights
+4) Show all incoming flights
+5) Save airport to file
+6) Load airport from file
+7) Show Custom Selected flights
+8) Show all flights
+
+0) To exit
+Choose: 
+1) enter file name/path yourself
+2) load default file
+Loaded default file!
+Menu:
+1) Create outgoing Flight
+2) Create incoming Flight
+3) Show all outgoing flights
+4) Show all incoming flights
+5) Save airport to file
+6) Load airport from file
+7) Show Custom Selected flights
+8) Show all flights
+
+0) To exit
+Do you want to filter by Direction?
+Enter 'y' for yes, 'n' for no
+Please Select direction: 
+1) Outgoing
+2) Incoming
+Do you want to filter by country?
+Enter 'y' for yes, 'n' for no
+Do you want to filter by city?
+Enter 'y' for yes, 'n' for no
+Do you want to filter by airport?
+Enter 'y' for yes, 'n' for no
+Do you want to filter by terminal num?
+Enter 'y' for yes, 'n' for no
+Please Enter terminal number:
+Do you want to filter by day of the week?
+Enter 'y' for yes, 'n' for no
+Do you want to filter by date and time range?
+Enter 'y' for yes, 'n' for no
+Flight: UR24EE | Terminal: 3 | Model: Boeing_B-29 | Passengers: 0/100 | date and time: 22/11/2020 19:59 (Sunday) | From: (country: Laos, city: Laos_city, airport: Laos_airport)
+Menu:
+1) Create outgoing Flight
+2) Create incoming Flight
+3) Show all outgoing flights
+4) Show all incoming flights
+5) Save airport to file
+6) Load airport from file
+7) Show Custom Selected flights
+8) Show all flights
+
+0) To exit
+~~~end of program~~~

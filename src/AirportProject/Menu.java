@@ -82,13 +82,13 @@ public class Menu {
             if (e instanceof MyException)
                 System.out.println(e.getMessage());
             else
-                System.out.println("oops! error: " + e.getClass().getSimpleName());
+                  System.out.println("oops! error: " + e.getClass().getSimpleName());
             System.out.println("please try again");
         }
     }
 
 
-    private static void showCustomRangeFlights(Scanner s) throws MyException {
+    public static void showCustomRangeFlights(Scanner s) throws MyException {
         List<Flight> result = new ArrayList<>(ap.getFlights());
         var oc = new Object() {
             String str;

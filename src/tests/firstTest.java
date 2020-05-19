@@ -2,15 +2,20 @@ package tests;
 
 import AirportProject.Airport;
 import AirportProject.Flight;
+import AirportProject.Menu;
 import AirportProject.Plane;
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
@@ -54,11 +59,11 @@ public class firstTest {
         ap.addFlight(F7);
         ap.addFlight(F7);
         ap.addFlight(F7);
-        assertEquals( 3,ap.getFlights().size());
+        assertEquals(3, ap.getFlights().size());
     }
 
     @Test
-    public void testFilters(){
+    public void testFilters() {
         Airport ap = new Airport();
         ap.addFlight(F1);
         ap.addFlight(F2);
@@ -71,16 +76,34 @@ public class firstTest {
         flightList.add(F1);
         flightList.add(F2);
         flightList.add(F7);
-        assertEquals(flightList,ap.getFlightsByDayOfWeek(D1.getDayOfWeek()));
+        assertEquals(flightList, ap.getFlightsByDayOfWeek(D1.getDayOfWeek()));
         flightList.remove(F2);
         flightList.remove(F7);
         flightList.add(F3);
         flightList.add(F5);
         flightList.add(F7);
-        assertEquals(flightList,ap.getOutgoingFlights());
+        assertEquals(flightList, ap.getOutgoingFlights());
         flightList.remove(F1);
         flightList.remove(F7);
-        assertEquals(flightList,ap.getFlightsByTerminal(2));
+        assertEquals(flightList, ap.getFlightsByTerminal(2));
+
+    }
+
+    @Test
+    public void testUserFilteredList() throws IOException {
+        InputStream backupIn = System.in;
+        PrintStream backupOut = System.out;
+        String simulatedInput = "6\n2\n7\ny\n2\nn\nn\nn\ny\n3\nn\nn\n0\n";
+        PrintStream outputPrintStream = new PrintStream(new File("outputStream"));
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStream);
+        System.setOut(outputPrintStream);
+        Menu.showMenu();
+        String outfileString = Files.readString(Paths.get("outputStream"));
+        String expectedFile = Files.readString(Paths.get("expectedOutputStream"));
+        assertEquals(expectedFile, outfileString);
+        System.setOut(backupOut);
+        System.setIn(backupIn);
 
     }
 
