@@ -17,11 +17,13 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class firstTest {
+    //dates
     private final LocalDateTime D1 = LocalDateTime.of(2020, 11, 20, 2, 3);
     private final LocalDateTime D2 = LocalDateTime.of(2020, 11, 21, 14, 30);
     private final LocalDateTime D3 = LocalDateTime.of(2020, 11, 22, 19, 59);
     private final LocalDateTime D4 = LocalDateTime.of(2020, 11, 23, 11, 16);
-    // plane
+
+    // planes
     private final Plane P1 = new Plane("Wright-Flyer", 4);
     private final Plane P2 = new Plane("Supermarine-Spitfire", 15);
     private final Plane P3 = new Plane("Boeing-787", 150);
@@ -30,7 +32,7 @@ public class firstTest {
     private final Plane P6 = new Plane("Boeing_B-29", 120);
     private final Plane P7 = new Plane("F-35", 2);
 
-    // flight
+    // flights
     private final Flight F1 = new Flight(3, "SAD1978", P1, D1, "Albania", "albania_city", "albania_airport", true);
     private final Flight F2 = new Flight(1, "HASF1238", P2, D1, "Austria", "Austria_city", "Austria_airport", false);
     private final Flight F3 = new Flight(2, "ASD41IDA", P3, D2, "Guinea", "Guinea_city", "Guinea_airpot", true);
