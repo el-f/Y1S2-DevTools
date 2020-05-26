@@ -13,9 +13,9 @@ def airport():
                                     request.args.get('d'),  # direction
                                     # request.args.get('cnt'),  # country
                                     # request.args.get('cty'),  # city
-                                    # request.args.get('ap'),  # airport
+                                    # request.args.get('ap'),   # airport
                                     # request.args.get('trm'),  # terminal
-                                    # request.args.get('wd'),  # dayofweek
+                                    # request.args.get('wd'),   # dayofweek
                                     # request.args.get('rng')   # date range
                                     ])
 
