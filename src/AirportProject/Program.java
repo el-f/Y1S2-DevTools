@@ -53,6 +53,8 @@ public class Program {
                     case "arrivals":
                         result.removeAll(ap.getOutgoingFlights());
                         break;
+                    default:
+                        break;
                 }
             }
             if (!args[1].isBlank()) {
