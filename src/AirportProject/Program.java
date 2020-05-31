@@ -26,7 +26,7 @@ public class Program {
             // planes
             Plane P1 = new Plane("Wright-Flyer", 4);
             Plane P2 = new Plane("Supermarine-Spitfire", 15);
-            Plane P3 = new Plane("Boeing-787", 150);
+            Plane P3 = new Plane("Boeing-787", 24);
             Plane P4 = new Plane("Learjet-23", 16);
             Plane P5 = new Plane("C-130", 94);
             Plane P6 = new Plane("Boeing_B-29", 120);
