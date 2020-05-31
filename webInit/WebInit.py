@@ -3,7 +3,7 @@ import subprocess
 
 from flask import Flask, request
 
-app = Flask("my_app1")
+app = Flask("__name__")
 
 
 @app.route("/")
@@ -21,7 +21,8 @@ def airport():
                                     ])
 
 
-app.run(port=8000, host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(port=8000, host="0.0.0.0", debug=True)
 
 # http://localhost:8000/?d=departures&cnt=&cty=&ap=&trm=&wd=&start=&end=2020/11/21-22:22:22
 # http://localhost:8000/?d=&cnt=&cty=&ap=&trm=&wd=&start=&end=
