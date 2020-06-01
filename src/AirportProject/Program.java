@@ -53,6 +53,9 @@ public class Program {
             if (!args[7].isBlank()) {
                 result.removeIf(f -> f.getDate().isAfter(LocalDateTime.parse(args[7], ldtFormatter)));
             }
+            if (!args[8].isBlank()) {
+                result.removeIf(f -> !f.getCompany().equalsIgnoreCase(args[8]));
+            }
             if (result.isEmpty())
                 System.out.println("empty flights list! too much or invalid filters!");
             result.forEach(r -> System.out.println(r + "<br>"));

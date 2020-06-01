@@ -17,12 +17,13 @@ def airport():
                                     request.args.get('trm'),    # terminal
                                     request.args.get('wd'),     # dayofweek
                                     request.args.get('start'),  # date range lower bound
-                                    request.args.get('end')     # date range higher bound
+                                    request.args.get('end'),    # date range higher bound
+                                    request.args.get('cmp')     # company
                                     ])
 
 
 if __name__ == "__main__":
     app.run(port=8000, host="0.0.0.0", debug=True)
 
-# http://localhost:8000/?d=departures&cnt=&cty=&ap=&trm=&wd=&start=&end=2020/11/21-22:22:22
-# http://localhost:8000/?d=&cnt=&cty=&ap=&trm=&wd=&start=&end=
+# http://localhost:8000/?d=departures&cnt=&cty=&ap=&trm=&wd=&start=&end=2020/11/21-22:22:22&cmp=
+# http://localhost:8000/?d=&cnt=&cty=&ap=&trm=&wd=&start=&end=&cmp=
