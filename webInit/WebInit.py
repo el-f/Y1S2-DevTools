@@ -10,7 +10,9 @@ app = Flask("__name__")
 def hlp():
     return "d = arrivals/departures <br>cnt = country name <br>cty = city name<br>ap = airport name<br>trm = terminal " \
            "number<br>wd = week day (Monday,Tuesday...etc) <br>start/end = date range bounds (" \
-           "dd/MM/yyyy-HH:mm:ss)<br>cmp = company name "
+           "dd/MM/yyyy-HH:mm:ss)<br>cmp = company name<br><br>Example " \
+           "link:<br><a href=http://localhost:8000/?d=&cnt=&cty=&ap=&trm=&wd=&start=&end=&cmp=>http://localhost:8000" \
+           "/?d=&cnt=&cty=&ap=&trm=&wd=&start=&end=&cmp=</a> "
 
 
 @app.route("/")
