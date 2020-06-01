@@ -113,20 +113,26 @@ public class Menu {
         System.out.println("Do you want to filter by country?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter country:");
-            oc.str = s.next().toLowerCase();
-            result.removeIf(f -> !f.getCountry().toLowerCase().equals(oc.str));
+            oc.str = s.next();
+            result.removeIf(f -> !f.getCountry().equalsIgnoreCase(oc.str));
         }
         System.out.println("Do you want to filter by city?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter city:");
-            oc.str = s.next().toLowerCase();
-            result.removeIf(f -> !f.getCity().toLowerCase().equals(oc.str));
+            oc.str = s.next();
+            result.removeIf(f -> !f.getCity().equalsIgnoreCase(oc.str));
         }
         System.out.println("Do you want to filter by airport?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter airport name:");
-            oc.str = s.next().toLowerCase();
-            result.removeIf(f -> !f.getAirportName().toLowerCase().equals(oc.str));
+            oc.str = s.next();
+            result.removeIf(f -> !f.getAirportName().equalsIgnoreCase(oc.str));
+        }
+        System.out.println("Do you want to filter by company?");
+        if (scanBoolean(s)) {
+            System.out.println("Please Enter company name:");
+            oc.str = s.next();
+            result.removeIf(f -> !f.getCompany().equalsIgnoreCase(oc.str));
         }
         System.out.println("Do you want to filter by terminal num?");
         if (scanBoolean(s)) {
@@ -138,7 +144,7 @@ public class Menu {
         if (scanBoolean(s)) {
             System.out.println("Please enter day of the week by name");
             oc.str = s.next();
-            result.removeIf(f -> !f.getDate().getDayOfWeek().name().equals(oc.str.toUpperCase()));
+            result.removeIf(f -> !f.getDate().getDayOfWeek().name().equalsIgnoreCase(oc.str));
         }
         System.out.println("Do you want to filter by date and time range?");
         if (scanBoolean(s)) {

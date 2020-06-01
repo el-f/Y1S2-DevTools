@@ -14,8 +14,13 @@ public class Flight {
     private String country;
     private String city;
     private String airportName;
+    private String company;
     private boolean outgoing;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)");
+
+    public String getCompany() {
+        return company;
+    }
 
     public String getCountry() {
         return country;
@@ -42,6 +47,7 @@ public class Flight {
         country = input.next();
         city = input.next();
         airportName = input.next();
+        company = input.next();
         outgoing = Boolean.parseBoolean(input.next());
     }
 
@@ -55,6 +61,7 @@ public class Flight {
         writer.println(country);
         writer.println(city);
         writer.println(airportName);
+        writer.println(company);
         writer.println(outgoing);
     }
 
@@ -76,6 +83,7 @@ public class Flight {
         String dir = outgoing ? "destination" : "origin";
         System.out.println("please enter " + dir + " airport name ");
         airportName = scan.next();
+        System.out.println();
     }
 
     public static LocalDateTime getDateTimeFromUser(Scanner s) {
@@ -93,7 +101,7 @@ public class Flight {
         return LocalDateTime.of(year, month, day, hour, minutes);
     }
 
-    public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, String _city, String _airportName, boolean _outgoing) {
+    public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
         terminal = _terminal;
         flightNum = _flightNum;
         plane = _plane;
@@ -101,6 +109,7 @@ public class Flight {
         country = _country;
         city = _city;
         airportName = _airportName;
+        company = _company;
         outgoing = _outgoing;
 
     }
@@ -133,12 +142,16 @@ public class Flight {
         this.plane = plane;
     }
 
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     public Plane getPlane() {
         return plane;
     }
 
     public Flight() {
-        this(0, "", null, null, "", "", "", false);
+        this(0, "", null, null, "", "", "","", false);
     }
 
     public LocalDateTime getDate() {
@@ -153,16 +166,10 @@ public class Flight {
         outgoing = !outgoing;
     }
 
-    public String showDateTime() {
-        return "Date: " + dateTime.getDayOfMonth() + "/" + dateTime.getMonthValue() +
-                "/" + dateTime.getYear() + " Time: " + dateTime.getHour() + ":" + dateTime.getMinute();
-    }
-
-
     public String toString() {
         String dir = outgoing ? " To" : " From";
         return "Flight: " + flightNum + " | Terminal: " + terminal +
-                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " |" + dir + ": (country: " +
+                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " | " + "company: " + company + " |" + dir + ": (country: " +
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
@@ -175,6 +182,7 @@ public class Flight {
         output.append(country).append(",");
         output.append(city).append(",");
         output.append(airportName).append(",");
+        output.append(company).append(",");
         output.append(outgoing).append(",");
 
     }
