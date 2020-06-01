@@ -168,8 +168,8 @@ public class Flight {
 
     public String toString() {
         String dir = outgoing ? " To" : " From";
-        return "Flight: " + flightNum + " | Terminal: " + terminal +
-                " | " + plane.toString() + " | date and time: " + dateTime.format(formatter) + " | " + "company: " + company + " |" + dir + ": (country: " +
+        return flightNum + " | Terminal: " + terminal +
+                " | " + plane.toString() + " | datetime: " + dateTime.format(formatter) + " | " + "company: " + company + " |" + dir + ": (country: " +
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
