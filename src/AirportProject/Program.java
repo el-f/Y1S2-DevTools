@@ -16,7 +16,7 @@ public class Program {
 //            System.out.println("args:" + "<br>");
 //            for (String arg : args)
 //                System.out.println(arg + "<br>");
-            DateTimeFormatter ldtFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm:ss");
+            DateTimeFormatter ldtFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy-HH:mm:ss");
             Airport ap = new Airport();
             ap.getFlights().addAll(Utilities.getDefaultFlights());
             List<Flight> result = new ArrayList<>(ap.getFlights());
