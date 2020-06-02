@@ -26,13 +26,13 @@ def airport():
                                     request.args.get('city'),       # city
                                     request.args.get('airport'),    # airport
                                     request.args.get('terminal'),   # terminal
-                                    request.args.get('sunday'),    # dayofweek
-                                    request.args.get('monday'),    # dayofweek
-                                    request.args.get('tuesday'),    # dayofweek
-                                    request.args.get('wednesday'),    # dayofweek
-                                    request.args.get('thursday'),    # dayofweek
-                                    request.args.get('friday'),    # dayofweek
-                                    request.args.get('saturday'),    # dayofweek
+                                    request.args.get('sunday'),     # sunday
+                                    request.args.get('monday'),     # monday
+                                    request.args.get('tuesday'),    # tuesday
+                                    request.args.get('wednesday'),  # wednesday
+                                    request.args.get('thursday'),   # thursday
+                                    request.args.get('friday'),     # friday
+                                    request.args.get('saturday'),   # saturday
                                     request.args.get('start'),      # date range lower bound
                                     request.args.get('end'),        # date range higher bound
                                     request.args.get('airline')     # company
