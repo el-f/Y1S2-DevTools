@@ -1,5 +1,7 @@
 package AirportProject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 
 public class Program {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         if (args.length == 0)
             Menu.showMenu();
         else {
@@ -17,8 +19,7 @@ public class Program {
 //            for (String arg : args)
 //                System.out.println(arg + "<br>");
             DateTimeFormatter ldtFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy-HH:mm:ss");
-            Airport ap = new Airport();
-            ap.getFlights().addAll(Utilities.getDefaultFlights());
+            Airport ap = new Airport(new File("C:\\Users\\Elazar\\Documents\\GitHub\\Y1S2-Homework\\airport"));
             List<Flight> result = new ArrayList<>(ap.getFlights());
             if (direction) {
                 switch (args[0].toLowerCase()) {
