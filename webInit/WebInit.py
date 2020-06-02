@@ -76,5 +76,8 @@ if __name__ == "__main__":
 # http://localhost:8000/?direction=departures&country=&city=&airport=&terminal=&weekday=&start=&end=20/11/2020-22:22:22&airline=
 # http://localhost:8000/?direction=&country=&city=&airport=&terminal=&weekday=&start=&end=&airline=
 
+# http://localhost:8000/departures?&country=&city=&airport=&terminal=&weekday=&start=&end=&airline=
+# http://localhost:8000/arrivals?&country=&city=&airport=&terminal=&weekday=&start=&end=&airline=
+
 # REQUIRED FORMAT:
 # http://localhost:8000/departures?country=france&city=marseille&airport=marseille&airline=elal&day1=2&month1=6&year1=2020&day2=31&month2=7&year2=2020&sun=true&tuesday=true
