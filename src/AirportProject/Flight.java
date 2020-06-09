@@ -101,6 +101,10 @@ public class Flight {
         return LocalDateTime.of(year, month, day, hour, minutes);
     }
 
+    public static LocalDateTime getDateTimeFromUser(int day, int month, int year) {
+        return LocalDateTime.of(year, month, day, 0, 0);
+    }
+
     public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
         terminal = _terminal;
         flightNum = _flightNum;
@@ -151,7 +155,7 @@ public class Flight {
     }
 
     public Flight() {
-        this(0, "", null, null, "", "", "","", false);
+        this(0, "", null, null, "", "", "", "", false);
     }
 
     public LocalDateTime getDate() {
@@ -174,17 +178,4 @@ public class Flight {
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
-
-    public void saveToCSV(StringBuilder output) {
-        output.append(terminal).append(",");
-        output.append(flightNum).append(",");
-        plane.saveToCSV(output);
-        output.append(dateTime.getYear()).append(",").append(dateTime.getMonth().getValue()).append(" ").append(dateTime.getDayOfMonth()).append(",").append(dateTime.getHour()).append(",").append(dateTime.getMinute()).append(",");
-        output.append(country).append(",");
-        output.append(city).append(",");
-        output.append(airportName).append(",");
-        output.append(company).append(",");
-        output.append(outgoing).append(",");
-
-    }
 }

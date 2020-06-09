@@ -1,7 +1,6 @@
 package AirportProject;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,39 +13,6 @@ public class Airport {
     private ArrayList<Flight> flights;
     private int currentFlightsNum;
     public final static int MAX_FLIGHTS = 200;
-
-
-    public void initializeFromUser() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter number of flights");
-        currentFlightsNum = scan.nextInt();
-        for (int i = 0; i < currentFlightsNum; i++) {
-            System.out.println("please enter flight #" + i + " details:");
-            flights.add(new Flight(scan, "user"));
-        }
-
-        scan.close();
-    }
-
-
-    /*
-    TODO:
-      - make it useful
-      - make it look not like a pile of shit
-      - add loading from the file
-      - implement in menu
-     */
-    public void saveToCSV(String filename) throws FileNotFoundException {
-        StringBuilder output = new StringBuilder();
-        output.append(flights.size()).append(",");
-        flights.forEach(f -> f.saveToCSV(output));
-        FileOutputStream outputStream = new FileOutputStream(filename + ".csv");
-        try {
-            outputStream.write(output.toString().getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ArrayList<Flight> getFlights() {
         return flights;
@@ -144,6 +110,41 @@ public class Airport {
         return flights.stream().filter(f -> f.getDate().getDayOfWeek().name().equals(dayOfWeek.name())).collect(Collectors.toList());
     }
 
+    public static void filterByCountry(List<Flight> result, String country) {
+        result.removeIf(f -> !f.getCountry().equalsIgnoreCase(country));
+    }
+
+    public static void filterByCity(List<Flight> result, String city) {
+        result.removeIf(f -> !f.getCity().equalsIgnoreCase(city));
+    }
+
+    public static void filterByAirport(List<Flight> result, String airport) {
+        result.removeIf(f -> !f.getAirportName().equalsIgnoreCase(airport));
+    }
+
+    public static void filterByCompany(List<Flight> result, String company) {
+        result.removeIf(f -> !f.getCompany().equalsIgnoreCase(company));
+    }
+
+    public static void filterByTerminal(List<Flight> result, int terminal) {
+        result.removeIf(f -> f.getTerminal() != terminal);
+    }
+
+    public static void filterByWeekDays(List<Flight> result, String weekdays) {
+        result.removeIf(f -> !weekdays.contains(f.getDate().getDayOfWeek().name().toLowerCase()));
+    }
+
+    public static void filterByDateRange(List<Flight> result, LocalDateTime start, LocalDateTime end) {
+        result.removeIf(f -> f.getDate().isBefore(start) || f.getDate().isAfter(end));
+    }
+
+    public static void filterByStartDate(List<Flight> result, LocalDateTime start) {
+        result.removeIf(f -> f.getDate().isBefore(start));
+    }
+
+    public static void filterByEndDate(List<Flight> result, LocalDateTime end) {
+        result.removeIf(f -> f.getDate().isAfter(end));
+    }
 
     public void show() {
         flights.forEach(System.out::println);

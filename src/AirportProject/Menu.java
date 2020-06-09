@@ -24,30 +24,26 @@ public class Menu {
             System.out.println("\n0) To exit");
             choice = s.nextInt();
             switch (choice) {
-                case 1:
-                    ap.getFlightFromUser(s, true);
-                    break;
-                case 2:
-                    ap.getFlightFromUser(s, false);
-                    break;
-                case 3:
+                case 1 -> ap.getFlightFromUser(s, true);
+                case 2 -> ap.getFlightFromUser(s, false);
+                case 3 -> {
                     System.out.println("Outgoing flights: ");
                     ap.showOutgoingFlights();
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     System.out.println("Incoming flights: ");
                     ap.showIncomingFlights();
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     System.out.println("Please enter file name or file path to create");
                     ap.save(s.next());
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     System.out.println("Choose: ");
                     System.out.println("1) enter file name/path yourself");
                     System.out.println("2) load default file");
                     switch (s.nextInt()) {
-                        case 1:
+                        case 1 -> {
                             System.out.println("Please enter file name or file path to read from");
                             File f = new File(s.next());
                             if (!f.exists()) {
@@ -55,35 +51,26 @@ public class Menu {
                                 break;
                             }
                             ap = new Airport(f);
-                            break;
-                        case 2:
+                        }
+                        case 2 -> {
                             ap = new Airport(new File("airport"));
                             System.out.println("Loaded default file!");
-                            break;
-                        default:
-                            System.out.println("Invalid Input");
-                            break;
+                        }
+                        default -> System.out.println("Invalid Input");
                     }
-                    break;
-                case 7:
-                    showCustomRangeFlights(s);
-                    break;
-                case 8:
-                    ap.show();
-                    break;
-                case 0:
-                    System.out.println("~~~end of program~~~");
-                    break;
-                default:
-                    System.out.println("invalid input");
-                    break;
+                }
+                case 7 -> showCustomRangeFlights(s);
+                case 8 -> ap.show();
+                case 0 -> System.out.println("~~~end of program~~~");
+                default -> System.out.println("invalid input");
             }
         } catch (Exception e) {
             if (e instanceof MyException)
                 System.out.println(e.getMessage());
             else
-                  System.out.println("oops! error: " + e.getClass().getSimpleName());
+                System.out.println("oops! error: " + e.getClass().getSimpleName());
             System.out.println("please try again");
+            s.nextLine(); //clean buffer
         }
     }
 
@@ -100,51 +87,46 @@ public class Menu {
             System.out.println("1) Outgoing");
             System.out.println("2) Incoming");
             switch (s.nextInt()) {
-                case 1:
-                    result.removeAll(ap.getIncomingFlights());
-                    break;
-                case 2:
-                    result.removeAll(ap.getOutgoingFlights());
-                    break;
-                default:
-                    throw new MyException("Unexpected Value!");
+                case 1 -> result.removeAll(ap.getIncomingFlights());
+                case 2 -> result.removeAll(ap.getOutgoingFlights());
+                default -> throw new MyException("Unexpected Value!");
             }
         }
         System.out.println("Do you want to filter by country?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter country:");
             oc.str = s.next();
-            result.removeIf(f -> !f.getCountry().equalsIgnoreCase(oc.str));
+            Airport.filterByCountry(result, oc.str);
         }
         System.out.println("Do you want to filter by city?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter city:");
             oc.str = s.next();
-            result.removeIf(f -> !f.getCity().equalsIgnoreCase(oc.str));
+            Airport.filterByCity(result, oc.str);
         }
         System.out.println("Do you want to filter by airport?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter airport name:");
             oc.str = s.next();
-            result.removeIf(f -> !f.getAirportName().equalsIgnoreCase(oc.str));
+            Airport.filterByAirport(result, oc.str);
         }
         System.out.println("Do you want to filter by company?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter company name:");
             oc.str = s.next();
-            result.removeIf(f -> !f.getCompany().equalsIgnoreCase(oc.str));
+            Airport.filterByCompany(result, oc.str);
         }
         System.out.println("Do you want to filter by terminal num?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter terminal number:");
             oc.num = s.nextInt();
-            result.removeIf(f -> f.getTerminal() != oc.num);
+            Airport.filterByTerminal(result, oc.num);
         }
-        System.out.println("Do you want to filter by day of the week?");
+        System.out.println("Do you want to filter by days of the week?");
         if (scanBoolean(s)) {
-            System.out.println("Please enter day of the week by name");
-            oc.str = s.next();
-            result.removeIf(f -> !f.getDate().getDayOfWeek().name().equalsIgnoreCase(oc.str));
+            System.out.println("Please enter days of the week by name [space separated]");
+            System.out.println("Example: 'sunday friday monday'");
+            Airport.filterByWeekDays(result, s.next());
         }
         System.out.println("Do you want to filter by date and time range?");
         if (scanBoolean(s)) {
@@ -152,10 +134,11 @@ public class Menu {
             LocalDateTime start = Flight.getDateTimeFromUser(s);
             System.out.println("Please enter end date");
             LocalDateTime end = Flight.getDateTimeFromUser(s);
-            result.removeIf(f -> f.getDate().isBefore(start) || f.getDate().isAfter(end));
+            Airport.filterByDateRange(result,start,end);
         }
         result.forEach(System.out::println);
     }
+
 
     public static boolean scanBoolean(Scanner scanner) {
         boolean input = false, gotInput = false;

@@ -2,38 +2,30 @@ package AirportProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Integer.*;
 
 public class Program {
 
     /*
-    TODO:
-        - add support for multiple days filter
-        - add outputFormat=HTML arg
-        - change localDateTime to Ran's URL format
-        - change to ran's URL format
+    TODO: (sprint 4)
         - change file read to ran's format
-        - eliminate code duplication
         - add Statements classes
      */
 
-    public static void main(String[] args) throws FileNotFoundException {
-        if (args.length == 0)
+    public static void main(String[] args) throws FileNotFoundException, MyException {
+        if (args.length == 0 || args[0].equalsIgnoreCase("TEXT"))
             Menu.showMenu();
-        else {
-            boolean direction = (args[0].equalsIgnoreCase("departures") ||
-                    args[0].equalsIgnoreCase("arrivals"));
-//            System.out.println("args:" + "<br>");
-//            for (String arg : args)
-//                System.out.println(arg + "<br>");
-            DateTimeFormatter ldtFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy-HH:mm:ss");
+        else if (args[0].equalsIgnoreCase("HTML")) {
+            boolean direction = (args[1].equalsIgnoreCase("departures") ||
+                    args[1].equalsIgnoreCase("arrivals"));
+
             Airport ap = new Airport(new File("C:\\Users\\Elazar\\Documents\\GitHub\\Y1S2-Homework\\airport"));
             List<Flight> result = new ArrayList<>(ap.getFlights());
             if (direction) {
-                switch (args[0].toLowerCase()) {
+                switch (args[1].toLowerCase()) {
                     case "departures":
                         result.removeAll(ap.getIncomingFlights());
                         break;
@@ -44,58 +36,42 @@ public class Program {
                         break;
                 }
             }
-            if (!args[1].isBlank()) {
-                result.removeIf(f -> !f.getCountry().equalsIgnoreCase(args[1]));
-            }
             if (!args[2].isBlank()) {
-                result.removeIf(f -> !f.getCity().equalsIgnoreCase(args[2]));
+                Airport.filterByCountry(result, args[2]);
             }
             if (!args[3].isBlank()) {
-                result.removeIf(f -> !f.getAirportName().equalsIgnoreCase(args[3]));
+                Airport.filterByCity(result, args[3]);
             }
             if (!args[4].isBlank()) {
-                result.removeIf(f -> f.getTerminal() != Integer.parseInt(args[4]));
+                Airport.filterByAirport(result, args[4]);
             }
             if (!args[5].isBlank()) {
-                result.removeIf(f -> !f.getDate().getDayOfWeek().name().equalsIgnoreCase(args[5]));
+                Airport.filterByCompany(result, args[5]);
             }
-            if (!args[6].isBlank()) {
-                result.removeIf(f -> f.getDate().isBefore(LocalDateTime.parse(args[6], ldtFormatter)));
+            if (!args[6].isBlank() && !args[7].isBlank() && !args[8].isBlank()) {
+                Airport.filterByStartDate(result, Flight.getDateTimeFromUser(parseInt(args[6]),
+                        parseInt(args[7]), parseInt(args[8])));
             }
-            if (!args[7].isBlank()) {
-                result.removeIf(f -> f.getDate().isAfter(LocalDateTime.parse(args[7], ldtFormatter)));
+            if (!args[9].isBlank() && !args[10].isBlank() && !args[11].isBlank()) {
+                Airport.filterByEndDate(result, Flight.getDateTimeFromUser(parseInt(args[9]),
+                        parseInt(args[10]), parseInt(args[11])));
             }
-            if (!args[8].isBlank()) {
-                result.removeIf(f -> !f.getCompany().equalsIgnoreCase(args[8]));
-            }
+            String weekdays = "";
+            if (!args[12].isBlank() && Boolean.parseBoolean(args[12])) weekdays += "sunday ";
+            if (!args[13].isBlank() && Boolean.parseBoolean(args[13])) weekdays += "monday ";
+            if (!args[14].isBlank() && Boolean.parseBoolean(args[14])) weekdays += "tuesday ";
+            if (!args[15].isBlank() && Boolean.parseBoolean(args[15])) weekdays += "wednesday ";
+            if (!args[16].isBlank() && Boolean.parseBoolean(args[16])) weekdays += "thursday ";
+            if (!args[17].isBlank() && Boolean.parseBoolean(args[17])) weekdays += "friday ";
+            if (!args[18].isBlank() && Boolean.parseBoolean(args[18])) weekdays += "saturday ";
+            if (weekdays.length() > 0)
+                Airport.filterByWeekDays(result, weekdays);
+
             if (result.isEmpty())
                 System.out.println("empty flights list! too much or invalid filters!");
             result.forEach(r -> System.out.println(r + "<br>"));
-        }
+        } else throw new MyException("Unexpected value in args[0]: " + args[0]);
 
-
-
-/*
-          method examples:
- */
-//        System.out.println("\nsorted by number of Passengers:");
-//        ap.sortByNumOfPassengers();
-//        ap.show();
-//
-//        System.out.println("\nsorted by date and time:");
-//        ap.sortByDateTime();
-//        ap.show();
-//
-//        System.out.println("\nsorted by direction");
-//        ap.sortByDirection();
-//        ap.show();
-//
-//        System.out.println("\noutgoing:");
-//        ap.showOutgoingFlights();
-//        System.out.println("\nincoming:");
-//        ap.showIncomingFlights();
-//
-//
 //        Airport ap = new Airport();
 //        ap.getFlights().addAll(Utilities.getDefaultFlights());
 //        ap.save("airport");
