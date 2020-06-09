@@ -9,6 +9,16 @@ import java.util.List;
 
 public class Program {
 
+    /*
+    TODO:
+        - add support for multiple days filter
+        - add outputFormat=HTML arg
+        - change localDateTime to Ran's URL format
+        - change to ran's URL format
+        - change file read to ran's format
+        - eliminate code duplication
+     */
+
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length == 0)
             Menu.showMenu();
