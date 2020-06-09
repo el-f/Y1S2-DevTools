@@ -17,6 +17,7 @@ public class Program {
         - change to ran's URL format
         - change file read to ran's format
         - eliminate code duplication
+        - add Statements classes
      */
 
     public static void main(String[] args) throws FileNotFoundException {
