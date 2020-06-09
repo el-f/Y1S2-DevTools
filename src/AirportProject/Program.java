@@ -15,10 +15,10 @@ public class Program {
         - add Statements classes
      */
 
-    public static void main(String[] args) throws FileNotFoundException, MyException {
-        if (args.length == 0 || args[0].equalsIgnoreCase("TEXT"))
+    public static void main(String[] args) throws FileNotFoundException {
+        if (args.length == 0)
             Menu.showMenu();
-        else if (args[0].equalsIgnoreCase("HTML")) {
+        else {
             boolean direction = (args[1].equalsIgnoreCase("departures") ||
                     args[1].equalsIgnoreCase("arrivals"));
 
@@ -69,8 +69,10 @@ public class Program {
 
             if (result.isEmpty())
                 System.out.println("empty flights list! too much or invalid filters!");
-            result.forEach(r -> System.out.println(r + "<br>"));
-        } else throw new MyException("Unexpected value in args[0]: " + args[0]);
+            result.forEach(r -> System.out.println(r + (
+                    args[0].equalsIgnoreCase("TEXT") ? "" :
+                    args[0].equalsIgnoreCase("HTML") ? "<br>" : "")));
+        }
 
 //        Airport ap = new Airport();
 //        ap.getFlights().addAll(Utilities.getDefaultFlights());
