@@ -12,6 +12,8 @@ import static java.lang.Integer.*;
 
 public class Program {
 
+    public static final String defaultFile = "airport";
+
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length == 0)
             Menu.showMenu();
@@ -23,7 +25,7 @@ public class Program {
             String path;
             if (args[0].equalsIgnoreCase(firstTest.identifier)) //internal tests only need filename
                 path = "airport";
-            else path = Paths.get("").toAbsolutePath().getParent().toString() + "\\airport";
+            else path = Paths.get("").toAbsolutePath().getParent().toString() + "\\" + defaultFile;
             Airport ap = new Airport(new File(path));
             List<Flight> result = new ArrayList<>(ap.getFlights());
 
@@ -80,15 +82,13 @@ public class Program {
 //        initDefault();        //for initiating the default files.
     }
 
-
     @SuppressWarnings("unused")
     private static void initDefault() throws FileNotFoundException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         System.out.println(ap);
-        ap.save("airport");
-        Airport ap2 = new Airport(new File("airport"));
-        System.out.println("\nairport 2");
-        System.out.println(ap2);
+        ap.save(defaultFile);
+        Airport ap2 = new Airport(new File(defaultFile));
+        System.out.println(ap.toString().equals(ap2.toString()) ? "Saved Successfully!" : "ERROR");
     }
 }
