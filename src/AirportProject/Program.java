@@ -9,12 +9,6 @@ import static java.lang.Integer.*;
 
 public class Program {
 
-    /*
-    TODO: (sprint 4)
-        - change file read to ran's format
-        - add Statements classes
-     */
-
     public static void main(String[] args) throws FileNotFoundException {
         program(args);
 //        Airport ap = new Airport();
