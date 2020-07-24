@@ -9,7 +9,6 @@ public class Flight {
 
     private int terminal;
     private String flightNum;
-    private Plane plane;
     private LocalDateTime dateTime;
     private String country;
     private String city;
@@ -41,7 +40,6 @@ public class Flight {
     public Flight(Scanner input) {
         terminal = input.nextInt();
         flightNum = input.next();
-        plane = new Plane(input);
         dateTime = LocalDateTime.of(input.nextInt(), input.nextInt(),
                 input.nextInt(), input.nextInt(), input.nextInt());
         country = input.next();
@@ -54,7 +52,6 @@ public class Flight {
     public void save(PrintWriter writer) {
         writer.println(terminal);
         writer.println(flightNum);
-        plane.save(writer);
         writer.println(dateTime.getYear() + " " + dateTime.getMonth().getValue() +
                 " " + dateTime.getDayOfMonth() + " " + dateTime.getHour() + " " +
                 dateTime.getMinute());
@@ -70,8 +67,6 @@ public class Flight {
         terminal = scan.nextInt();
         System.out.println("please enter flight Num (letters + digits)");
         flightNum = scan.next();
-        System.out.println("please enter plane details: (model and then num of passengers):");
-        plane = new Plane(scan.next(), scan.nextInt());
         System.out.println("please enter date of flight: (year, month, day)");
         dateTime = getDateTimeFromUser(scan);
         System.out.println("Please enter and if outgoing (true/false)");
@@ -105,10 +100,9 @@ public class Flight {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
 
-    public Flight(int _terminal, String _flightNum, Plane _plane, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
+    public Flight(int _terminal, String _flightNum, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
         terminal = _terminal;
         flightNum = _flightNum;
-        plane = _plane;
         dateTime = _date;
         country = _country;
         city = _city;
@@ -142,28 +136,16 @@ public class Flight {
         this.outgoing = outgoing;
     }
 
-    public void setPlane(Plane plane) {
-        this.plane = plane;
-    }
-
     public void setCompany(String company) {
         this.company = company;
     }
 
-    public Plane getPlane() {
-        return plane;
-    }
-
     public Flight() {
-        this(0, "", null, null, "", "", "", "", false);
+        this(0, "", null, "", "", "", "", false);
     }
 
     public LocalDateTime getDate() {
         return dateTime;
-    }
-
-    public int getNumPassengers() {
-        return plane.getNumPassengers();
     }
 
     public void changeDirection() {
@@ -173,7 +155,6 @@ public class Flight {
     public String toString() {
         String dir = outgoing ? " Departing To" : " Arriving From";
         return flightNum + " | Terminal: " + terminal +
-//                " | " + plane.toString() +
                 " | date/time: " + dateTime.format(formatter) + " | " + "company: " + company + " |" + dir + ": (country: " +
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
