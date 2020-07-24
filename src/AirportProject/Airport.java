@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class Airport {
     private ArrayList<Flight> flights;
     private int currentFlightsNum;
-    public final static int MAX_FLIGHTS = 200;
 
     public ArrayList<Flight> getFlights() {
         return flights;
@@ -28,8 +27,8 @@ public class Airport {
         s.close();
     }
 
-    public void save(String filepath) throws FileNotFoundException {
-        File file = new File(filepath);
+    public void save(String filePath) throws FileNotFoundException {
+        File file = new File(filePath);
         PrintWriter writer = new PrintWriter(file);
         writer.println(flights.size());
         flights.forEach(f -> f.save(writer));
@@ -43,26 +42,16 @@ public class Airport {
     public boolean addFlight(Flight flight) {
         if (flights.contains(flight))
             return false;
-        if (flights.size() < MAX_FLIGHTS) {
-            return flights.add(flight);
-        }
-        return false;
-    }
-
-    public void sortByNumOfPassengers() {
-        flights.sort((f1, f2) -> Integer.compare(f2.getNumPassengers(), f1.getNumPassengers()));
-    }
-
-    public void sortByDirection() {
-        flights.sort((f1, f2) -> Boolean.compare(f2.isOutgoing(), f1.isOutgoing()));
+        flights.add(flight);
+        return true;
     }
 
     public void sortByDateTime() {
         flights.sort(Comparator.comparing(Flight::getDate));
     }
 
-    public boolean removeFlight(Flight flight) {
-        return flights.remove(flight);
+    public boolean removeFlight(int flightIndex) {
+        return null != flights.remove(flightIndex); //if null then the item wasn't there in the first place
     }
 
     public void showOutgoingFlights() {
@@ -83,31 +72,6 @@ public class Airport {
 
     public List<Flight> getIncomingFlights() {
         return flights.stream().filter(f -> !f.isOutgoing()).collect(Collectors.toList());
-    }
-
-    public List<Flight> getFlightsByCountry(String country) {
-        return flights.stream().filter(f -> f.getCountry().toLowerCase().equals(country)).collect(Collectors.toList());
-    }
-
-    public List<Flight> getFlightsByCity(String city) {
-        return flights.stream().filter(f -> f.getCity().toLowerCase().equals(city)).collect(Collectors.toList());
-    }
-
-    public List<Flight> getFlightsByAirport(String airport) {
-        return flights.stream().filter(f -> f.getAirportName().toLowerCase().equals(airport)).collect(Collectors.toList());
-    }
-
-    public List<Flight> getFlightsByDateRange(LocalDateTime start, LocalDateTime end) {
-        return flights.stream().filter(f -> (f.getDate().isAfter(start) || f.getDate().isEqual(start)) &&
-                (f.getDate().isBefore(end) || f.getDate().isEqual(end))).collect(Collectors.toList());
-    }
-
-    public List<Flight> getFlightsByTerminal(int terminalNum) {
-        return flights.stream().filter(f -> f.getTerminal() == terminalNum).collect(Collectors.toList());
-    }
-
-    public List<Flight> getFlightsByDayOfWeek(DayOfWeek dayOfWeek) {
-        return flights.stream().filter(f -> f.getDate().getDayOfWeek().name().equals(dayOfWeek.name())).collect(Collectors.toList());
     }
 
     public static void filterByCountry(List<Flight> result, String country) {
@@ -146,14 +110,10 @@ public class Airport {
         result.removeIf(f -> f.getDate().isAfter(end));
     }
 
-    public void show() {
-        flights.forEach(System.out::println);
-    }
-
-    // same as show()
     public String toString() {
         StringBuilder res = new StringBuilder();
-        flights.forEach(f -> res.append(f).append("\n"));
+        for (int i = 0; i < flights.size(); i++)
+            res.append("(").append(i).append(") ").append(flights.get(i)).append("\n");
         return res.toString();
     }
 

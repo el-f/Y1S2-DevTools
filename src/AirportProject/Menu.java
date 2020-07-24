@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Menu {
-    private static Airport ap;
+    private static Airport airport;
 
     public static void showMenu() {
-        ap = new Airport();
+        airport = new Airport();
         Scanner s = new Scanner(System.in);
         int choice = -1;
         while (choice != 0) try {
@@ -21,22 +21,23 @@ public class Menu {
             System.out.println("6) Load airport from file");
             System.out.println("7) Show Custom Selected flights");
             System.out.println("8) Show all flights");
+            System.out.println("9) Remove Flight");
             System.out.println("\n0) To exit");
             choice = s.nextInt();
             switch (choice) {
-                case 1 -> ap.getFlightFromUser(s, true);
-                case 2 -> ap.getFlightFromUser(s, false);
+                case 1 -> airport.getFlightFromUser(s, true);
+                case 2 -> airport.getFlightFromUser(s, false);
                 case 3 -> {
                     System.out.println("Outgoing flights: ");
-                    ap.showOutgoingFlights();
+                    airport.showOutgoingFlights();
                 }
                 case 4 -> {
                     System.out.println("Incoming flights: ");
-                    ap.showIncomingFlights();
+                    airport.showIncomingFlights();
                 }
                 case 5 -> {
                     System.out.println("Please enter file name or file path to create");
-                    ap.save(s.next());
+                    airport.save(s.next());
                 }
                 case 6 -> {
                     System.out.println("Choose: ");
@@ -50,17 +51,24 @@ public class Menu {
                                 System.out.println("no such file!");
                                 break;
                             }
-                            ap = new Airport(f);
+                            airport = new Airport(f);
                         }
                         case 2 -> {
-                            ap = new Airport(new File("airport"));
+                            airport = new Airport(new File("airport"));
                             System.out.println("Loaded default file!");
                         }
                         default -> System.out.println("Invalid Input");
                     }
                 }
                 case 7 -> showCustomRangeFlights(s);
-                case 8 -> ap.show();
+                case 8 -> System.out.println(airport);
+                case 9 -> {
+                    System.out.println("Choose num of flight to remove");
+                    System.out.println(airport);
+                    if (airport.removeFlight(s.nextInt()))
+                        System.out.println("Removed");
+                    else System.out.println("Error Removing Flight");
+                }
                 case 0 -> System.out.println("~~~end of program~~~");
                 default -> System.out.println("invalid input");
             }
@@ -76,7 +84,7 @@ public class Menu {
 
 
     public static void showCustomRangeFlights(Scanner s) throws MyException {
-        List<Flight> result = new ArrayList<>(ap.getFlights());
+        List<Flight> result = new ArrayList<>(airport.getFlights());
         var oc = new Object() {
             String str;
             int num;
@@ -87,8 +95,8 @@ public class Menu {
             System.out.println("1) Outgoing");
             System.out.println("2) Incoming");
             switch (s.nextInt()) {
-                case 1 -> result.removeAll(ap.getIncomingFlights());
-                case 2 -> result.removeAll(ap.getOutgoingFlights());
+                case 1 -> result.removeAll(airport.getIncomingFlights());
+                case 2 -> result.removeAll(airport.getOutgoingFlights());
                 default -> throw new MyException("Unexpected Value!");
             }
         }
@@ -134,7 +142,7 @@ public class Menu {
             LocalDateTime start = Flight.getDateTimeFromUser(s);
             System.out.println("Please enter end date");
             LocalDateTime end = Flight.getDateTimeFromUser(s);
-            Airport.filterByDateRange(result,start,end);
+            Airport.filterByDateRange(result, start, end);
         }
         result.forEach(System.out::println);
     }

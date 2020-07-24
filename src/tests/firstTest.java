@@ -52,19 +52,10 @@ public class firstTest {
         ap.addFlight(F7);
         List<Flight> flightList = new ArrayList<>();
         flightList.add(F1);
-        flightList.add(F2);
-        flightList.add(F7);
-        assertEquals(flightList, ap.getFlightsByDayOfWeek(Utilities.D1.getDayOfWeek()));
-        flightList.remove(F2);
-        flightList.remove(F7);
         flightList.add(F3);
         flightList.add(F5);
         flightList.add(F7);
         assertEquals(flightList, ap.getOutgoingFlights());
-        flightList.remove(F1);
-        flightList.remove(F7);
-        assertEquals(flightList, ap.getFlightsByTerminal(2));
-
     }
 
     @Test
