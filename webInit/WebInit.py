@@ -13,7 +13,9 @@ def hlp():
            "=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=>Arrivals</a" \
            "><br><a href=http://localhost:8000/departures?outformat=html&country=&city=&airport=&airline=&day1" \
            "=&month1=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=> " \
-            "Departures</a>"
+           "Departures</a><br><a href=http://localhost:8000/all?outformat=html&country=&city=&airport=&airline" \
+           "=&day1=&month1=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday" \
+           "=&saturday=>All</a>"
 
 
 @app.route("/departures")
@@ -41,6 +43,25 @@ def arrivals():
                                     "AirportProject.Program",
                                     request.args.get('outformat'),
                                     "arrivals",
+                                    request.args.get('country'),  # country
+                                    request.args.get('city'),  # city
+                                    request.args.get('airport'),  # airport
+                                    request.args.get('airline'),  # company
+                                    request.args.get('day1'), request.args.get('month1'), request.args.get('year1'),
+                                    request.args.get('day2'), request.args.get('month2'), request.args.get('year2'),
+                                    request.args.get('sunday'), request.args.get('monday'),
+                                    request.args.get('tuesday'), request.args.get('wednesday'),
+                                    request.args.get('thursday'), request.args.get('friday'),
+                                    request.args.get('saturday')])
+    # request.args.get('terminal'),  # terminal
+
+
+@app.route("/all")
+def all_flights():
+    return subprocess.check_output(["java", "-classpath", "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin",
+                                    "AirportProject.Program",
+                                    request.args.get('outformat'),
+                                    "all",
                                     request.args.get('country'),  # country
                                     request.args.get('city'),  # city
                                     request.args.get('airport'),  # airport
