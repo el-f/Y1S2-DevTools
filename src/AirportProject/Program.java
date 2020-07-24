@@ -11,15 +11,8 @@ public class Program {
 
     public static void main(String[] args) throws FileNotFoundException {
         program(args);
-//        Airport ap = new Airport();
-//        ap.getFlights().addAll(Utilities.getDefaultFlights());
-//        ap.save("airport");
-//        Airport ap2 = new Airport(new File("airport"));
-//        ap2.show();
-//        System.out.println("\nairport 2");
-//        ap2.show();
 
-
+//        initDefault();        //for initiating the default files.
     }
 
     //externalized for tests purposes
@@ -81,5 +74,15 @@ public class Program {
                     args[0].equalsIgnoreCase("TEXT") ? "" :
                             args[0].equalsIgnoreCase("HTML") ? "<br>" : "")));
         }
+    }
+
+    private static void initDefault() throws FileNotFoundException {
+        Airport ap = new Airport();
+        ap.getFlights().addAll(Utilities.getDefaultFlights());
+        System.out.println(ap);
+        ap.save("airport");
+        Airport ap2 = new Airport(new File("airport"));
+        System.out.println("\nairport 2");
+        System.out.println(ap2);
     }
 }

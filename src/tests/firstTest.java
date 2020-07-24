@@ -33,8 +33,10 @@ public class firstTest {
     public void testNoDuplicates() {
         Airport ap = new Airport();
         ap.addFlight(F5);
+
         ap.addFlight(F6);
         ap.addFlight(F6);
+
         ap.addFlight(F7);
         ap.addFlight(F7);
         ap.addFlight(F7);
@@ -44,13 +46,9 @@ public class firstTest {
     @Test
     public void testFilters() {
         Airport ap = new Airport();
-        ap.addFlight(F1);
-        ap.addFlight(F2);
-        ap.addFlight(F3);
-        ap.addFlight(F4);
-        ap.addFlight(F5);
-        ap.addFlight(F6);
-        ap.addFlight(F7);
+        ap.getFlights().addAll(Utilities.getDefaultFlights());
+        ap.removeFlight(7);
+        assertEquals(7, ap.getFlights().size());
 
         List<Flight> flightList = Arrays.asList(F1, F3, F5, F7);
         assertEquals(flightList, ap.getOutgoingFlights());

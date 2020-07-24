@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-public class Utilities {
+public abstract class Utilities {
     //dates
     public static final LocalDateTime D1 = LocalDateTime.of(2020, 11, 20, 2, 3);
     public static final LocalDateTime D2 = LocalDateTime.of(2020, 11, 21, 14, 30);
