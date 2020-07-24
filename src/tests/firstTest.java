@@ -122,9 +122,9 @@ public class firstTest {
 
         String outputString = outputStream.toString();
 
-        assertTrue(outputString.contains(F2.toString()));//only expected result
-        assertTrue(outputString.contains(F4.toString()));
-        assertTrue(outputString.contains(F6.toString()));
+        assertTrue(outputString.contains(F2.toString()));   //
+        assertTrue(outputString.contains(F4.toString()));   // expected results
+        assertTrue(outputString.contains(F6.toString()));   //
         assertFalse(outputString.contains(F1.toString()));
         assertFalse(outputString.contains(F3.toString()));
         assertFalse(outputString.contains(F5.toString()));
