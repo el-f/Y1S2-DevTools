@@ -15,7 +15,7 @@ public abstract class Utilities {
     public static final Flight F1 = new Flight(3, "SAD1978", D1, "Albania", "albania_city", "albania_airport", "AlbaniaAir", true);
     public static final Flight F2 = new Flight(1, "HASF1238", D1, "Austria", "Austria_city", "Austria_airport", "EasyJet", false);
     public static final Flight F3 = new Flight(2, "ASD41IDA", D2, "Guinea", "Guinea_city", "Guinea_airpot", "Aeroflot", true);
-    public static final Flight F4 = new Flight(1, "ASD41IDA", D3, "Ireland", "Ireland_city", "Ireland_airport", "Lufthansa", false);
+    public static final Flight F4 = new Flight(1, "W594XF2B", D3, "Ireland", "Ireland_city", "Ireland_airport", "Lufthansa", false);
     public static final Flight F5 = new Flight(2, "DFWQ41F", D4, "Italy", "Italy_city", "Italy_airport", "Ryan-Air", true);
     public static final Flight F6 = new Flight(3, "UR24EE", D3, "Laos", "Laos_city", "Laos_airport", "United", false);
     public static final Flight F7 = new Flight(1, "KSD556Q", D1, "Iran", "Iran_city", "Iran_airport", "El-AL", true);
