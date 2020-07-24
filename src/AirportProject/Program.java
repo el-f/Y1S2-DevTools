@@ -10,13 +10,6 @@ import static java.lang.Integer.*;
 public class Program {
 
     public static void main(String[] args) throws FileNotFoundException {
-        program(args);
-
-//        initDefault();        //for initiating the default files.
-    }
-
-    //externalized for tests purposes
-    public static void program(String[] args) throws FileNotFoundException {
         if (args.length == 0)
             Menu.showMenu();
         else {
@@ -74,7 +67,10 @@ public class Program {
                     args[0].equalsIgnoreCase("TEXT") ? "" :
                             args[0].equalsIgnoreCase("HTML") ? "<br>" : "")));
         }
+
+//        initDefault();        //for initiating the default files.
     }
+
 
     private static void initDefault() throws FileNotFoundException {
         Airport ap = new Airport();

@@ -100,4 +100,14 @@ public class firstTest {
         System.setIn(backupIn);
     }
 
+    @Test
+    public void testMain() {
+        String[] args = new String[0 /*TODO*/];
+        try {
+            Program.main(args);
+        } catch (FileNotFoundException e) {
+            //TODO
+        }
+    }
+
 }
