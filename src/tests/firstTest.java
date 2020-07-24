@@ -86,9 +86,10 @@ public class firstTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         System.setIn(inputStream);
         System.setOut(outputPrintStream);
+
         Menu.showMenu();
+
         String outputString = outputStream.toString();
-        System.out.println(outputString);
         assertTrue(outputString.contains(F6.toString()));//only expected result
         assertFalse(outputString.contains(F1.toString()));
         assertFalse(outputString.contains(F2.toString()));
@@ -102,12 +103,35 @@ public class firstTest {
 
     @Test
     public void testMain() {
-        String[] args = new String[0 /*TODO*/];
+        String[] args = {
+                "TEXT",
+                "arrivals",
+                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+        };
+        InputStream backupIn = System.in;
+        PrintStream backupOut = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream outputPrintStream = new PrintStream(outputStream);
+        System.setOut(outputPrintStream);
+
         try {
             Program.main(args);
         } catch (FileNotFoundException e) {
-            //TODO
+            fail();
         }
+
+        String outputString = outputStream.toString();
+
+        assertTrue(outputString.contains(F2.toString()));//only expected result
+        assertTrue(outputString.contains(F4.toString()));
+        assertTrue(outputString.contains(F6.toString()));
+        assertFalse(outputString.contains(F1.toString()));
+        assertFalse(outputString.contains(F3.toString()));
+        assertFalse(outputString.contains(F5.toString()));
+        assertFalse(outputString.contains(F7.toString()));
+
+        System.setOut(backupOut);
+        System.setIn(backupIn);
     }
 
 }
