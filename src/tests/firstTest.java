@@ -103,7 +103,7 @@ public class firstTest {
     @Test
     public void testMain() {
         String[] args = {
-                "INTERNAL_TEST",
+                identifier,
                 "arrivals",
                 "",                             /*country*/
                 "",                             /*city*/
