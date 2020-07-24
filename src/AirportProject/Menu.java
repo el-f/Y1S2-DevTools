@@ -134,7 +134,7 @@ public class Menu {
         if (scanBoolean(s)) {
             System.out.println("Please enter days of the week by name [space separated]");
             System.out.println("Example: 'sunday friday monday'");
-            Airport.filterByWeekDays(result, s.next());
+            Airport.filterByWeekDays(result, s.next().toLowerCase());
         }
         System.out.println("Do you want to filter by date and time range?");
         if (scanBoolean(s)) {

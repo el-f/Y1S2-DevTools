@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -50,12 +52,29 @@ public class firstTest {
         ap.addFlight(F5);
         ap.addFlight(F6);
         ap.addFlight(F7);
-        List<Flight> flightList = new ArrayList<>();
-        flightList.add(F1);
-        flightList.add(F3);
-        flightList.add(F5);
-        flightList.add(F7);
+
+        List<Flight> flightList = Arrays.asList(F1, F3, F5, F7);
         assertEquals(flightList, ap.getOutgoingFlights());
+        assertNotEquals(flightList, ap.getIncomingFlights());
+
+        flightList = Arrays.asList(F2, F4, F6);
+        assertEquals(flightList, ap.getIncomingFlights());
+        assertNotEquals(flightList, ap.getOutgoingFlights());
+
+        flightList = new ArrayList<>(Arrays.asList(F1, F2, F3, F4, F5, F6, F7));
+        Airport.filterByCountry(flightList, "albania");
+        assertEquals(Collections.singletonList(F1), flightList);
+        assertNotEquals(Collections.singletonList(F2), flightList);
+
+        flightList = new ArrayList<>(Arrays.asList(F1, F2, F3, F4, F5, F6, F7));
+        Airport.filterByWeekDays(
+                flightList,
+                String.format("%s %s %s",
+                        F3.getDate().getDayOfWeek().name(),
+                        F6.getDate().getDayOfWeek().name(),
+                        F4.getDate().getDayOfWeek().name()).toLowerCase()
+        );
+        assertEquals(Arrays.asList(F3, F4, F6), flightList);
     }
 
     @Test

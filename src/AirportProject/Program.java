@@ -16,6 +16,20 @@ public class Program {
      */
 
     public static void main(String[] args) throws FileNotFoundException {
+        program(args);
+//        Airport ap = new Airport();
+//        ap.getFlights().addAll(Utilities.getDefaultFlights());
+//        ap.save("airport");
+//        Airport ap2 = new Airport(new File("airport"));
+//        ap2.show();
+//        System.out.println("\nairport 2");
+//        ap2.show();
+
+
+    }
+
+    //externalized for tests purposes
+    public static void program(String[] args) throws FileNotFoundException {
         if (args.length == 0)
             Menu.showMenu();
         else {
@@ -71,17 +85,7 @@ public class Program {
                 System.out.println("empty flights list! too much or invalid filters!");
             result.forEach(r -> System.out.println(r + (
                     args[0].equalsIgnoreCase("TEXT") ? "" :
-                    args[0].equalsIgnoreCase("HTML") ? "<br>" : "")));
+                            args[0].equalsIgnoreCase("HTML") ? "<br>" : "")));
         }
-
-//        Airport ap = new Airport();
-//        ap.getFlights().addAll(Utilities.getDefaultFlights());
-//        ap.save("airport");
-//        Airport ap2 = new Airport(new File("airport"));
-//        ap2.show();
-//        System.out.println("\nairport 2");
-//        ap2.show();
-
-
     }
 }
