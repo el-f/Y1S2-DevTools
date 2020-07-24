@@ -2,6 +2,7 @@ package AirportProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,11 @@ public class Program {
                     args[1].equalsIgnoreCase("arrivals"));
 
             //external java call has to have full path.
-            Airport ap = new Airport(new File("C:\\Users\\Elazar\\Documents\\GitHub\\Y1S2-Homework\\airport"));
+            Airport ap = new Airport(new File(
+                    Paths.get("").toAbsolutePath().getParent().toString() + "\\airport")
+            );
             List<Flight> result = new ArrayList<>(ap.getFlights());
+
             if (direction) {
                 switch (args[1].toLowerCase()) {
                     case "departures":
@@ -73,6 +77,7 @@ public class Program {
     }
 
 
+    @SuppressWarnings("unused")
     private static void initDefault() throws FileNotFoundException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Utilities.getDefaultFlights());
