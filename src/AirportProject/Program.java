@@ -16,6 +16,7 @@ public class Program {
             boolean direction = (args[1].equalsIgnoreCase("departures") ||
                     args[1].equalsIgnoreCase("arrivals"));
 
+            //external java call has to have full path.
             Airport ap = new Airport(new File("C:\\Users\\Elazar\\Documents\\GitHub\\Y1S2-Homework\\airport"));
             List<Flight> result = new ArrayList<>(ap.getFlights());
             if (direction) {
