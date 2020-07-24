@@ -69,10 +69,12 @@ public class firstTest {
         flightList = new ArrayList<>(Arrays.asList(F1, F2, F3, F4, F5, F6, F7));
         Airport.filterByWeekDays(
                 flightList,
-                String.format("%s %s %s",
+                String.format(
+                        "%s %s %s",
                         F3.getDate().getDayOfWeek().name(),
                         F6.getDate().getDayOfWeek().name(),
-                        F4.getDate().getDayOfWeek().name()).toLowerCase()
+                        F4.getDate().getDayOfWeek().name()
+                ).toLowerCase()
         );
         assertEquals(Arrays.asList(F3, F4, F6), flightList);
     }
