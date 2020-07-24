@@ -12,9 +12,10 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 //import flights
-import static AirportProject.Utilities.*;
+import static AirportProject.Flight.*;
 
 public class firstTest {
+    public static final String identifier = "INTERNAL_TEST";
 
     @Test
     public void testFileLoadAndSave() throws FileNotFoundException {
@@ -41,7 +42,7 @@ public class firstTest {
     @Test
     public void testFilters() {
         Airport ap = new Airport();
-        ap.getFlights().addAll(Utilities.getDefaultFlights());
+        ap.getFlights().addAll(Flight.getDefaultFlights());
         ap.removeFlight(7);
         assertEquals(7, ap.getFlights().size());
 
@@ -101,7 +102,7 @@ public class firstTest {
     @Test
     public void testMain() {
         String[] args = {
-                "TEXT",
+                "INTERNAL_TEST",
                 "arrivals",
                 "",                             /*country*/
                 "",                             /*city*/
@@ -120,6 +121,7 @@ public class firstTest {
         try {
             Program.main(args);
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             fail();
         }
 

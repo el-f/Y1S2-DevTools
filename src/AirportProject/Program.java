@@ -1,5 +1,7 @@
 package AirportProject;
 
+import tests.firstTest;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
@@ -18,9 +20,11 @@ public class Program {
                     args[1].equalsIgnoreCase("arrivals"));
 
             //external java call has to have full path.
-            Airport ap = new Airport(new File(
-                    Paths.get("").toAbsolutePath().getParent().toString() + "\\airport")
-            );
+            String path;
+            if (args[0].equalsIgnoreCase(firstTest.identifier)) //internal tests only need filename
+                path = "airport";
+            else path = Paths.get("").toAbsolutePath().getParent().toString() + "\\airport";
+            Airport ap = new Airport(new File(path));
             List<Flight> result = new ArrayList<>(ap.getFlights());
 
             if (direction) {
@@ -80,7 +84,7 @@ public class Program {
     @SuppressWarnings("unused")
     private static void initDefault() throws FileNotFoundException {
         Airport ap = new Airport();
-        ap.getFlights().addAll(Utilities.getDefaultFlights());
+        ap.getFlights().addAll(Flight.getDefaultFlights());
         System.out.println(ap);
         ap.save("airport");
         Airport ap2 = new Airport(new File("airport"));
