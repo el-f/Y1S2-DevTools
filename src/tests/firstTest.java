@@ -80,6 +80,7 @@ public class firstTest {
     public void testUserFilteredList() {
         InputStream backupIn = System.in;
         PrintStream backupOut = System.out;
+        /* simulated user input: */
         String simulatedInput = "6\n 2\n 7\n y\n 2\n n\n n\n n\n n\n y\n 3\n n\n n\n 0\n";
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream outputPrintStream = new PrintStream(outputStream);
@@ -90,6 +91,7 @@ public class firstTest {
         Menu.showMenu();
 
         String outputString = outputStream.toString();
+
         assertTrue(outputString.contains(F6.toString()));//only expected result
         assertFalse(outputString.contains(F1.toString()));
         assertFalse(outputString.contains(F2.toString()));
@@ -106,7 +108,13 @@ public class firstTest {
         String[] args = {
                 "TEXT",
                 "arrivals",
-                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+                "",                             /*country*/
+                "",                             /*city*/
+                "",                             /*airport*/
+                "",                             /*airline*/
+                "", "", "",                     /*start date (d/m/y)*/
+                "", "", "",                     /*end date (d/m/y)*/
+                "", "", "", "", "", "", ""      /*weekdays*/
         };
         InputStream backupIn = System.in;
         PrintStream backupOut = System.out;
