@@ -11,15 +11,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+//import flights
+import static AirportProject.Utilities.*;
+
 public class firstTest {
-    // flights
-    private final Flight F1 = Utilities.F1;
-    private final Flight F2 = Utilities.F2;
-    private final Flight F3 = Utilities.F3;
-    private final Flight F4 = Utilities.F4;
-    private final Flight F5 = Utilities.F5;
-    private final Flight F6 = Utilities.F6;
-    private final Flight F7 = Utilities.F7;
 
     @Test
     public void testFileLoadAndSave() throws FileNotFoundException {
