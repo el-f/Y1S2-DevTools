@@ -1,4 +1,4 @@
-package tests;
+package TestSuite;
 
 import AirportProject.*;
 import org.junit.Test;

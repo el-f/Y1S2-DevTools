@@ -1,6 +1,6 @@
 package AirportProject;
 
-import tests.TestSuite;
+import TestSuite.TestSuite;
 
 import java.io.File;
 import java.io.FileNotFoundException;
