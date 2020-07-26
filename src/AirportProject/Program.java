@@ -25,7 +25,7 @@ public class Program {
             String path;
             if (args[0].equalsIgnoreCase(firstTest.identifier)) //internal tests only need filename
                 path = "airport";
-            else path = Paths.get("").toAbsolutePath().getParent().toString() + "\\" + defaultFile;
+            else path = Paths.get("").toAbsolutePath().getParent() + "\\" + defaultFile;
             Airport ap = new Airport(new File(path));
             List<Flight> result = new ArrayList<>(ap.getFlights());
 
