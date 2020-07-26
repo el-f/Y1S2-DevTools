@@ -18,9 +18,9 @@ public class Airport {
 
     public Airport(File file) throws FileNotFoundException {
         Scanner s = new Scanner(file);
-        int currentFlightsNum = s.nextInt();
+        int numOfFlights = s.nextInt();
         flights = new ArrayList<>();
-        for (int i = 0; i < currentFlightsNum; i++) {
+        for (int i = 0; i < numOfFlights; i++) {
             flights.add(new Flight(s));
         }
         s.close();
