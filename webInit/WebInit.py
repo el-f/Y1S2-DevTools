@@ -20,52 +20,24 @@ def hlp():
 
 @app.route("/departures")
 def departures():
-    return subprocess.check_output(["java", "-classpath", "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin",
-                                    "AirportProject.Program",
-                                    request.args.get('outformat'),
-                                    "departures",
-                                    request.args.get('country'),  # country
-                                    request.args.get('city'),  # city
-                                    request.args.get('airport'),  # airport
-                                    request.args.get('airline'),  # company
-                                    request.args.get('day1'), request.args.get('month1'), request.args.get('year1'),
-                                    request.args.get('day2'), request.args.get('month2'), request.args.get('year2'),
-                                    request.args.get('sunday'), request.args.get('monday'),
-                                    request.args.get('tuesday'), request.args.get('wednesday'),
-                                    request.args.get('thursday'), request.args.get('friday'),
-                                    request.args.get('saturday')])
-    # request.args.get('terminal'),  # terminal
+    return all_flights("departures")
 
 
 @app.route("/arrivals")
 def arrivals():
+    return all_flights("arrivals")
+
+
+@app.route("/all")
+def all_flights(direction="all"):
     return subprocess.check_output(["java", "-classpath", "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin",
                                     "AirportProject.Program",
                                     request.args.get('outformat'),
-                                    "arrivals",
+                                    direction,
                                     request.args.get('country'),  # country
                                     request.args.get('city'),  # city
                                     request.args.get('airport'),  # airport
                                     request.args.get('airline'),  # company
-                                    request.args.get('day1'), request.args.get('month1'), request.args.get('year1'),
-                                    request.args.get('day2'), request.args.get('month2'), request.args.get('year2'),
-                                    request.args.get('sunday'), request.args.get('monday'),
-                                    request.args.get('tuesday'), request.args.get('wednesday'),
-                                    request.args.get('thursday'), request.args.get('friday'),
-                                    request.args.get('saturday')])
-    # request.args.get('terminal'),  # terminal
-
-
-@app.route("/all")
-def all_flights():
-    return subprocess.check_output(["java", "-classpath", "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin",
-                                    "AirportProject.Program",
-                                    request.args.get('outformat'),
-                                    "all",
-                                    request.args.get('country'),    # country
-                                    request.args.get('city'),       # city
-                                    request.args.get('airport'),    # airport
-                                    request.args.get('airline'),    # company
                                     request.args.get('day1'), request.args.get('month1'), request.args.get('year1'),
                                     request.args.get('day2'), request.args.get('month2'), request.args.get('year2'),
                                     request.args.get('sunday'), request.args.get('monday'),
