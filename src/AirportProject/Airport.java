@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class Airport {
     private ArrayList<Flight> flights;
-    private int currentFlightsNum;
 
     public ArrayList<Flight> getFlights() {
         return flights;
@@ -19,7 +18,7 @@ public class Airport {
 
     public Airport(File file) throws FileNotFoundException {
         Scanner s = new Scanner(file);
-        currentFlightsNum = s.nextInt();
+        int currentFlightsNum = s.nextInt();
         flights = new ArrayList<>();
         for (int i = 0; i < currentFlightsNum; i++) {
             flights.add(new Flight(s));
