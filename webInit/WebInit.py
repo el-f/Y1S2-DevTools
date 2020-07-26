@@ -5,6 +5,8 @@ from flask import Flask, request
 
 app = Flask("__name__")
 
+path = "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin"
+
 
 @app.route("/")
 def hlp():
@@ -30,8 +32,8 @@ def arrivals():
 
 @app.route("/all")
 def all_flights(direction="all"):
-    return subprocess.check_output(["java", "-classpath", "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin",
-                                    "AirportProject.Program",
+    return subprocess.check_output(["java", "-classpath", path,
+                                    "AirportProject.Program",  # Package.Class_File
                                     request.args.get('outformat'),
                                     direction,
                                     request.args.get('country'),  # country
