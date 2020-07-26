@@ -32,11 +32,8 @@ public class Program {
                 results.removeAll(ap.getOutgoingFlights());
 
             if (!args[2].isBlank()) Airport.filterByCountry(results, args[2]);
-
             if (!args[3].isBlank()) Airport.filterByCity(results, args[3]);
-
             if (!args[4].isBlank()) Airport.filterByAirport(results, args[4]);
-
             if (!args[5].isBlank()) Airport.filterByCompany(results, args[5]);
 
             if (!args[6].isBlank() && !args[7].isBlank() && !args[8].isBlank())
