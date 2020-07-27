@@ -112,6 +112,7 @@ public class TestSuite {
                 "", "", "",                     /*start date (d/m/y)*/
                 "", "", "",                     /*end date (d/m/y)*/
                 "", "", "", "", "", "", ""      /*weekdays*/
+//                ,""                             /*terminal*/
         };
         InputStream backupIn = System.in;
         PrintStream backupOut = System.out;
