@@ -37,10 +37,10 @@ def all_flights(direction="all"):
                                     "AirportProject.Program",  # Package.Class_File
                                     request.args.get('outformat'),
                                     direction,
-                                    request.args.get('country'),  # country
-                                    request.args.get('city'),  # city
-                                    request.args.get('airport'),  # airport
-                                    request.args.get('airline'),  # company
+                                    request.args.get('country'),
+                                    request.args.get('city'),
+                                    request.args.get('airport'),
+                                    request.args.get('airline'),
                                     request.args.get('day1'), request.args.get('month1'), request.args.get('year1'),
                                     request.args.get('day2'), request.args.get('month2'), request.args.get('year2'),
                                     request.args.get('sunday'), request.args.get('monday'),
