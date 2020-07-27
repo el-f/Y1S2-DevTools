@@ -1,11 +1,12 @@
 #!/usr/bin/python
+import os
 import subprocess
 
 from flask import Flask, request
 
 app = Flask("__name__")
 
-path = "C:/Users/Elazar/Documents/GitHub/Y1S2-Homework/bin"
+path = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/bin"  # get parent dir then add "/bin"
 
 
 @app.route("/")
