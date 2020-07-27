@@ -4,7 +4,7 @@ import subprocess
 
 from flask import Flask, request
 
-app = Flask("__name__")
+app = Flask(__name__)
 
 path = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/bin"  # get parent dir then add "/bin"
 
