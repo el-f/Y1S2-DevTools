@@ -64,8 +64,9 @@ public class Program {
             if (!args[16].isBlank() && Boolean.parseBoolean(args[16])) weekdays += "thursday ";
             if (!args[17].isBlank() && Boolean.parseBoolean(args[17])) weekdays += "friday ";
             if (!args[18].isBlank() && Boolean.parseBoolean(args[18])) weekdays += "saturday ";
-
             if (weekdays.length() > 0) Airport.filterByWeekDays(results, weekdays);
+
+//            if (!args[19].isBlank()) Airport.filterByTerminal(results, parseInt(args[19]));
 
             if (results.isEmpty())
                 System.out.println("empty flights list! too much or invalid filters!");
