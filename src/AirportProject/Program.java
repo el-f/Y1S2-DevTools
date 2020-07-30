@@ -40,9 +40,9 @@ public class Program {
                 Airport.filterByStartDate(
                         results,
                         Flight.getDateTimeFromUser(
-                                parseInt(args[6]),
-                                parseInt(args[7]),
-                                parseInt(args[8])
+                                parseInt(args[6]),  /*day*/
+                                parseInt(args[7]),  /*month*/
+                                parseInt(args[8])   /*year*/
                         )
                 );
 
@@ -50,9 +50,9 @@ public class Program {
                 Airport.filterByEndDate(
                         results,
                         Flight.getDateTimeFromUser(
-                                parseInt(args[9]),
-                                parseInt(args[10]),
-                                parseInt(args[11])
+                                parseInt(args[9]),  /*day*/
+                                parseInt(args[10]), /*month*/
+                                parseInt(args[11])  /*year*/
                         )
                 );
 
