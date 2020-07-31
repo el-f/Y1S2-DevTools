@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 //import flights
 import static AirportProject.Flight.*;
 
-public class TestSuiteTTT {
+public class TestSuite {
     public static final String identifier = "INTERNAL_TEST";
     public static final String testFile = "ap2";
 
