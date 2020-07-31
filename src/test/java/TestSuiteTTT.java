@@ -1,6 +1,6 @@
-package TestSuite;
-
 import AirportProject.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 //import flights
 import static AirportProject.Flight.*;
 
-public class TestSuite {
+public class TestSuiteTTT {
     public static final String identifier = "INTERNAL_TEST";
     public static final String testFile = "ap2";
 
@@ -24,6 +24,7 @@ public class TestSuite {
         ap.save(testFile);
         Airport ap2 = new Airport(new File(testFile));
         assertEquals(ap.toString(), ap2.toString());
+        System.out.println("testFileLoadAndSave - SUCCESS");
     }
 
     @Test
@@ -38,6 +39,7 @@ public class TestSuite {
         ap.addFlight(F7);
         ap.addFlight(F7);
         assertEquals(3, ap.getFlights().size());
+        System.out.println("testNoDuplicates - SUCCESS");
     }
 
     @Test
@@ -71,6 +73,7 @@ public class TestSuite {
                 ).toLowerCase()
         );
         assertEquals(Arrays.asList(F3, F4, F6), flightList);
+        System.out.println("testFilters - SUCCESS");
     }
 
     @Test
@@ -98,6 +101,7 @@ public class TestSuite {
         assertFalse(outputString.contains(F7.toString()));
         System.setOut(backupOut);
         System.setIn(backupIn);
+        System.out.println("testUserFilteredList - SUCCESS");
     }
 
     @Test
@@ -139,6 +143,7 @@ public class TestSuite {
 
         System.setOut(backupOut);
         System.setIn(backupIn);
+        System.out.println("testMain - SUCCESS");
     }
 
 }

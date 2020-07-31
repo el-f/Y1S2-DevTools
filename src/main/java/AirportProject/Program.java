@@ -1,13 +1,10 @@
 package AirportProject;
 
-import TestSuite.TestSuite;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.Integer.*;
 
 public class Program {
@@ -20,7 +17,7 @@ public class Program {
         else {
             //external java calls need full path, internal tests only need filename.
             String path;
-            if (args[0].equalsIgnoreCase(TestSuite.identifier)) path = defaultFile;
+            if (args[0].equalsIgnoreCase("INTERNAL_TEST")) path = defaultFile;
             else path = Paths.get("").toAbsolutePath().getParent() + "\\" + defaultFile;
             Airport ap = new Airport(new File(path));
 
