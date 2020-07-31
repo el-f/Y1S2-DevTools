@@ -106,7 +106,6 @@ public class TestSuite {
 
     @Test
     public void testMain() {
-        fail();
         String[] args = {
                 identifier,
                 "arrivals",
