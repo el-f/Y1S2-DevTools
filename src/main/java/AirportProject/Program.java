@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
 import static java.lang.Integer.*;
 
 public class Program {
@@ -13,7 +14,9 @@ public class Program {
 
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length == 0)
-            Menu.showMenu();
+            Menu.showMenu(null);
+        else if (args.length == 1)
+            Menu.showMenu(args[0]); //passing filepath argument to menu
         else {
             //external java calls need full path, internal tests only need filename.
             String path;

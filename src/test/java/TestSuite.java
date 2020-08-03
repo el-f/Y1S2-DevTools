@@ -1,6 +1,4 @@
 import AirportProject.*;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
@@ -88,7 +86,7 @@ public class TestSuite {
         System.setIn(inputStream);
         System.setOut(outputPrintStream);
 
-        Menu.showMenu();
+        Menu.showMenu(null);
 
         String outputString = outputStream.toString();
 

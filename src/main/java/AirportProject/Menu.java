@@ -1,14 +1,19 @@
 package AirportProject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class Menu {
     private static Airport airport;
 
-    public static void showMenu() {
-        airport = new Airport();
+    public static void showMenu(String filePathArg) {
+        if (filePathArg == null)
+            airport = new Airport();
+        else
+            initAirportFromFile(filePathArg);
+
         Scanner s = new Scanner(System.in);
         int choice = -1;
         while (choice != 0) try {
@@ -46,12 +51,7 @@ public class Menu {
                     switch (s.nextInt()) {
                         case 1 -> {
                             System.out.println("Please enter file name or file path to read from");
-                            File f = new File(s.next());
-                            if (!f.exists()) {
-                                System.out.println("no such file!");
-                                break;
-                            }
-                            airport = new Airport(f);
+                            initAirportFromFile(s.next());
                         }
                         case 2 -> {
                             airport = new Airport(new File("airport"));
@@ -147,6 +147,19 @@ public class Menu {
         result.forEach(System.out::println);
     }
 
+    private static void initAirportFromFile(String filepath) {
+        File f = new File(filepath);
+        if (!f.exists() || f.isDirectory()) {
+            System.out.println("Error locating the specified file!");
+            return;
+        }
+        try {
+            airport = new Airport(f);
+            System.out.println("\n~~~Successfully Loaded Argument File~~~\n");
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("File Not Found!");
+        }
+    }
 
     public static boolean scanBoolean(Scanner scanner) {
         boolean input = false, gotInput = false;
