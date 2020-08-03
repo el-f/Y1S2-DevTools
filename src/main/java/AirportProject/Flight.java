@@ -86,25 +86,6 @@ public class Flight {
         writer.println(outgoing);
     }
 
-    public Flight(Scanner scan, String user) {
-        System.out.println("please enter terminal number:");
-        terminal = scan.nextInt();
-        System.out.println("please enter flight Num (letters + digits)");
-        flightNum = scan.next();
-        System.out.println("please enter date of flight: (year, month, day)");
-        dateTime = getDateTimeFromUser(scan);
-        System.out.println("Please enter and if outgoing (true/false)");
-        outgoing = Boolean.parseBoolean(scan.next());
-        System.out.println("please enter country");
-        country = scan.next();
-        System.out.println("please enter city name");
-        city = scan.next();
-        String dir = outgoing ? "destination" : "origin";
-        System.out.println("please enter " + dir + " airport name ");
-        airportName = scan.next();
-        System.out.println();
-    }
-
     public static LocalDateTime getDateTimeFromUser(Scanner s) {
         int year, month, day, hour, minutes;
         System.out.println("enter year");
