@@ -9,16 +9,16 @@ app = Flask(__name__)
 path = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "\\target\classes"
 
 
+def get_url(direction):
+    return "<a href=http://localhost:8000/" + direction.lower() + \
+           "?outformat=html&country=&city=&airport=&airline=&day1=&month1=&year1=" \
+           "&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=>" \
+           + direction + "</a><br>"
+
+
 @app.route("/")
 def hlp():
-    return "Example links: " \
-           "<br><a href=http://localhost:8000/arrivals?outformat=html&country=&city=&airport=&airline=&day1=&month1" \
-           "=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=>Arrivals</a" \
-           "><br><a href=http://localhost:8000/departures?outformat=html&country=&city=&airport=&airline=&day1" \
-           "=&month1=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=> " \
-           "Departures</a><br><a href=http://localhost:8000/all?outformat=html&country=&city=&airport=&airline" \
-           "=&day1=&month1=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday" \
-           "=&saturday=>All</a>"
+    return "Example links:<br>" + get_url("Arrivals") + get_url("Departures") + get_url("All")
 
 
 @app.route("/departures")
