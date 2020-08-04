@@ -9,10 +9,7 @@ public class Menu {
     private static Airport airport;
 
     public static void showMenu(String filePathArg) {
-        if (filePathArg == null)
-            airport = new Airport();
-        else
-            initAirportFromFile(filePathArg);
+        initAirportFromFile(filePathArg);
 
         Scanner s = new Scanner(System.in);
         int choice = -1;
@@ -147,17 +144,21 @@ public class Menu {
         result.forEach(System.out::println);
     }
 
-    private static void initAirportFromFile(String filepath) {
-        File f = new File(filepath);
-        if (!f.exists() || f.isDirectory()) {
-            System.out.println("Error locating the specified file!");
-            return;
-        }
-        try {
-            airport = new Airport(f);
-            System.out.println("\n~~~Successfully Loaded Argument File~~~\n");
-        } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("File Not Found!");
+    private static void initAirportFromFile(String filePathArg) {
+        if (filePathArg == null)
+            airport = new Airport();
+        else {
+            File f = new File(filePathArg);
+            if (!f.exists() || f.isDirectory()) {
+                System.out.println("Error locating the specified file!");
+                return;
+            }
+            try {
+                airport = new Airport(f);
+                System.out.println("\n~~~Successfully Loaded Argument File~~~\n");
+            } catch (FileNotFoundException fileNotFoundException) {
+                System.out.println("File Not Found!");
+            }
         }
     }
 
