@@ -21,7 +21,7 @@ public class Program {
             //external java calls need full path, internal tests only need filename.
             String path;
             if (args[0].equalsIgnoreCase("INTERNAL_TEST")) path = defaultFile;
-            else path = Paths.get("").toAbsolutePath().getParent() + "\\" + defaultFile;
+            else path = Paths.get("").toAbsolutePath().getParent() + "/" + defaultFile;
             Airport ap = new Airport(new File(path));
 
             List<Flight> results = new ArrayList<>(ap.getFlights());
