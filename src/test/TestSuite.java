@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 import static AirportProject.Flight.*;
 
 public class TestSuite {
-    public static final String identifier = "INTERNAL_TEST";
+
     public static final String testFile = "ap2";
 
     @Test
@@ -105,7 +105,7 @@ public class TestSuite {
     @Test
     public void testMain() {
         String[] args = {
-                identifier,
+                Program.TEST_IDENTIFIER,
                 "arrivals",
                 "",                             /*country*/
                 "",                             /*city*/

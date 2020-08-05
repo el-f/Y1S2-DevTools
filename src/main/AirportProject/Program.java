@@ -11,6 +11,7 @@ import static java.lang.Integer.*;
 public class Program {
 
     public static final String defaultFile = "airport";
+    public static final String TEST_IDENTIFIER = "INTERNAL_TEST";
 
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length == 0)
@@ -20,7 +21,7 @@ public class Program {
         else {
             //external java calls need full path, internal tests only need filename.
             String path;
-            if (args[0].equalsIgnoreCase("INTERNAL_TEST")) path = defaultFile;
+            if (args[0].equalsIgnoreCase(TEST_IDENTIFIER)) path = defaultFile;
             else path = Paths.get("").toAbsolutePath().getParent() + "/" + defaultFile;
             Airport ap = new Airport(new File(path));
 
