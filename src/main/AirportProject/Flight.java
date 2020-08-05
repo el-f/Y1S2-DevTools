@@ -36,7 +36,7 @@ public class Flight {
     public static final Flight F7 = new Flight(1, "KSD556Q2", D1, "Iran", "Iran_city", "Iran_airport", "El-AL", true);
     public static final Flight F8 = new Flight(1, "KS9782EL", D4, "UK", "London", "london_airport", "Wizz", true);
 
-    public static List<Flight> getDefaultFlights() {
+    public static List<AirportProject.Flight> getDefaultFlights() {
         return Arrays.asList(F1, F2, F3, F4, F5, F6, F7, F8);
     }
     /*----------------------------------------------------------------------------------------------------------------*/
