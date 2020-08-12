@@ -1,7 +1,7 @@
 # Y1S2-DevTools
 [![CodeFactor](https://www.codefactor.io/repository/github/elfein7night/y1s2-devtools/badge)](https://www.codefactor.io/repository/github/elfein7night/y1s2-devtools) ![Java CI with Maven](https://github.com/Elfein7Night/Y1S2-DevTools/workflows/Java%20CI%20with%20Maven/badge.svg?branch=Maven) [![Build Status](https://travis-ci.org/Elfein7Night/Y1S2-DevTools.svg?branch=Maven)](https://travis-ci.org/Elfein7Night/Y1S2-DevTools)
 
-A program to manage flights in the server side and displaying them by a user chosen filter on the client side.
+A program to manage flights in the server side and display them by a user chosen filter on the client side.
 
 This project focuses on practicing:
 - Code reuse, avoiding duplicates.
