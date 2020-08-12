@@ -7,7 +7,7 @@ This project focuses on practicing:
 - Server-Client relationship.
 - Development cycle with 4 "sprints" and changing "management" demands.
 - Test Driven Development.
-- Continous Integration.
+- Continuous Integration.
 - Version Control in a team environment.
 - Communicating across different programming languages.
 - Writing a readable "aesthetically pleasing" code.
