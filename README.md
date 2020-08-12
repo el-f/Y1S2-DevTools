@@ -8,7 +8,7 @@ This project focuses on practicing:
 - Development cycle with 4 "sprints" and changing "management" demands.
 - Test Driven Development.
 - Continous Integration.
-- Version Control in a team envoirment.
+- Version Control in a team environment.
 - Communicating across different programming languages.
 - Writing a readable "aesthetically pleasing" code.
 
