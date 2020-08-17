@@ -91,7 +91,7 @@ public class Flight {
                 city,
                 airportName,
                 company
-        ).forEach(field -> writer.print(field + ", "));
+        ).forEach(field -> writer.print(field + ","));
         writer.println(outgoing);
     }
 
