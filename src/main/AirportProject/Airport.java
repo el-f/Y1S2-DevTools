@@ -21,11 +21,13 @@ public class Airport {
         flights = new ArrayList<>();
         Files.lines(Path.of(file.getPath()))
                 .map(line -> line.split(", "))
+                .skip(1)    //skip headers
                 .forEach(params -> flights.add(new Flight(params)));
     }
 
     public void save(String filePath) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(filePath));
+        writer.println("Terminal, #, Year, Month, Day, Hour, Minute, Country, City, Airport, Airline, isOutgoing");
         flights.forEach(f -> f.save(writer));
         writer.close();
     }

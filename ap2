@@ -1,4 +1,4 @@
-3, SAD1978G, 2020, 11, 20, 2, 3, Albania, albania_city, albania_airport, AlbaniaAir, true
+Terminal, #, Year, Month, Day, Hour, Minute, Country, City, Airport, Airline, isOutgoing
 1, HASF1238, 2020, 11, 20, 2, 3, Austria, Austria_city, Austria_airport, EasyJet, false
 2, ASD41IDA, 2020, 11, 21, 14, 30, Guinea, Guinea_city, Guinea_airpot, Aeroflot, true
 1, W594XF2B, 2020, 11, 22, 19, 59, Ireland, Ireland_city, Ireland_airport, Lufthansa, false
