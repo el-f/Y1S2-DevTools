@@ -79,16 +79,20 @@ public class Flight {
     }
 
     public void save(PrintWriter writer) {
-        writer.print(terminal + ", ");
-        writer.print(flightNum + ", ");
-        writer.print(dateTime.getYear() + ", " + dateTime.getMonth().getValue() +
-                ", " + dateTime.getDayOfMonth() + ", " + dateTime.getHour() + ", " +
-                dateTime.getMinute() +", ");
-        writer.print(country + ", ");
-        writer.print(city + ", ");
-        writer.print(airportName + ", ");
-        writer.print(company + ", ");
-        writer.print(outgoing + "\n");
+        Arrays.asList(
+                terminal,
+                flightNum,
+                dateTime.getYear(),
+                dateTime.getMonth().getValue(),
+                dateTime.getDayOfMonth(),
+                dateTime.getHour(),
+                dateTime.getMinute(),
+                country,
+                city,
+                airportName,
+                company
+        ).forEach(field -> writer.print(field + ", "));
+        writer.println(outgoing);
     }
 
     public static LocalDateTime getDateTimeFromUser(Scanner s) {
