@@ -1,7 +1,7 @@
 package AirportProject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import static java.lang.Integer.*;
 
 public class Program {
 
-    public static final String defaultFile = "airport";
+    public static final String defaultFile = "airport.csv";
     public static final String TEST_IDENTIFIER = "INTERNAL_TEST";
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         if (args.length == 0)
             Menu.showMenu(null);
         else if (args.length == 1)
@@ -80,8 +80,8 @@ public class Program {
 //        initDefault();        //for initiating the default files.
     }
 
-    @SuppressWarnings("unused")
-    private static void initDefault() throws FileNotFoundException {
+    @SuppressWarnings({"unused","RedundantSuppression"})
+    private static void initDefault() throws IOException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         System.out.println(ap);

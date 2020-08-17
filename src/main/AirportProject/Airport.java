@@ -1,6 +1,8 @@
 package AirportProject;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,26 +11,21 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Airport {
-    private ArrayList<Flight> flights;
+    private final ArrayList<Flight> flights;
 
     public ArrayList<Flight> getFlights() {
         return flights;
     }
 
-    public Airport(File file) throws FileNotFoundException {
-        Scanner s = new Scanner(file);
-        int numOfFlights = s.nextInt();
+    public Airport(File file) throws IOException {
         flights = new ArrayList<>();
-        for (int i = 0; i < numOfFlights; i++) {
-            flights.add(new Flight(s));
-        }
-        s.close();
+        Files.lines(Path.of(file.getPath()))
+                .map(line -> line.split(", "))
+                .forEach(params -> flights.add(new Flight(params)));
     }
 
     public void save(String filePath) throws FileNotFoundException {
-        File file = new File(filePath);
-        PrintWriter writer = new PrintWriter(file);
-        writer.println(flights.size());
+        PrintWriter writer = new PrintWriter(new File(filePath));
         flights.forEach(f -> f.save(writer));
         writer.close();
     }

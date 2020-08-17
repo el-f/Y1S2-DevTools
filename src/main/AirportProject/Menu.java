@@ -1,7 +1,6 @@
 package AirportProject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -51,7 +50,7 @@ public class Menu {
                             initAirportFromFile(s.next());
                         }
                         case 2 -> {
-                            airport = new Airport(new File("airport"));
+                            airport = new Airport(new File(Program.defaultFile));
                             System.out.println("Loaded default file!");
                         }
                         default -> System.out.println("Invalid Input");
@@ -148,7 +147,7 @@ public class Menu {
         if (filePathArg == null)
             airport = new Airport();
         else {
-            File f = new File(filePathArg);
+            File f = new File(filePathArg.trim());
             if (!f.exists() || f.isDirectory()) {
                 System.out.println("Error locating the specified file!");
                 return;
@@ -156,7 +155,7 @@ public class Menu {
             try {
                 airport = new Airport(f);
                 System.out.println("\n~~~Successfully Loaded Argument File~~~\n");
-            } catch (FileNotFoundException fileNotFoundException) {
+            } catch (Exception fileNotFoundException) {
                 System.out.println("File Not Found!");
             }
         }

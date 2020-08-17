@@ -13,11 +13,11 @@ public class Flight {
     private String flightNum;
     private LocalDateTime dateTime;
     private String country;
-    private String city;
-    private String airportName;
+    private final String city;
+    private final String airportName;
     private String company;
     private boolean outgoing;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)");
 
     /*--------------------------------------------DEFAULT FLIGHTS-----------------------------------------------------*/
     //default dates
@@ -61,29 +61,34 @@ public class Flight {
         return airportName;
     }
 
-    public Flight(Scanner input) {
-        terminal = input.nextInt();
-        flightNum = input.next();
-        dateTime = LocalDateTime.of(input.nextInt(), input.nextInt(),
-                input.nextInt(), input.nextInt(), input.nextInt());
-        country = input.next();
-        city = input.next();
-        airportName = input.next();
-        company = input.next();
-        outgoing = Boolean.parseBoolean(input.next());
+    public Flight(String[] params) {
+        terminal = Integer.parseInt(params[0]);
+        flightNum = params[1];
+        dateTime = LocalDateTime.of(
+                Integer.parseInt(params[2]),
+                Integer.parseInt(params[3]),
+                Integer.parseInt(params[4]),
+                Integer.parseInt(params[5]),
+                Integer.parseInt(params[6])
+        );
+        country = params[7];
+        city = params[8];
+        airportName = params[9];
+        company = params[10];
+        outgoing = Boolean.parseBoolean(params[11]);
     }
 
     public void save(PrintWriter writer) {
-        writer.println(terminal);
-        writer.println(flightNum);
-        writer.println(dateTime.getYear() + " " + dateTime.getMonth().getValue() +
-                " " + dateTime.getDayOfMonth() + " " + dateTime.getHour() + " " +
-                dateTime.getMinute());
-        writer.println(country);
-        writer.println(city);
-        writer.println(airportName);
-        writer.println(company);
-        writer.println(outgoing);
+        writer.print(terminal + ", ");
+        writer.print(flightNum + ", ");
+        writer.print(dateTime.getYear() + ", " + dateTime.getMonth().getValue() +
+                ", " + dateTime.getDayOfMonth() + ", " + dateTime.getHour() + ", " +
+                dateTime.getMinute() +", ");
+        writer.print(country + ", ");
+        writer.print(city + ", ");
+        writer.print(airportName + ", ");
+        writer.print(company + ", ");
+        writer.print(outgoing + "\n");
     }
 
     public static LocalDateTime getDateTimeFromUser(Scanner s) {
@@ -151,10 +156,6 @@ public class Flight {
 
     public LocalDateTime getDate() {
         return dateTime;
-    }
-
-    public void changeDirection() {
-        outgoing = !outgoing;
     }
 
     public String toString() {

@@ -17,7 +17,7 @@ public class TestSuite {
     public static final String testFile = "ap2";
 
     @Test
-    public void testFileLoadAndSave() throws FileNotFoundException {
+    public void testFileLoadAndSave() throws IOException {
         Airport ap = new Airport(new File(Program.defaultFile));
         ap.save(testFile);
         Airport ap2 = new Airport(new File(testFile));
@@ -124,7 +124,7 @@ public class TestSuite {
 
         try {
             Program.main(args);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             fail();
         }
