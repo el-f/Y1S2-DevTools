@@ -63,12 +63,17 @@ public class Airport {
 
 
     public List<Flight> getOutgoingFlights() {
-        return flights.stream().filter(Flight::isOutgoing).collect(Collectors.toList());
-
+        return flights
+                .stream()
+                .filter(Flight::isOutgoing)
+                .collect(Collectors.toList());
     }
 
     public List<Flight> getIncomingFlights() {
-        return flights.stream().filter(f -> !f.isOutgoing()).collect(Collectors.toList());
+        return flights
+                .stream()
+                .filter(f -> !f.isOutgoing())
+                .collect(Collectors.toList());
     }
 
     public static void filterByCountry(List<Flight> result, String country) {
