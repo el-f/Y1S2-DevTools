@@ -17,8 +17,12 @@ public class Airport {
         return flights;
     }
 
-    public Airport(File file) throws IOException {
+    public Airport() {
         flights = new ArrayList<>();
+    }
+
+    public Airport(File file) throws IOException {
+        this();
         Files.lines(Path.of(file.getPath()))
                 .map(line -> line.split(","))
                 .skip(1)    //skip headers
@@ -30,10 +34,6 @@ public class Airport {
         writer.println("Terminal,#,Year,Month,Day,Hour,Minute,Country,City,Airport,Airline,isOutgoing");
         flights.forEach(f -> f.save(writer));
         writer.close();
-    }
-
-    public Airport() {
-        flights = new ArrayList<>();
     }
 
     public boolean addFlight(Flight flight) {
