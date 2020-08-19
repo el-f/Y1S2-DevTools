@@ -71,16 +71,15 @@ public class Program {
 
             if (results.isEmpty())
                 System.out.println("empty flights list! too much or invalid filters!");
-            else results.forEach(result -> System.out.println(result + (
-                    args[0].equalsIgnoreCase("TEXT") ? "" :
-                            args[0].equalsIgnoreCase("HTML") ? "<br>" : ""))
+            else results.forEach(result -> System.out.println(result +
+                    (args[0].equalsIgnoreCase("HTML") ? "<br>" : ""))
             );
         }
 
 //        initDefault();        //for initiating the default files.
     }
 
-    @SuppressWarnings({"unused","RedundantSuppression"})
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     private static void initDefault() throws IOException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
