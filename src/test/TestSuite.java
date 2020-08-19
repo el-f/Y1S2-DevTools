@@ -14,11 +14,20 @@ import static AirportProject.Flight.*;
 
 public class TestSuite {
 
+    private static Airport ap;
     public static final String testFile = "ap2";
+
+    private void initDefaultAP() throws IOException {
+        ap = new Airport(new File(Program.defaultFile));
+    }
+
+    private void initEmptyAP(){
+        ap = new Airport();
+    }
 
     @Test
     public void testFileLoadAndSave() throws IOException {
-        Airport ap = new Airport(new File(Program.defaultFile));
+        initDefaultAP();
         ap.save(testFile);
         Airport ap2 = new Airport(new File(testFile));
         assertEquals(ap.toString(), ap2.toString());
@@ -27,7 +36,7 @@ public class TestSuite {
 
     @Test
     public void testNoDuplicates() {
-        Airport ap = new Airport();
+        initEmptyAP();
         ap.addFlight(F5);
 
         ap.addFlight(F6);
@@ -42,7 +51,7 @@ public class TestSuite {
 
     @Test
     public void testFilters() {
-        Airport ap = new Airport();
+        initEmptyAP();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         ap.removeFlight(7);
         assertEquals(7, ap.getFlights().size());
