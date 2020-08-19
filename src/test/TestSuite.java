@@ -22,8 +22,13 @@ public class TestSuite {
         ap.getFlights().addAll(Flight.getDefaultFlights());
     }
 
-    private void initEmptyAP(){
+    private void initEmptyAP() {
         ap = new Airport();
+    }
+
+    public void printSuccess() {
+        //get name of next item in stack and print
+        System.out.println(new Throwable().getStackTrace()[1].getMethodName() + " - SUCCESS");
     }
 
     @Test
@@ -32,7 +37,7 @@ public class TestSuite {
         ap.save(TEST_FILE);
         Airport ap2 = new Airport(new File(TEST_FILE));
         assertEquals(ap.toString(), ap2.toString());
-        System.out.println("testFileLoadAndSave - SUCCESS");
+        printSuccess();
     }
 
     @Test
@@ -47,7 +52,7 @@ public class TestSuite {
         ap.addFlight(F7);
         ap.addFlight(F7);
         assertEquals(3, ap.getFlights().size());
-        System.out.println("testNoDuplicates - SUCCESS");
+        printSuccess();
     }
 
     @Test
@@ -80,7 +85,7 @@ public class TestSuite {
                 ).toLowerCase()
         );
         assertEquals(Arrays.asList(F3, F4, F6), flightList);
-        System.out.println("testFilters - SUCCESS");
+        printSuccess();
     }
 
     @Test
@@ -108,7 +113,7 @@ public class TestSuite {
         assertFalse(outputString.contains(F7.toString()));
         System.setOut(backupOut);
         System.setIn(backupIn);
-        System.out.println("testUserFilteredList - SUCCESS");
+        printSuccess();
     }
 
     @Test
@@ -150,7 +155,7 @@ public class TestSuite {
 
         System.setOut(backupOut);
         System.setIn(backupIn);
-        System.out.println("testMain - SUCCESS");
+        printSuccess();
     }
 
 }
