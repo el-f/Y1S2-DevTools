@@ -17,8 +17,9 @@ public class TestSuite {
     private static Airport ap;
     public static final String testFile = "ap2";
 
-    private void initDefaultAP() throws IOException {
-        ap = new Airport(new File(Program.defaultFile));
+    private void initDefaultAP() {
+        initEmptyAP();
+        ap.getFlights().addAll(Flight.getDefaultFlights());
     }
 
     private void initEmptyAP(){
@@ -51,8 +52,7 @@ public class TestSuite {
 
     @Test
     public void testFilters() {
-        initEmptyAP();
-        ap.getFlights().addAll(Flight.getDefaultFlights());
+        initDefaultAP();
         ap.removeFlight(7);
         assertEquals(7, ap.getFlights().size());
 
