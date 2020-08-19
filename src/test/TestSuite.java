@@ -15,7 +15,7 @@ import static AirportProject.Flight.*;
 public class TestSuite {
 
     private static Airport ap;
-    public static final String testFile = "ap2";
+    public static final String TEST_FILE = "ap2";
 
     private void initDefaultAP() {
         initEmptyAP();
@@ -29,8 +29,8 @@ public class TestSuite {
     @Test
     public void testFileLoadAndSave() throws IOException {
         initDefaultAP();
-        ap.save(testFile);
-        Airport ap2 = new Airport(new File(testFile));
+        ap.save(TEST_FILE);
+        Airport ap2 = new Airport(new File(TEST_FILE));
         assertEquals(ap.toString(), ap2.toString());
         System.out.println("testFileLoadAndSave - SUCCESS");
     }

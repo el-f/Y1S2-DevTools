@@ -50,7 +50,7 @@ public class Menu {
                             initAirportFromFile(s.next());
                         }
                         case 2 -> {
-                            airport = new Airport(new File(Program.defaultFile));
+                            airport = new Airport(new File(Program.DEFAULT_FILE));
                             System.out.println("Loaded default file!");
                         }
                         default -> System.out.println("Invalid Input");

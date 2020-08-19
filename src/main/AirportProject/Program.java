@@ -10,7 +10,7 @@ import static java.lang.Integer.*;
 
 public class Program {
 
-    public static final String defaultFile = "airport.csv";
+    public static final String DEFAULT_FILE = "airport.csv";
     public static final String TEST_IDENTIFIER = "INTERNAL_TEST";
 
     public static void main(String[] args) throws IOException {
@@ -21,8 +21,8 @@ public class Program {
         else {
             //external java calls need full path, internal tests only need filename.
             String path;
-            if (args[0].equalsIgnoreCase(TEST_IDENTIFIER)) path = defaultFile;
-            else path = Paths.get("").toAbsolutePath().getParent() + "/" + defaultFile;
+            if (args[0].equalsIgnoreCase(TEST_IDENTIFIER)) path = DEFAULT_FILE;
+            else path = Paths.get("").toAbsolutePath().getParent() + "/" + DEFAULT_FILE;
             Airport ap = new Airport(new File(path));
 
             List<Flight> results = new ArrayList<>(ap.getFlights());
@@ -85,8 +85,8 @@ public class Program {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         System.out.println(ap);
-        ap.save(defaultFile);
-        Airport ap2 = new Airport(new File(defaultFile));
+        ap.save(DEFAULT_FILE);
+        Airport ap2 = new Airport(new File(DEFAULT_FILE));
         System.out.println(ap.toString().equals(ap2.toString()) ? "Saved Successfully!" : "ERROR");
     }
 }
