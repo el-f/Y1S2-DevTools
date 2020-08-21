@@ -36,11 +36,9 @@ public class Airport {
         writer.close();
     }
 
-    public boolean addFlight(Flight flight) {
-        if (flights.contains(flight))
-            return false;
+    public void addFlight(Flight flight) {
+        if (flights.contains(flight)) return;
         flights.add(flight);
-        return true;
     }
 
     public void sortByDateTime() {

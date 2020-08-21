@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static AirportProject.Airport.*;
+import static java.lang.Boolean.*;
 import static java.lang.Integer.*;
 
 public class Program {
@@ -32,13 +34,13 @@ public class Program {
             else if (args[1].equalsIgnoreCase("arrivals"))
                 results.removeAll(ap.getOutgoingFlights());
 
-            if (!args[2].isBlank()) Airport.filterByCountry(results, args[2]);
-            if (!args[3].isBlank()) Airport.filterByCity(results, args[3]);
-            if (!args[4].isBlank()) Airport.filterByAirport(results, args[4]);
-            if (!args[5].isBlank()) Airport.filterByCompany(results, args[5]);
+            if (!args[2].isBlank()) filterByCountry(results, args[2]);
+            if (!args[3].isBlank()) filterByCity(results, args[3]);
+            if (!args[4].isBlank()) filterByAirport(results, args[4]);
+            if (!args[5].isBlank()) filterByCompany(results, args[5]);
 
             if (!args[6].isBlank() && !args[7].isBlank() && !args[8].isBlank())
-                Airport.filterByStartDate(
+                filterByStartDate(
                         results,
                         Flight.getDateTimeFromUser(
                                 parseInt(args[6]),  /*day*/
@@ -48,7 +50,7 @@ public class Program {
                 );
 
             if (!args[9].isBlank() && !args[10].isBlank() && !args[11].isBlank())
-                Airport.filterByEndDate(
+                filterByEndDate(
                         results,
                         Flight.getDateTimeFromUser(
                                 parseInt(args[9]),  /*day*/
@@ -58,21 +60,21 @@ public class Program {
                 );
 
             String weekdays = "";
-            if (!args[12].isBlank() && Boolean.parseBoolean(args[12])) weekdays += "sunday ";
-            if (!args[13].isBlank() && Boolean.parseBoolean(args[13])) weekdays += "monday ";
-            if (!args[14].isBlank() && Boolean.parseBoolean(args[14])) weekdays += "tuesday ";
-            if (!args[15].isBlank() && Boolean.parseBoolean(args[15])) weekdays += "wednesday ";
-            if (!args[16].isBlank() && Boolean.parseBoolean(args[16])) weekdays += "thursday ";
-            if (!args[17].isBlank() && Boolean.parseBoolean(args[17])) weekdays += "friday ";
-            if (!args[18].isBlank() && Boolean.parseBoolean(args[18])) weekdays += "saturday ";
-            if (weekdays.length() > 0) Airport.filterByWeekDays(results, weekdays);
+            if (!args[12].isBlank() && parseBoolean(args[12])) weekdays += "sunday ";
+            if (!args[13].isBlank() && parseBoolean(args[13])) weekdays += "monday ";
+            if (!args[14].isBlank() && parseBoolean(args[14])) weekdays += "tuesday ";
+            if (!args[15].isBlank() && parseBoolean(args[15])) weekdays += "wednesday ";
+            if (!args[16].isBlank() && parseBoolean(args[16])) weekdays += "thursday ";
+            if (!args[17].isBlank() && parseBoolean(args[17])) weekdays += "friday ";
+            if (!args[18].isBlank() && parseBoolean(args[18])) weekdays += "saturday ";
+            if (weekdays.length() > 0) filterByWeekDays(results, weekdays);
 
 //            if (!args[19].isBlank()) Airport.filterByTerminal(results, parseInt(args[19]));
 
             if (results.isEmpty())
                 System.out.println("empty flights list! too much or invalid filters!");
-            else results.forEach(result -> System.out.println(result +
-                    (args[0].equalsIgnoreCase("HTML") ? "<br>" : ""))
+            else results.forEach(result ->
+                    System.out.println(result + (args[0].equalsIgnoreCase("HTML") ? "<br>" : ""))
             );
         }
 

@@ -4,6 +4,8 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static AirportProject.Airport.*;
+
 public class Menu {
     private static Airport airport;
 
@@ -100,37 +102,37 @@ public class Menu {
         if (scanBoolean(s)) {
             System.out.println("Please Enter country:");
             oc.str = s.next();
-            Airport.filterByCountry(result, oc.str);
+            filterByCountry(result, oc.str);
         }
         System.out.println("Do you want to filter by city?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter city:");
             oc.str = s.next();
-            Airport.filterByCity(result, oc.str);
+            filterByCity(result, oc.str);
         }
         System.out.println("Do you want to filter by airport?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter airport name:");
             oc.str = s.next();
-            Airport.filterByAirport(result, oc.str);
+            filterByAirport(result, oc.str);
         }
         System.out.println("Do you want to filter by company?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter company name:");
             oc.str = s.next();
-            Airport.filterByCompany(result, oc.str);
+            filterByCompany(result, oc.str);
         }
         System.out.println("Do you want to filter by terminal num?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter terminal number:");
             oc.num = s.nextInt();
-            Airport.filterByTerminal(result, oc.num);
+            filterByTerminal(result, oc.num);
         }
         System.out.println("Do you want to filter by days of the week?");
         if (scanBoolean(s)) {
             System.out.println("Please enter days of the week by name [space separated]");
             System.out.println("Example: 'sunday friday monday'");
-            Airport.filterByWeekDays(result, s.next().toLowerCase());
+            filterByWeekDays(result, s.next().toLowerCase());
         }
         System.out.println("Do you want to filter by date and time range?");
         if (scanBoolean(s)) {
@@ -138,7 +140,7 @@ public class Menu {
             LocalDateTime start = Flight.getDateTimeFromUser(s);
             System.out.println("Please enter end date");
             LocalDateTime end = Flight.getDateTimeFromUser(s);
-            Airport.filterByDateRange(result, start, end);
+            filterByDateRange(result, start, end);
         }
         result.forEach(System.out::println);
     }
