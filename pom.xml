@@ -23,7 +23,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <testSourceDirectory>src/test</testSourceDirectory>
+                    <testSourceDirectory>target/test-classes</testSourceDirectory>
                     <skipTests>false</skipTests>
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
