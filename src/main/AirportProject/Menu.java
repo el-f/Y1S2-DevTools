@@ -1,6 +1,7 @@
 package AirportProject;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -25,6 +26,7 @@ public class Menu {
             System.out.println("7) Show Custom Selected flights");
             System.out.println("8) Show all flights");
             System.out.println("9) Remove Flight");
+            System.out.println("10) Create Default File From Scratch");
             System.out.println("\n0) To exit");
             choice = s.nextInt();
             switch (choice) {
@@ -68,6 +70,7 @@ public class Menu {
                     else System.out.println("Error Removing Flight");
                 }
                 case 0 -> System.out.println("~~~end of program~~~");
+                case 10 -> initDefault();
                 default -> System.out.println("invalid input");
             }
         } catch (Exception e) {
@@ -178,5 +181,16 @@ public class Menu {
                 System.out.println("invalid input!");
         } while (!gotInput);
         return input;
+    }
+
+    private static void initDefault() throws IOException {
+        Airport ap = new Airport();
+        ap.getFlights().addAll(Flight.getDefaultFlights());
+        ap.save(Program.DEFAULT_FILE);
+        System.out.println(
+                ap.toString().equals(new Airport(new File(Program.DEFAULT_FILE)).toString()) ?
+                        "~~~Saved Successfully!" :
+                        "~~~ERROR OCCURRED WHILE SAVING"
+        );
     }
 }

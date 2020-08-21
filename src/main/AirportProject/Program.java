@@ -12,6 +12,12 @@ import static java.lang.Integer.*;
 
 public class Program {
 
+    /*
+        TODO:
+            - public->package-private
+            - test EVERYTHING
+     */
+
     public static final String DEFAULT_FILE = "airport.csv";
     public static final String TEST_IDENTIFIER = "INTERNAL_TEST";
 
@@ -77,17 +83,5 @@ public class Program {
                     System.out.println(result + (args[0].equalsIgnoreCase("HTML") ? "<br>" : ""))
             );
         }
-
-//        initDefault();        //for initiating the default files.
-    }
-
-    @SuppressWarnings({"unused", "RedundantSuppression"})
-    private static void initDefault() throws IOException {
-        Airport ap = new Airport();
-        ap.getFlights().addAll(Flight.getDefaultFlights());
-        System.out.println(ap);
-        ap.save(DEFAULT_FILE);
-        Airport ap2 = new Airport(new File(DEFAULT_FILE));
-        System.out.println(ap.toString().equals(ap2.toString()) ? "Saved Successfully!" : "ERROR");
     }
 }
