@@ -23,7 +23,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <includes>TestSuite.java</includes>
                     <skipTests>false</skipTests>
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
