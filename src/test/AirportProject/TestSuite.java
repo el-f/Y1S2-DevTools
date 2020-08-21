@@ -1,4 +1,5 @@
-import AirportProject.*;
+package AirportProject;
+
 import org.junit.Test;
 
 import java.io.*;
