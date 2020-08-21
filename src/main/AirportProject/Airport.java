@@ -117,7 +117,7 @@ public class Airport {
         return res.toString();
     }
 
-    void getFlightFromUser(Scanner s, boolean _outgoing) {
+    public void getFlightFromUser(Scanner s, boolean _outgoing) {
         String dir = _outgoing ? " destination" : " origin";
         Flight input = new Flight();
         input.setOutgoing(_outgoing);

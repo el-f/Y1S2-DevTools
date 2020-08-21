@@ -2,10 +2,7 @@ import AirportProject.*;
 import org.junit.Test;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -15,11 +12,12 @@ import static AirportProject.Flight.*;
 public class TestSuite {
 
     private static Airport ap;
+    private static List<Flight> flightList;
     public static final String TEST_FILE = "ap2";
 
     private void initDefaultAP() {
         initEmptyAP();
-        ap.getFlights().addAll(Flight.getDefaultFlights());
+        ap.getFlights().addAll(getDefaultFlights());
     }
 
     private void initEmptyAP() {
@@ -31,6 +29,10 @@ public class TestSuite {
         System.out.println(new Throwable().getStackTrace()[1].getMethodName() + " - SUCCESS");
     }
 
+
+    /*
+        Airport Class Tests
+     */
     @Test
     public void testFileLoadAndSave() throws IOException {
         initDefaultAP();
@@ -41,7 +43,7 @@ public class TestSuite {
     }
 
     @Test
-    public void testNoDuplicates() {
+    public void testNoDuplicates_And_AddFlight() {
         initEmptyAP();
         ap.addFlight(F5);
 
@@ -56,25 +58,40 @@ public class TestSuite {
     }
 
     @Test
-    public void testFilters() {
+    public void testRemoveFlight() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testArrivalsFilter() {
         initDefaultAP();
-        ap.removeFlight(7);
-        assertEquals(7, ap.getFlights().size());
-
-        List<Flight> flightList = Arrays.asList(F1, F3, F5, F7);
-        assertEquals(flightList, ap.getOutgoingFlights());
-        assertNotEquals(flightList, ap.getIncomingFlights());
-
         flightList = Arrays.asList(F2, F4, F6);
         assertEquals(flightList, ap.getIncomingFlights());
-        assertNotEquals(flightList, ap.getOutgoingFlights());
+        assertTrue(ap.getOutgoingFlights().stream().noneMatch(flightList::contains));
+        printSuccess();
+    }
 
-        flightList = new ArrayList<>(Arrays.asList(F1, F2, F3, F4, F5, F6, F7));
+    @Test
+    public void testDeparturesFilter() {
+        initDefaultAP();
+        flightList = Arrays.asList(F1, F3, F5, F7, F8);
+        assertEquals(flightList, ap.getOutgoingFlights());
+        assertTrue(ap.getIncomingFlights().stream().noneMatch(flightList::contains));
+        printSuccess();
+    }
+
+    @Test
+    public void testCountryFilter() {
+        flightList = new ArrayList<>(getDefaultFlights());
         Airport.filterByCountry(flightList, "albania");
         assertEquals(Collections.singletonList(F1), flightList);
-        assertNotEquals(Collections.singletonList(F2), flightList);
+        printSuccess();
+    }
 
-        flightList = new ArrayList<>(Arrays.asList(F1, F2, F3, F4, F5, F6, F7));
+    @Test
+    public void testWeekDaysFilter() {
+        flightList = new ArrayList<>(getDefaultFlights());
         Airport.filterByWeekDays(
                 flightList,
                 String.format(
@@ -89,7 +106,101 @@ public class TestSuite {
     }
 
     @Test
-    public void testUserFilteredList() {
+    public void testCityFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testAirportFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testCompanyFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testDateRangeFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testStartDateFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testEndDateFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testTerminalFilter() {
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testGetFlightFromUser() {
+//        initEmptyAP();
+//        Scanner s = new Scanner(System.in);
+//        ap.getFlightFromUser(s,true);
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testSortByDateTime() {
+        //TODO
+        printSuccess();
+    }
+
+     /*
+        Flight Class Tests
+     */
+
+    @Test
+    public void testGetDateTimeFromUser() {
+//        getDateTimeFromUser(new Scanner(System.in));
+//        getDateTimeFromUser(0,0,0);
+        //TODO
+        printSuccess();
+    }
+
+
+     /*
+        Menu Class Tests
+     */
+
+    @Test
+    public void testInitAirportFromFile(){
+//        String simulatedInput = "6\n 2\n.......";
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testScanBoolean(){
+//        Menu.scanBoolean(s);
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void testInitDefault(){
+        //TODO
+        printSuccess();
+    }
+
+    @Test
+    public void programmerInputSimulation() {
         InputStream backupIn = System.in;
         PrintStream backupOut = System.out;
         /* simulated user input: */
@@ -116,8 +227,12 @@ public class TestSuite {
         printSuccess();
     }
 
+     /*
+        Program Class Tests
+     */
+
     @Test
-    public void testMain() {
+    public void userInputSimulation() {
         String[] args = {
                 Program.TEST_IDENTIFIER,
                 "arrivals",
