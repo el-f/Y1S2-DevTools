@@ -22,6 +22,4 @@ jobs:
         java-version: 14.0.1
     - name: Build And Test With Maven
       run: mvn -B package --file pom.xml
-    - name: Run Tests
-      run: mvn -Dtest=TestSuite
       
