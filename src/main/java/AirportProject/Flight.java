@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Flight {
@@ -17,7 +18,7 @@ public class Flight {
     private final String airportName;
     private String company;
     private boolean outgoing;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)", Locale.ENGLISH);
 
     /*--------------------------------------------DEFAULT FLIGHTS-----------------------------------------------------*/
     //default dates
