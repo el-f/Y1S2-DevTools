@@ -86,7 +86,7 @@ public class Menu {
 
     public static void showCustomRangeFlights(Scanner s) throws MyException {
         List<Flight> result = new ArrayList<>(airport.getFlights());
-        var oc = new Object() {
+        var container = new Object() {
             String str;
             int num;
         };
@@ -104,32 +104,32 @@ public class Menu {
         System.out.println("Do you want to filter by country?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter country:");
-            oc.str = s.next();
-            filterByCountry(result, oc.str);
+            container.str = s.next();
+            filterByCountry(result, container.str);
         }
         System.out.println("Do you want to filter by city?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter city:");
-            oc.str = s.next();
-            filterByCity(result, oc.str);
+            container.str = s.next();
+            filterByCity(result, container.str);
         }
         System.out.println("Do you want to filter by airport?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter airport name:");
-            oc.str = s.next();
-            filterByAirport(result, oc.str);
+            container.str = s.next();
+            filterByAirport(result, container.str);
         }
         System.out.println("Do you want to filter by company?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter company name:");
-            oc.str = s.next();
-            filterByCompany(result, oc.str);
+            container.str = s.next();
+            filterByCompany(result, container.str);
         }
         System.out.println("Do you want to filter by terminal num?");
         if (scanBoolean(s)) {
             System.out.println("Please Enter terminal number:");
-            oc.num = s.nextInt();
-            filterByTerminal(result, oc.num);
+            container.num = s.nextInt();
+            filterByTerminal(result, container.num);
         }
         System.out.println("Do you want to filter by days of the week?");
         if (scanBoolean(s)) {
