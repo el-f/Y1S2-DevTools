@@ -16,7 +16,5 @@ This project focuses on practicing:
 **Authors:**
 
 - Elazar Fine
-
 - Gal Karasnty
-
 - Maor Ofek
