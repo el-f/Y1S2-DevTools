@@ -15,6 +15,7 @@ public class TestSuite {
     private static Airport ap;
     private static List<Flight> flightList;
     public static final String TEST_FILE = "ap2";
+    private static int testId = 1;
 
     private void initDefaultAP() {
         initEmptyAP();
@@ -27,7 +28,7 @@ public class TestSuite {
 
     public void printSuccess() {
         //get name of next item in stack and print
-        System.out.println(new Throwable().getStackTrace()[1].getMethodName() + " - SUCCESS");
+        System.out.printf("Test #%d SUCCESS - %s\n", testId++, new Throwable().getStackTrace()[1].getMethodName());
     }
 
 
@@ -181,21 +182,21 @@ public class TestSuite {
      */
 
     @Test
-    public void testInitAirportFromFile(){
+    public void testInitAirportFromFile() {
 //        String simulatedInput = "6\n 2\n.......";
         //TODO
         printSuccess();
     }
 
     @Test
-    public void testScanBoolean(){
+    public void testScanBoolean() {
 //        Menu.scanBoolean(s);
         //TODO
         printSuccess();
     }
 
     @Test
-    public void testInitDefault(){
+    public void testInitDefault() {
         //TODO
         printSuccess();
     }
