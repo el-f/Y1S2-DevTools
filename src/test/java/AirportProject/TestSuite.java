@@ -41,6 +41,7 @@ public class TestSuite {
         ap.save(TEST_FILE);
         Airport ap2 = new Airport(new File(TEST_FILE));
         assertEquals(ap.toString(), ap2.toString());
+        fail("testing output");
         printSuccess();
     }
 
