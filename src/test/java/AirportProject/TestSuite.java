@@ -61,7 +61,10 @@ public class TestSuite {
 
     @Test
     public void testRemoveFlight() {
-        //TODO
+        initEmptyAP();
+        ap.addFlight(F1);
+        ap.removeFlight(0);
+        assertTrue(ap.getFlights().isEmpty());
         printSuccess();
     }
 
