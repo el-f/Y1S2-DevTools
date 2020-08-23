@@ -2,7 +2,6 @@ package AirportProject;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,7 +23,7 @@ public class Airport {
 
     Airport(File file) throws IOException {
         this();
-        Files.lines(Path.of(file.getPath()))
+        Files.lines(file.toPath())
                 .map(line -> line.split(","))
                 .skip(1)    //skip headers
                 .forEach(params -> flights.add(new Flight(params)));
