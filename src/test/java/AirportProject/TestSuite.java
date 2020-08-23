@@ -160,7 +160,9 @@ public class TestSuite {
 
     @Test
     public void testTerminalFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByTerminal(flightList,F3.getTerminal());
+        assertEquals(Arrays.asList(F3,F5), flightList);
         printSuccess();
     }
 
