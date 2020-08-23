@@ -3,6 +3,7 @@ package AirportProject;
 import org.junit.Test;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -192,9 +193,9 @@ public class TestSuite {
 
     @Test
     public void testGetDateTimeFromUser() {
-//        getDateTimeFromUser(new Scanner(System.in));
-//        getDateTimeFromUser(0,0,0);
-        //TODO
+        Scanner s = new Scanner("2020\n 11\n 23\n 11\n 16\n");
+        LocalDateTime D=Flight.getDateTimeFromUser(s);
+        assertEquals(F8.getDate(),D);
         printSuccess();
     }
 
