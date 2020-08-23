@@ -152,7 +152,9 @@ public class TestSuite {
 
     @Test
     public void testEndDateFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByEndDate(flightList,F3.getDate());
+        assertEquals(Arrays.asList(F1,F2,F3,F7), flightList);
         printSuccess();
     }
 
