@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class Airport {
     private final ArrayList<Flight> flights;
 
+
     ArrayList<Flight> getFlights() {
         return flights;
     }
