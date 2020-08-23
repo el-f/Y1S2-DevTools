@@ -139,5 +139,14 @@ public class Airport {
         flights.add(input);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Airport airport = (Airport) obj;
+
+        return flights.equals(airport.flights);
+    }
 
 }

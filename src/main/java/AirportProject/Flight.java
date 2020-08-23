@@ -182,4 +182,21 @@ public class Flight {
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Flight other = (Flight) obj;
+
+        if (terminal != other.terminal) return false;
+        if (outgoing != other.outgoing) return false;
+        if (!flightNum.equals(other.flightNum)) return false;
+        if (!dateTime.equals(other.dateTime)) return false;
+        if (!country.equals(other.country)) return false;
+        if (!city.equals(other.city)) return false;
+        if (!airportName.equals(other.airportName)) return false;
+        return company.equals(other.company);
+    }
+
 }

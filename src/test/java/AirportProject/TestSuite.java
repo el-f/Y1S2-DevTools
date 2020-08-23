@@ -3,7 +3,6 @@ package AirportProject;
 import org.junit.Test;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -42,7 +41,7 @@ public class TestSuite {
         initDefaultAP();
         ap.save(TEST_FILE);
         Airport ap2 = new Airport(new File(TEST_FILE));
-        assertEquals(ap.toString(), ap2.toString());
+        assertEquals(ap, ap2);
         printSuccess();
     }
 
@@ -177,7 +176,7 @@ public class TestSuite {
         initEmptyAP();
         Scanner s = new Scanner("1\nKS9782EL\n 2020\n 11\n 23\n 11\n 16\n UK\n London\n london_airport\n Wizz\n");
         ap.getFlightFromUser(s, true);
-        assertEquals(F8.toString(), ap.getFlights().get(0).toString());
+        assertEquals(F8, ap.getFlights().get(0));
 
         System.setOut(backupOut);
         printSuccess();
@@ -203,8 +202,7 @@ public class TestSuite {
         PrintStream outputPrintStream = new PrintStream(new ByteArrayOutputStream());
         System.setOut(outputPrintStream);   //to silence output
 
-        Scanner s = new Scanner("2020\n 11\n 23\n 11\n 16\n");
-        assertEquals(F8.getDate(), Flight.getDateTimeFromUser(s));
+        assertEquals(F8.getDate(), Flight.getDateTimeFromUser(new Scanner("2020\n 11\n 23\n 11\n 16\n")));
 
         System.setOut(backupOut);
         printSuccess();
