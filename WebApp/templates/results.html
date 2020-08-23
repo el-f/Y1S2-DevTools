@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for flight in flights %}
+{% if flight|length > 0 %}
+<article class="media content-section">
+    <div class="media-body">
+        <p class="article-content">{{ flight }}</p>
+    </div>
+</article>
+{% endif %}
+{% endfor %}
+{% endblock content %}

@@ -77,10 +77,12 @@ public class Program {
 
 //            if (!args[19].isBlank()) Airport.filterByTerminal(results, parseInt(args[19]));
 
+            String newLine = args[0].equalsIgnoreCase("HTML") ? "<br>" : "\n";
+
             if (results.isEmpty())
-                System.out.println("empty flights list! too much or invalid filters!");
+                System.out.print("empty flights list! too much or invalid filters!" + newLine);
             else results.forEach(result ->
-                    System.out.println(result + (args[0].equalsIgnoreCase("HTML") ? "<br>" : ""))
+                    System.out.print(result + newLine)
             );
         }
     }

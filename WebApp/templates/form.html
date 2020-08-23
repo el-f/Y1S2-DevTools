@@ -1,0 +1,197 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Select Filters</legend>
+            <div class="form-group">
+                {{form.direction.label(class="form-control-label")}}
+
+                {% if form.direction.errors %}
+                {{form.direction(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.direction.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.direction(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.country.label(class="form-control-label")}}
+                {% if form.country.errors %}
+                {{form.country(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.country.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.country(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.city.label(class="form-control-label")}}
+                {% if form.city.errors %}
+                {{form.city(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.city.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.city(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.airport.label(class="form-control-label")}}
+                {% if form.airport.errors %}
+                {{form.airport(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.airport.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.airport(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.airline.label(class="form-control-label")}}
+                {% if form.airline.errors %}
+                {{form.airline(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.airline.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.airline(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.date1.label(class="form-control-label")}}
+                {% if form.date1.errors %}
+                {{form.date1(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.date1.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.date1(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.date2.label(class="form-control-label")}}
+                {% if form.date2.errors %}
+                {{form.date2(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.date2.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.date2(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.sunday.label(class="form-control-label")}}
+                {% if form.sunday.errors %}
+                {{form.sunday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.sunday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.sunday(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.monday.label(class="form-control-label")}}
+                {% if form.monday.errors %}
+                {{form.monday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.monday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.monday(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.tuesday.label(class="form-control-label")}}
+                {% if form.tuesday.errors %}
+                {{form.tuesday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.tuesday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.tuesday(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.wednesday.label(class="form-control-label")}}
+                {% if form.wednesday.errors %}
+                {{form.wednesday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.wednesday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.wednesday(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.thursday.label(class="form-control-label")}}
+                {% if form.thursday.errors %}
+                {{form.thursday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.thursday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.thursday(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.friday.label(class="form-control-label")}}
+                {% if form.friday.errors %}
+                {{form.friday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.friday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.friday(class="form-control")}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.saturday.label(class="form-control-label")}}
+                {% if form.saturday.errors %}
+                {{form.saturday(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.saturday.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{form.saturday(class="form-control")}}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

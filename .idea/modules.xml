@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/WebApp/WebApp.iml" filepath="$PROJECT_DIR$/WebApp/WebApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/Y1S2-DevTools.iml" filepath="$PROJECT_DIR$/Y1S2-DevTools.iml" />
-      <module fileurl="file://$PROJECT_DIR$/webInit/webInit.iml" filepath="$PROJECT_DIR$/webInit/webInit.iml" />
     </modules>
   </component>
 </project>
