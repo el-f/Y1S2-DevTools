@@ -50,11 +50,11 @@ public class Flight {
         return country;
     }
 
-    public void setAirportName(String airportName) {
+    void setAirportName(String airportName) {
         this.airportName = airportName;
     }
 
-    public void setCity(String city) {
+    void setCity(String city) {
         this.city = city;
     }
 
@@ -65,6 +65,7 @@ public class Flight {
     String getCity() {
         return city;
     }
+
     LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -177,7 +178,7 @@ public class Flight {
     public String toString() {
         String dir = outgoing ? " Departing To" : " Arriving From";
         return flightNum + " | Terminal: " + terminal +
-                " | date/time: " + dateTime.format(formatter) + " | " + "company: " + company + " |" + dir + ": (country: " +
+                " | " + dateTime.format(formatter) + " | " + company + " |" + dir + ": (country: " +
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 

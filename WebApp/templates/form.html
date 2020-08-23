@@ -98,95 +98,32 @@
                 {% endif %}
             </div>
             <div class="form-group">
+                {{form.sunday(class="checkbox")}}
                 {{form.sunday.label(class="form-control-label")}}
-                {% if form.sunday.errors %}
-                {{form.sunday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.sunday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.sunday(class="form-control")}}
-                {% endif %}
             </div>
             <div class="form-group">
+                {{form.monday(class="checkbox")}}
                 {{form.monday.label(class="form-control-label")}}
-                {% if form.monday.errors %}
-                {{form.monday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.monday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.monday(class="form-control")}}
-                {% endif %}
             </div>
             <div class="form-group">
+                {{form.tuesday(class="checkbox")}}
                 {{form.tuesday.label(class="form-control-label")}}
-                {% if form.tuesday.errors %}
-                {{form.tuesday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.tuesday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.tuesday(class="form-control")}}
-                {% endif %}
             </div>
             <div class="form-group">
+                {{form.wednesday(class="checkbox")}}
                 {{form.wednesday.label(class="form-control-label")}}
-                {% if form.wednesday.errors %}
-                {{form.wednesday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.wednesday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.wednesday(class="form-control")}}
-                {% endif %}
             </div>
             <div class="form-group">
+                {{form.thursday(class="checkbox")}}
                 {{form.thursday.label(class="form-control-label")}}
-                {% if form.thursday.errors %}
-                {{form.thursday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.thursday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.thursday(class="form-control")}}
-                {% endif %}
             </div>
             <div class="form-group">
+                {{form.friday(class="checkbox")}}
                 {{form.friday.label(class="form-control-label")}}
-                {% if form.friday.errors %}
-                {{form.friday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.friday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.friday(class="form-control")}}
-                {% endif %}
             </div>
             <div class="form-group">
+                {{form.saturday(class="checkbox")}}
                 {{form.saturday.label(class="form-control-label")}}
-                {% if form.saturday.errors %}
-                {{form.saturday(class="form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.saturday.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{form.saturday(class="form-control")}}
-                {% endif %}
             </div>
         </fieldset>
         <div class="form-group">
