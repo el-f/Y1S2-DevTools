@@ -213,8 +213,7 @@ public class TestSuite {
 
     @Test
     public void testScanBoolean() {
-//        Menu.scanBoolean(s);
-        //TODO
+        assertEquals(true ,Menu.scanBoolean(new Scanner("y")));
         printSuccess();
     }
 
