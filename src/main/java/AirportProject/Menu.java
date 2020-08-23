@@ -9,6 +9,7 @@ import static AirportProject.Airport.*;
 
 public class Menu {
     private static Airport airport;
+    public static final String INIT_DEFAULT_SUCCESS = "~~~Saved Successfully!";
 
     static void showMenu(String filePathArg) {
         initAirportFromFile(filePathArg);
@@ -189,7 +190,7 @@ public class Menu {
         ap.save(Program.DEFAULT_FILE);
         System.out.println(
                 ap.toString().equals(new Airport(new File(Program.DEFAULT_FILE)).toString()) ?
-                        "~~~Saved Successfully!" :
+                        INIT_DEFAULT_SUCCESS :
                         "~~~ERROR OCCURRED WHILE SAVING"
         );
     }

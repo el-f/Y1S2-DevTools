@@ -243,7 +243,7 @@ public class TestSuite {
         System.setOut(outputPrintStream);
 
         Menu.initDefault();
-        assertTrue(outputStream.toString().contains("~~~Saved Successfully!"));
+        assertTrue(outputStream.toString().contains(Menu.INIT_DEFAULT_SUCCESS));
 
         System.setOut(backupOut);
         printSuccess();

@@ -2,7 +2,7 @@
 import os
 import subprocess
 
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template, flash, url_for
 from forms import FlightsForm
 
 app = Flask(__name__)
@@ -69,7 +69,7 @@ def get_response_for_args(
              saturday
              # terminal
              ])
-        )[2:][:-1].split("<br>")    # [2:] - remove first two chars. [:-1] - remove last char
+        )[2:][:-1].split("<br>")  # [2:] - remove first two chars. [:-1] - remove last char
     )
 
 
@@ -153,6 +153,7 @@ def all_flights(direction="all"):
 
 if __name__ == "__main__":
     app.run(port=8000, host="0.0.0.0", debug=True)
+    app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon.ico'))
 
 # http://localhost:8000/
 
