@@ -14,8 +14,8 @@ public class Flight {
     private String flightNum;
     private LocalDateTime dateTime;
     private String country;
-    private final String city;
-    private final String airportName;
+    private String city;
+    private String airportName;
     private String company;
     private boolean outgoing;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)", Locale.ENGLISH);
@@ -48,6 +48,14 @@ public class Flight {
 
     String getCountry() {
         return country;
+    }
+
+    public void setAirportName(String airportName) {
+        this.airportName = airportName;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     int getTerminal() {

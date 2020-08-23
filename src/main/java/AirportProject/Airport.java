@@ -130,6 +130,10 @@ public class Airport {
         input.setDateTime(Flight.getDateTimeFromUser(s));
         System.out.println("Please enter country of" + dir);
         input.setCountry(s.next());
+        System.out.println("Please enter city of");
+        input.setCity(s.next());
+        System.out.println("Please enter airport of");
+        input.setAirportName(s.next());
         System.out.println("please enter company");
         input.setCompany(s.next());
         flights.add(input);

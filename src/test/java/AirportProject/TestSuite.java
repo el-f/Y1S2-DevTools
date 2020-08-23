@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 
 //import flights
 import static AirportProject.Flight.*;
+import static org.junit.Assert.assertEquals;
 
 public class TestSuite {
 
@@ -114,7 +115,7 @@ public class TestSuite {
     public void testCityFilter() {
         flightList = new ArrayList<>(getDefaultFlights());
         Airport.filterByCity(flightList,F3.getCity());
-        assertEquals(Arrays.asList(F3), flightList);
+        assertEquals(Collections.singletonList(F3), flightList);
         printSuccess();
     }
 
@@ -122,7 +123,7 @@ public class TestSuite {
     public void testAirportFilter() {
         flightList = new ArrayList<>(getDefaultFlights());
         Airport.filterByAirport(flightList,F3.getAirportName());
-        assertEquals(Arrays.asList(F3), flightList);
+        assertEquals(Collections.singletonList(F3), flightList);
         printSuccess();
     }
 
@@ -130,7 +131,7 @@ public class TestSuite {
     public void testCompanyFilter() {
         flightList = new ArrayList<>(getDefaultFlights());
         Airport.filterByCompany(flightList,F3.getCompany());
-        assertEquals(Arrays.asList(F3), flightList);
+        assertEquals(Collections.singletonList(F3), flightList);
         printSuccess();
     }
 
@@ -168,10 +169,10 @@ public class TestSuite {
 
     @Test
     public void testGetFlightFromUser() {
-//        initEmptyAP();
-//        Scanner s = new Scanner(System.in);
-//        ap.getFlightFromUser(s,true);
-        //TODO
+        initEmptyAP();
+        Scanner s = new Scanner("1\nKS9782EL\n 2020\n 11\n 23\n 11\n 16\n UK\n London\n london_airport\n Wizz\n");
+        ap.getFlightFromUser(s,true);
+        assertEquals((F8).toString(),ap.getFlights().get(0).toString());
         printSuccess();
     }
 
