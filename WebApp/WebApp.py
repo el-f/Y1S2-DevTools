@@ -18,58 +18,31 @@ def bool2str(boolean: bool):
     return "false"
 
 
-def display_results(flights=None, template="results.html"):
+def display_results(flights=None):
     if flights is None:
         flights = []
-    return render_template(template_name_or_list=template, title="Filtered Results", flights=flights)
+    return render_template("results.html", title="Filtered Results", flights=flights)
 
 
 def get_response_for_args(
-        direction="all",
-        country="",
-        city="",
-        airport="",
-        airline="",
-        day1="",
-        month1="",
-        year1="",
-        day2="",
-        month2="",
-        year2="",
-        sunday="",
-        monday="",
-        tuesday="",
-        wednesday="",
-        thursday="",
-        friday="",
-        saturday=""
+        direction, country, city, airport, airline,
+        day1, month1, year1,
+        day2, month2, year2,
+        sunday, monday, tuesday, wednesday, thursday, friday, saturday
+        # ,terminal
 ):
     return display_results(
-        flights=str(subprocess.check_output(
+        flights=subprocess.check_output(
             ["java", "-classpath", path,
              "AirportProject.Program",  # Package.Class_File
              "HTML",
-             direction,
-             country,
-             city,
-             airport,
-             airline,
-             day1,
-             month1,
-             year1,
-             day2,
-             month2,
-             year2,
-             sunday,
-             monday,
-             tuesday,
-             wednesday,
-             thursday,
-             friday,
-             saturday
+             direction, country, city, airport, airline,
+             day1, month1, year1,
+             day2, month2, year2,
+             sunday, monday, tuesday, wednesday, thursday, friday, saturday
              # terminal
-             ])
-        )[2:][:-1].split("<br>")  # [2:] - remove first two chars. [:-1] - remove last char
+             ]).decode().split("<br>")  # decode() - decode bytes to string
+
     )
 
 
@@ -115,7 +88,7 @@ def get_url(direction):
 
 @app.route("/legacy")
 def legacy():
-    return "<a href=http://localhost:8000/>Go Back</a><br><br>" +\
+    return "<a href=http://localhost:8000/>Go Back</a><br><br>" + \
            "Example links:<br>" + get_url("Arrivals") + get_url("Departures") + get_url("All")
 
 
