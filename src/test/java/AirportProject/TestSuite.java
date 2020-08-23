@@ -206,8 +206,8 @@ public class TestSuite {
 
     @Test
     public void testInitAirportFromFile() {
-//        String simulatedInput = "6\n 2\n.......";
-        //TODO
+        initDefaultAP();
+        assertEquals(Arrays.asList(F1,F2,F3,F4,F5,F6,F7,F8), ap.getFlights());
         printSuccess();
     }
 
