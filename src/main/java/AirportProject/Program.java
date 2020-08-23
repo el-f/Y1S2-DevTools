@@ -26,6 +26,7 @@ public class Program {
             if (args[0].equalsIgnoreCase(TEST_IDENTIFIER)) path = DEFAULT_FILE;
             else path = Paths.get("").toAbsolutePath().getParent() + "/" + DEFAULT_FILE;
             Airport ap = new Airport(new File(path));
+            ap.sortByDateTime();
 
             List<Flight> results = new ArrayList<>(ap.getFlights());
 

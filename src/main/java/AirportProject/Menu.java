@@ -13,6 +13,7 @@ public class Menu {
 
     static void showMenu(String filePathArg) {
         initAirportFromFile(filePathArg);
+        airport.sortByDateTime();
 
         Scanner s = new Scanner(System.in);
         int choice = -1;
