@@ -136,13 +136,17 @@ public class TestSuite {
 
     @Test
     public void testDateRangeFilter() {
-       //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByDateRange(flightList,F3.getDate(),F6.getDate());
+        assertEquals(Arrays.asList(F3, F4, F6), flightList);
         printSuccess();
     }
 
     @Test
     public void testStartDateFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByStartDate(flightList,F3.getDate());
+        assertEquals(Arrays.asList(F3, F4,F5 ,F6,F8), flightList);
         printSuccess();
     }
 
