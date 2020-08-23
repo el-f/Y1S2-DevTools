@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Y1S2-DevTools" target="14" />
+      <module name="Y1S2-DevTools" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
