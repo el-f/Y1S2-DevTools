@@ -115,7 +115,8 @@ def get_url(direction):
 
 @app.route("/legacy")
 def legacy():
-    return "Example links:<br>" + get_url("Arrivals") + get_url("Departures") + get_url("All")
+    return "<a href=http://localhost:8000/>Go Back</a><br><br>" +\
+           "Example links:<br>" + get_url("Arrivals") + get_url("Departures") + get_url("All")
 
 
 @app.route("/departures")
