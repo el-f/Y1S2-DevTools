@@ -3,12 +3,14 @@ package AirportProject;
 import org.junit.Test;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.Assert.*;
 
 //import flights
 import static AirportProject.Flight.*;
+import static org.junit.Assert.assertEquals;
 
 public class TestSuite {
 
@@ -112,58 +114,76 @@ public class TestSuite {
 
     @Test
     public void testCityFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByCity(flightList,F3.getCity());
+        assertEquals(Collections.singletonList(F3), flightList);
         printSuccess();
     }
 
     @Test
     public void testAirportFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByAirport(flightList,F3.getAirportName());
+        assertEquals(Collections.singletonList(F3), flightList);
         printSuccess();
     }
 
     @Test
     public void testCompanyFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByCompany(flightList,F3.getCompany());
+        assertEquals(Collections.singletonList(F3), flightList);
         printSuccess();
     }
 
     @Test
     public void testDateRangeFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByDateRange(flightList,F3.getDate(),F6.getDate());
+        assertEquals(Arrays.asList(F3, F4, F6), flightList);
         printSuccess();
     }
 
     @Test
     public void testStartDateFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByStartDate(flightList,F3.getDate());
+        assertEquals(Arrays.asList(F3, F4,F5 ,F6,F8), flightList);
         printSuccess();
     }
 
     @Test
     public void testEndDateFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByEndDate(flightList,F3.getDate());
+        assertEquals(Arrays.asList(F1,F2,F3,F7), flightList);
         printSuccess();
     }
 
     @Test
     public void testTerminalFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByTerminal(flightList,F3.getTerminal());
+        assertEquals(Arrays.asList(F3,F5), flightList);
         printSuccess();
     }
 
     @Test
     public void testGetFlightFromUser() {
-//        initEmptyAP();
-//        Scanner s = new Scanner(System.in);
-//        ap.getFlightFromUser(s,true);
-        //TODO
+        initEmptyAP();
+        Scanner s = new Scanner("1\nKS9782EL\n 2020\n 11\n 23\n 11\n 16\n UK\n London\n london_airport\n Wizz\n");
+        ap.getFlightFromUser(s,true);
+        assertEquals((F8).toString(),ap.getFlights().get(0).toString());
         printSuccess();
     }
 
     @Test
     public void testSortByDateTime() {
-        //TODO
+        initEmptyAP();
+        ap.addFlight(F8);
+        ap.addFlight(F1);
+        ap.sortByDateTime();
+        assertEquals(F1,ap.getFlights().get(0));
         printSuccess();
     }
 
@@ -173,9 +193,9 @@ public class TestSuite {
 
     @Test
     public void testGetDateTimeFromUser() {
-//        getDateTimeFromUser(new Scanner(System.in));
-//        getDateTimeFromUser(0,0,0);
-        //TODO
+        Scanner s = new Scanner("2020\n 11\n 23\n 11\n 16\n");
+        LocalDateTime D=Flight.getDateTimeFromUser(s);
+        assertEquals(F8.getDate(),D);
         printSuccess();
     }
 
@@ -186,15 +206,14 @@ public class TestSuite {
 
     @Test
     public void testInitAirportFromFile() {
-//        String simulatedInput = "6\n 2\n.......";
-        //TODO
+        initDefaultAP();
+        assertEquals(Arrays.asList(F1,F2,F3,F4,F5,F6,F7,F8), ap.getFlights());
         printSuccess();
     }
 
     @Test
     public void testScanBoolean() {
-//        Menu.scanBoolean(s);
-        //TODO
+        assertEquals(true ,Menu.scanBoolean(new Scanner("y")));
         printSuccess();
     }
 

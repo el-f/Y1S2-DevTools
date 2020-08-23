@@ -10,7 +10,7 @@ import static AirportProject.Airport.*;
 public class Menu {
     private static Airport airport;
 
-    public static void showMenu(String filePathArg) {
+    static void showMenu(String filePathArg) {
         initAirportFromFile(filePathArg);
 
         Scanner s = new Scanner(System.in);
@@ -84,7 +84,7 @@ public class Menu {
     }
 
 
-    public static void showCustomRangeFlights(Scanner s) throws MyException {
+    static void showCustomRangeFlights(Scanner s) throws MyException {
         List<Flight> result = new ArrayList<>(airport.getFlights());
         var container = new Object() {
             String str;
@@ -166,7 +166,7 @@ public class Menu {
         }
     }
 
-    public static boolean scanBoolean(Scanner scanner) {
+    static boolean scanBoolean(Scanner scanner) {
         boolean input = false, gotInput = false;
         String scanned;
         do {
