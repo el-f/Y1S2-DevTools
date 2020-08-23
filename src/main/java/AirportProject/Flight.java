@@ -37,32 +37,32 @@ public class Flight {
     public static final Flight F7 = new Flight(1, "KSD556Q2", D1, "Iran", "Iran_city", "Iran_airport", "El-AL", true);
     public static final Flight F8 = new Flight(1, "KS9782EL", D4, "UK", "London", "london_airport", "Wizz", true);
 
-    public static List<Flight> getDefaultFlights() {
+    static List<Flight> getDefaultFlights() {
         return Arrays.asList(F1, F2, F3, F4, F5, F6, F7, F8);
     }
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    public String getCompany() {
+    String getCompany() {
         return company;
     }
 
-    public String getCountry() {
+    String getCountry() {
         return country;
     }
 
-    public int getTerminal() {
+    int getTerminal() {
         return terminal;
     }
 
-    public String getCity() {
+    String getCity() {
         return city;
     }
 
-    public String getAirportName() {
+    String getAirportName() {
         return airportName;
     }
 
-    public Flight(String[] params) {
+    Flight(String[] params) {
         terminal = Integer.parseInt(params[0]);
         flightNum = params[1];
         dateTime = LocalDateTime.of(
@@ -79,7 +79,7 @@ public class Flight {
         outgoing = Boolean.parseBoolean(params[11]);
     }
 
-    public void save(PrintWriter writer) {
+    void save(PrintWriter writer) {
         Arrays.asList(
                 terminal,
                 flightNum,
@@ -96,7 +96,7 @@ public class Flight {
         writer.println(outgoing);
     }
 
-    public static LocalDateTime getDateTimeFromUser(Scanner s) {
+    static LocalDateTime getDateTimeFromUser(Scanner s) {
         int year, month, day, hour, minutes;
         System.out.println("enter year");
         year = s.nextInt();
@@ -111,11 +111,11 @@ public class Flight {
         return LocalDateTime.of(year, month, day, hour, minutes);
     }
 
-    public static LocalDateTime getDateTimeFromUser(int day, int month, int year) {
+    static LocalDateTime getDateTimeFromUser(int day, int month, int year) {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
 
-    public Flight(int _terminal, String _flightNum, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
+    Flight(int _terminal, String _flightNum, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
         terminal = _terminal;
         flightNum = _flightNum;
         dateTime = _date;
@@ -127,39 +127,39 @@ public class Flight {
 
     }
 
-    public boolean isOutgoing() {
+    boolean isOutgoing() {
         return outgoing;
     }
 
-    public void setTerminal(int terminal) {
+    void setTerminal(int terminal) {
         this.terminal = terminal;
     }
 
-    public void setCountry(String country) {
+    void setCountry(String country) {
         this.country = country;
     }
 
-    public void setFlightNum(String flightNum) {
+    void setFlightNum(String flightNum) {
         this.flightNum = flightNum;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
-    public void setOutgoing(boolean outgoing) {
+    void setOutgoing(boolean outgoing) {
         this.outgoing = outgoing;
     }
 
-    public void setCompany(String company) {
+    void setCompany(String company) {
         this.company = company;
     }
 
-    public Flight() {
+    Flight() {
         this(0, "", null, "", "", "", "", false);
     }
 
-    public LocalDateTime getDate() {
+    LocalDateTime getDate() {
         return dateTime;
     }
 

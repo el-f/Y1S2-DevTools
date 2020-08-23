@@ -3,7 +3,7 @@ package AirportProject;
 public class MyException extends Exception {
     private final String msg;
 
-    public MyException(String _msg) {
+     MyException(String _msg) {
         msg = _msg;
     }
 
