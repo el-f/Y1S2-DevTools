@@ -86,10 +86,13 @@ def get_url(direction):
            + direction + "</a><br>"
 
 
+def go_back(step=""):
+    return "<a href=http://localhost:8000/" + step + ">Go Back</a><br><br>"
+
+
 @app.route("/legacy")
 def legacy():
-    return "<a href=http://localhost:8000/>Go Back</a><br><br>" + \
-           "Example links:<br>" + get_url("Arrivals") + get_url("Departures") + get_url("All")
+    return go_back() + "Example links:<br>" + get_url("Arrivals") + get_url("Departures") + get_url("All")
 
 
 @app.route("/departures")
@@ -104,7 +107,8 @@ def arrivals():
 
 @app.route("/all")
 def all_flights(direction="all"):
-    return subprocess.check_output(["java", "-classpath", path,
+    return go_back("legacy").encode() + \
+           subprocess.check_output(["java", "-classpath", path,
                                     "AirportProject.Program",  # Package.Class_File
                                     request.args.get('outformat'),
                                     direction,
