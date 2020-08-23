@@ -57,6 +57,9 @@ public class Flight {
     String getCity() {
         return city;
     }
+    LocalDateTime getDateTime() {
+        return dateTime;
+    }
 
     String getAirportName() {
         return airportName;
