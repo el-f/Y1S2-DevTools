@@ -83,8 +83,6 @@ def submit():
     form = FlightsForm()
     if form.validate_on_submit():
         flash(u'Filters Processed!', 'success')
-        if form.sunday.data:
-            print(form.sunday.data)
         return get_response_for_args(
             direction=form.direction.data,
             country=form.country.data,
