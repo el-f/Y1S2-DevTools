@@ -178,7 +178,11 @@ public class TestSuite {
 
     @Test
     public void testSortByDateTime() {
-        //TODO
+        initEmptyAP();
+        ap.addFlight(F8);
+        ap.addFlight(F1);
+        ap.sortByDateTime();
+        assertEquals(F1,ap.getFlights().get(0));
         printSuccess();
     }
 
