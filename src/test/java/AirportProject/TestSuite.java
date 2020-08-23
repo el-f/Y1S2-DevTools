@@ -112,19 +112,25 @@ public class TestSuite {
 
     @Test
     public void testCityFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByCity(flightList,F3.getCity());
+        assertEquals(Arrays.asList(F3), flightList);
         printSuccess();
     }
 
     @Test
     public void testAirportFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByAirport(flightList,F3.getAirportName());
+        assertEquals(Arrays.asList(F3), flightList);
         printSuccess();
     }
 
     @Test
     public void testCompanyFilter() {
-        //TODO
+        flightList = new ArrayList<>(getDefaultFlights());
+        Airport.filterByCompany(flightList,F3.getCompany());
+        assertEquals(Arrays.asList(F3), flightList);
         printSuccess();
     }
 

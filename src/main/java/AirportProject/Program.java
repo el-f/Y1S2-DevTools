@@ -21,7 +21,7 @@ public class Program {
     public static final String DEFAULT_FILE = "airport.csv";
     public static final String TEST_IDENTIFIER = "INTERNAL_TEST";
 
-    static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         if (args.length == 0)
             Menu.showMenu(null);
         else if (args.length == 1)
