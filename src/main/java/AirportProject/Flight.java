@@ -199,4 +199,17 @@ public class Flight {
         return company.equals(other.company);
     }
 
+    @Override
+    public int hashCode() {
+        int result = terminal;
+        result = 31 * result + flightNum.hashCode();
+        result = 31 * result + dateTime.hashCode();
+        result = 31 * result + country.hashCode();
+        result = 31 * result + city.hashCode();
+        result = 31 * result + airportName.hashCode();
+        result = 31 * result + company.hashCode();
+        result = 31 * result + (outgoing ? 1 : 0);
+        result = 31 * result + formatter.hashCode();
+        return result;
+    }
 }

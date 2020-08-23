@@ -149,4 +149,8 @@ public class Airport {
         return flights.equals(airport.flights);
     }
 
+    @Override
+    public int hashCode() {
+        return flights.hashCode();
+    }
 }
