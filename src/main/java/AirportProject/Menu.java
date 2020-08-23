@@ -183,7 +183,7 @@ public class Menu {
         return input;
     }
 
-    private static void initDefault() throws IOException {
+    public static void initDefault() throws IOException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         ap.save(Program.DEFAULT_FILE);

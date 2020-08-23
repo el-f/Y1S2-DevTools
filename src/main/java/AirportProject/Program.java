@@ -12,12 +12,6 @@ import static java.lang.Integer.*;
 
 public class Program {
 
-    /*
-        TODO:
-            - public->package-private
-            - test EVERYTHING
-     */
-
     public static final String DEFAULT_FILE = "airport.csv";
     public static final String TEST_IDENTIFIER = "INTERNAL_TEST";
 
