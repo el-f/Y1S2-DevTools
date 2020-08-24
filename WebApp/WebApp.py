@@ -112,7 +112,8 @@ def all_flights(direction="all"):
                                     "AirportProject.Program",  # Package.Class_File
                                     request.args.get('outformat'),
                                     direction
-                                    ] + [value for value in list(request.args.values())[1:]])
+                                    ] + list(request.args.values())[1:]
+                                   )
 
 
 if __name__ == "__main__":
