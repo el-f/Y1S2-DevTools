@@ -24,25 +24,8 @@ def display_results(flights=None):
     return render_template("results.html", title="Filtered Results", flights=flights)
 
 
-def get_response_for_args(
-        direction, country, city, airport, airline,
-        day1, month1, year1,
-        day2, month2, year2,
-        sunday, monday, tuesday, wednesday, thursday, friday, saturday
-        # ,terminal
-):
-    return display_results(
-        flights=subprocess.check_output(
-            command + [
-                "HTML",
-                direction, country, city, airport, airline,
-                day1, month1, year1,
-                day2, month2, year2,
-                sunday, monday, tuesday, wednesday, thursday, friday, saturday
-                # terminal
-            ]).decode().split("<br>")  # decode() - decode bytes to string
-
-    )
+def get_response_for_args(args):    # decode() - decode bytes to string
+    return display_results(subprocess.check_output(command + ["HTML"] + args).decode().split("<br>"))
 
 
 @app.route("/about")
@@ -56,24 +39,26 @@ def submit():
     if form.validate_on_submit():
         flash(u'Filters Processed!', 'success')
         return get_response_for_args(
-            direction=form.direction.data,
-            country=form.country.data,
-            city=form.city.data,
-            airport=form.airport.data,
-            airline=form.airline.data,
-            day1=str(form.date1.data.day),
-            month1=str(form.date1.data.month),
-            year1=str(form.date1.data.year),
-            day2=str(form.date2.data.day),
-            month2=str(form.date2.data.month),
-            year2=str(form.date2.data.year),
-            sunday=str(form.sunday.data).lower(),
-            monday=str(form.monday.data).lower(),
-            tuesday=str(form.tuesday.data).lower(),
-            wednesday=str(form.wednesday.data).lower(),
-            thursday=str(form.thursday.data).lower(),
-            friday=str(form.friday.data).lower(),
-            saturday=str(form.saturday.data).lower()
+            [
+                form.direction.data,
+                form.country.data,
+                form.city.data,
+                form.airport.data,
+                form.airline.data,
+                str(form.date1.data.day),
+                str(form.date1.data.month),
+                str(form.date1.data.year),
+                str(form.date2.data.day),
+                str(form.date2.data.month),
+                str(form.date2.data.year),
+                str(form.sunday.data).lower(),
+                str(form.monday.data).lower(),
+                str(form.tuesday.data).lower(),
+                str(form.wednesday.data).lower(),
+                str(form.thursday.data).lower(),
+                str(form.friday.data).lower(),
+                str(form.saturday.data).lower()
+            ]
         )
     return render_template('form.html', title='Submit Filters', form=form)
 
