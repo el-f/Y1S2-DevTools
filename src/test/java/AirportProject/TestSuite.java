@@ -18,8 +18,8 @@ public class TestSuite {
     public static final String TEST_FILE = "ap2";
     private static int testId = 1;
 
-    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final PrintStream outputPrintStream = new PrintStream(outputStream);
+    private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    private PrintStream outputPrintStream = new PrintStream(outputStream);
     private final PrintStream backupOut = System.out;
 
     private void initDefaultAP() {
@@ -29,6 +29,12 @@ public class TestSuite {
 
     private void initEmptyAP() {
         ap = new Airport();
+    }
+
+    private void resetOutput() {
+        System.setOut(backupOut);
+        outputStream = new ByteArrayOutputStream();
+        outputPrintStream = new PrintStream(outputStream);
     }
 
     public void printSuccess() {
@@ -180,7 +186,7 @@ public class TestSuite {
         ap.getFlightFromUser(s, true);
         assertEquals(F8, ap.getFlights().get(0));
 
-        System.setOut(backupOut);
+        resetOutput();
         printSuccess();
     }
 
@@ -204,7 +210,7 @@ public class TestSuite {
 
         assertEquals(F8.getDate(), Flight.getDateTimeFromUser(new Scanner("2020\n 11\n 23\n 11\n 16\n")));
 
-        System.setOut(backupOut);
+        resetOutput();
         printSuccess();
     }
 
@@ -225,7 +231,8 @@ public class TestSuite {
             fail(e.getMessage());
         }
         assertTrue(outputStream.toString().toLowerCase().contains("success"));
-        System.setOut(backupOut);
+
+        resetOutput();
         printSuccess();
     }
 
@@ -236,7 +243,7 @@ public class TestSuite {
         assertTrue(Menu.scanBoolean(new Scanner("y")));
         assertFalse(Menu.scanBoolean(new Scanner("n")));
 
-        System.setOut(backupOut);
+        resetOutput();
         printSuccess();
     }
 
@@ -247,7 +254,7 @@ public class TestSuite {
         Menu.initDefault();
         assertTrue(outputStream.toString().contains(Menu.INIT_DEFAULT_SUCCESS));
 
-        System.setOut(backupOut);
+        resetOutput();
         printSuccess();
     }
 
@@ -273,8 +280,9 @@ public class TestSuite {
         assertFalse(outputString.contains(F4.toString()));
         assertFalse(outputString.contains(F5.toString()));
         assertFalse(outputString.contains(F7.toString()));
-        System.setOut(backupOut);
+
         System.setIn(backupIn);
+        resetOutput();
         printSuccess();
     }
 
@@ -297,7 +305,6 @@ public class TestSuite {
 //                ,""                             /*terminal*/
         };
         System.setOut(outputPrintStream);
-
         try {
             Program.main(args);
         } catch (Exception e) {
@@ -315,7 +322,7 @@ public class TestSuite {
         assertFalse(outputString.contains(F5.toString()));
         assertFalse(outputString.contains(F7.toString()));
 
-        System.setOut(backupOut);
+        resetOutput();
         printSuccess();
     }
 
