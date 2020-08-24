@@ -111,22 +111,8 @@ def all_flights(direction="all"):
            subprocess.check_output(["java", "-classpath", path,
                                     "AirportProject.Program",  # Package.Class_File
                                     request.args.get('outformat'),
-                                    direction,
-                                    request.args.get('country'),
-                                    request.args.get('city'),
-                                    request.args.get('airport'),
-                                    request.args.get('airline'),
-                                    request.args.get('day1'), request.args.get('month1'), request.args.get('year1'),
-                                    request.args.get('day2'), request.args.get('month2'), request.args.get('year2'),
-                                    request.args.get('sunday'),
-                                    request.args.get('monday'),
-                                    request.args.get('tuesday'),
-                                    request.args.get('wednesday'),
-                                    request.args.get('thursday'),
-                                    request.args.get('friday'),
-                                    request.args.get('saturday')
-                                    # ,request.args.get('terminal'),  # terminal
-                                    ])
+                                    direction
+                                    ] + [value for value in list(request.args.values())[1:]])
 
 
 if __name__ == "__main__":
