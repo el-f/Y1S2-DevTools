@@ -1,5 +1,6 @@
 package AirportProject;
 
+@SuppressWarnings("SameParameterValue")
 public class MyException extends Exception {
     private final String msg;
 

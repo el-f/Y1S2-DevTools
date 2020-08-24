@@ -66,6 +66,7 @@ public class Flight {
         return city;
     }
 
+    @SuppressWarnings({"unused", "RedundantSuppression"})
     LocalDateTime getDateTime() {
         return dateTime;
     }

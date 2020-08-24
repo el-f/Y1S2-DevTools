@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
 
 //import flights
 import static AirportProject.Flight.*;
-import static org.junit.Assert.assertEquals;
 
 public class TestSuite {
 

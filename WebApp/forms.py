@@ -5,6 +5,7 @@ from wtforms.fields.html5 import DateField
 from datetime import date, timedelta
 
 
+# noinspection PyMethodMayBeStatic
 class FlightsForm(FlaskForm):
     direction = SelectField(
         'Direction',
