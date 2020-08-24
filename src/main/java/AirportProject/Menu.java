@@ -7,7 +7,7 @@ import java.util.*;
 
 import static AirportProject.Airport.*;
 
-public class Menu {
+public abstract class Menu {
     private static Airport airport;
     public static final String INIT_DEFAULT_SUCCESS = "~~~Saved Successfully!";
 
@@ -198,7 +198,7 @@ public class Menu {
         return input;
     }
 
-    public static void initDefault() throws IOException {
+    static void initDefault() throws IOException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         ap.save(Program.DEFAULT_FILE);

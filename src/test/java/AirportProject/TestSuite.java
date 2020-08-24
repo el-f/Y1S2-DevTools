@@ -3,6 +3,7 @@ package AirportProject;
 import org.junit.Test;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -16,6 +17,10 @@ public class TestSuite {
     private static List<Flight> flightList;
     public static final String TEST_FILE = "ap2";
     private static int testId = 1;
+
+    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    private final PrintStream outputPrintStream = new PrintStream(outputStream);
+    private final PrintStream backupOut = System.out;
 
     private void initDefaultAP() {
         initEmptyAP();
@@ -168,8 +173,6 @@ public class TestSuite {
 
     @Test
     public void testGetFlightFromUser() {
-        PrintStream backupOut = System.out;
-        PrintStream outputPrintStream = new PrintStream(new ByteArrayOutputStream());
         System.setOut(outputPrintStream);   //to silence output
 
         initEmptyAP();
@@ -197,8 +200,6 @@ public class TestSuite {
 
     @Test
     public void testGetDateTimeFromUser() {
-        PrintStream backupOut = System.out;
-        PrintStream outputPrintStream = new PrintStream(new ByteArrayOutputStream());
         System.setOut(outputPrintStream);   //to silence output
 
         assertEquals(F8.getDate(), Flight.getDateTimeFromUser(new Scanner("2020\n 11\n 23\n 11\n 16\n")));
@@ -214,15 +215,22 @@ public class TestSuite {
 
     @Test
     public void testInitAirportFromFile() {
-        initDefaultAP();
-        assertEquals(Arrays.asList(F1, F2, F3, F4, F5, F6, F7, F8), ap.getFlights());
+        System.setOut(outputPrintStream);   //to silence output
+        //using Java Reflection to test a private method
+        try {
+            Method initAirportFromFile = Menu.class.getDeclaredMethod("initAirportFromFile", String.class);
+            initAirportFromFile.setAccessible(true);
+            initAirportFromFile.invoke(Menu.class, Program.DEFAULT_FILE);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+        assertTrue(outputStream.toString().toLowerCase().contains("success"));
+        System.setOut(backupOut);
         printSuccess();
     }
 
     @Test
     public void testScanBoolean() {
-        PrintStream backupOut = System.out;
-        PrintStream outputPrintStream = new PrintStream(new ByteArrayOutputStream());
         System.setOut(outputPrintStream);   //to silence output
 
         assertTrue(Menu.scanBoolean(new Scanner("y")));
@@ -234,10 +242,7 @@ public class TestSuite {
 
     @Test
     public void testInitDefault() throws IOException {
-        PrintStream backupOut = System.out;
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream outputPrintStream = new PrintStream(outputStream);
-        System.setOut(outputPrintStream);
+        System.setOut(outputPrintStream);   //to silence output
 
         Menu.initDefault();
         assertTrue(outputStream.toString().contains(Menu.INIT_DEFAULT_SUCCESS));
@@ -249,12 +254,11 @@ public class TestSuite {
     @Test
     public void programmerInputSimulation() {
         InputStream backupIn = System.in;
-        PrintStream backupOut = System.out;
+
         /* simulated user input: */
         String simulatedInput = "6\n 2\n 7\n y\n 2\n n\n n\n n\n n\n y\n 3\n n\n n\n 0\n";
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream outputPrintStream = new PrintStream(outputStream);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+
         System.setIn(inputStream);
         System.setOut(outputPrintStream);
 
@@ -292,10 +296,6 @@ public class TestSuite {
                 "", "", "", "", "", "", ""      /*weekdays*/
 //                ,""                             /*terminal*/
         };
-        InputStream backupIn = System.in;
-        PrintStream backupOut = System.out;
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream outputPrintStream = new PrintStream(outputStream);
         System.setOut(outputPrintStream);
 
         try {
@@ -316,7 +316,6 @@ public class TestSuite {
         assertFalse(outputString.contains(F7.toString()));
 
         System.setOut(backupOut);
-        System.setIn(backupIn);
         printSuccess();
     }
 

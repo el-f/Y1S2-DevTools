@@ -28,11 +28,6 @@ def get_response_for_args(args):    # decode() - decode bytes to string
     return display_results(subprocess.check_output(command + ["HTML"] + args).decode().split("<br>"))
 
 
-@app.route("/about")
-def about():
-    return render_template("about.HTML")
-
-
 @app.route("/", methods=['GET', 'POST'])
 def submit():
     form = FlightsForm()
@@ -61,6 +56,11 @@ def submit():
             ]
         )
     return render_template('form.html', title='Submit Filters', form=form)
+
+
+@app.route("/about")
+def about():
+    return render_template("about.HTML")
 
 
 def get_url(direction):
@@ -93,11 +93,7 @@ def arrivals():
 def all_flights(direction="all"):
     outformat = request.args.get('outformat')
     return go_back_url("legacy", outformat).encode() + subprocess.check_output(
-        command
-        + [
-            outformat,
-            direction
-        ] + list(request.args.values())[1:]  # [1:] - remove first element
+        command + [outformat, direction] + list(request.args.values())[1:]  # [1:] - remove first element
     )
 
 
