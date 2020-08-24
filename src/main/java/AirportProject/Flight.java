@@ -18,7 +18,7 @@ public class Flight {
     private String airportName;
     private String company;
     private boolean outgoing;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)", Locale.ENGLISH);
+    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm (EEEE)", Locale.ENGLISH);
 
     /*--------------------------------------------DEFAULT FLIGHTS-----------------------------------------------------*/
     //default dates
