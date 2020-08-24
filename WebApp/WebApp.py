@@ -18,12 +18,6 @@ command = [
 ]
 
 
-def bool2str(boolean: bool):
-    if boolean:
-        return "true"
-    return "false"
-
-
 def display_results(flights=None):
     if flights is None:
         flights = []
@@ -73,13 +67,13 @@ def submit():
             day2=str(form.date2.data.day),
             month2=str(form.date2.data.month),
             year2=str(form.date2.data.year),
-            sunday=bool2str(form.sunday.data),
-            monday=bool2str(form.monday.data),
-            tuesday=bool2str(form.tuesday.data),
-            wednesday=bool2str(form.wednesday.data),
-            thursday=bool2str(form.thursday.data),
-            friday=bool2str(form.friday.data),
-            saturday=bool2str(form.saturday.data)
+            sunday=str(form.sunday.data).lower(),
+            monday=str(form.monday.data).lower(),
+            tuesday=str(form.tuesday.data).lower(),
+            wednesday=str(form.wednesday.data).lower(),
+            thursday=str(form.thursday.data).lower(),
+            friday=str(form.friday.data).lower(),
+            saturday=str(form.saturday.data).lower()
         )
     return render_template('form.html', title='Submit Filters', form=form)
 
