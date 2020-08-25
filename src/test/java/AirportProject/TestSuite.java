@@ -13,8 +13,8 @@ import static AirportProject.Flight.*;
 
 public class TestSuite {
 
-    private static Airport ap;
-    private static List<Flight> flightList;
+    private Airport ap;
+    private List<Flight> flightList;
     public static final String TEST_FILE = "ap2";
     private static int testId = 1;
 
@@ -67,6 +67,7 @@ public class TestSuite {
         ap.addFlight(F7);
         ap.addFlight(F7);
         assertEquals(3, ap.getFlights().size());
+        assertEquals(Arrays.asList(F5, F6, F7), ap.getFlights());
         printSuccess();
     }
 
@@ -226,11 +227,11 @@ public class TestSuite {
         try {
             Method initAirportFromFile = Menu.class.getDeclaredMethod("initAirportFromFile", String.class);
             initAirportFromFile.setAccessible(true);
-            initAirportFromFile.invoke(Menu.class, Program.DEFAULT_FILE);
+            initAirportFromFile.invoke(null, Program.DEFAULT_FILE);
         } catch (Exception e) {
             fail(e.getMessage());
         }
-        assertTrue(outputStream.toString().toLowerCase().contains("success"));
+        assertTrue(outputStream.toString().contains(Menu.INIT_FROM_FILE_SUCCESS));
 
         resetOutput();
         printSuccess();
@@ -251,8 +252,8 @@ public class TestSuite {
     public void testInitDefault() throws IOException {
         System.setOut(outputPrintStream);   //to silence output
 
-        Menu.initDefault();
-        assertTrue(outputStream.toString().contains(Menu.INIT_DEFAULT_SUCCESS));
+        Menu.createDefaultFile();
+        assertTrue(outputStream.toString().contains(Menu.CREATE_DEFAULT_FILE_SUCCESS));
 
         resetOutput();
         printSuccess();
@@ -308,8 +309,7 @@ public class TestSuite {
         try {
             Program.main(args);
         } catch (Exception e) {
-            e.printStackTrace();
-            fail();
+            fail(e.getMessage());
         }
 
         String outputString = outputStream.toString();

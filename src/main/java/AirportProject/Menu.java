@@ -9,7 +9,8 @@ import static AirportProject.Airport.*;
 
 public abstract class Menu {
     private static Airport airport;
-    public static final String INIT_DEFAULT_SUCCESS = "~~~Saved Successfully!";
+    public static final String CREATE_DEFAULT_FILE_SUCCESS = "~~~Saved Successfully!";
+    public static final String INIT_FROM_FILE_SUCCESS = "\n~~~Successfully Loaded Argument File~~~\n";
 
     static void showMenu(String filePathArg) {
         initAirportFromFile(filePathArg);
@@ -77,15 +78,14 @@ public abstract class Menu {
                 case 9:
                     System.out.println("Choose num of flight to remove");
                     System.out.println(airport);
-                    if (airport.removeFlight(s.nextInt()))
-                        System.out.println("Removed");
-                    else System.out.println("Error Removing Flight");
+                    airport.removeFlight(s.nextInt());
+                    System.out.println("Removed");
                     break;
                 case 0:
                     System.out.println("~~~end of program~~~");
                     break;
                 case 10:
-                    initDefault();
+                    createDefaultFile();
                     break;
                 default:
                     System.out.println("invalid input");
@@ -174,7 +174,7 @@ public abstract class Menu {
             }
             try {
                 airport = new Airport(f);
-                System.out.println("\n~~~Successfully Loaded Argument File~~~\n");
+                System.out.println(INIT_FROM_FILE_SUCCESS);
             } catch (Exception fileNotFoundException) {
                 System.out.println("File Not Found!");
             }
@@ -198,13 +198,13 @@ public abstract class Menu {
         return input;
     }
 
-    static void initDefault() throws IOException {
+    static void createDefaultFile() throws IOException {
         Airport ap = new Airport();
         ap.getFlights().addAll(Flight.getDefaultFlights());
         ap.save(Program.DEFAULT_FILE);
         System.out.println(
                 ap.toString().equals(new Airport(new File(Program.DEFAULT_FILE)).toString()) ?
-                        INIT_DEFAULT_SUCCESS :
+                        CREATE_DEFAULT_FILE_SUCCESS :
                         "~~~ERROR OCCURRED WHILE SAVING"
         );
     }

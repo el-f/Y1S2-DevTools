@@ -45,8 +45,8 @@ public class Airport {
         flights.sort(Comparator.comparing(Flight::getDate));
     }
 
-    boolean removeFlight(int flightIndex) {
-        return null != flights.remove(flightIndex); //if null then the item wasn't there in the first place
+    void removeFlight(int flightIndex) {
+        flights.remove(flightIndex);
     }
 
     void showOutgoingFlights() {

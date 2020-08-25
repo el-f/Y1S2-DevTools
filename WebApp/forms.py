@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, SelectField
-from wtforms.validators import data_required, Optional, ValidationError
+from wtforms.validators import ValidationError
 from wtforms.fields.html5 import DateField
 from datetime import date, timedelta
 
@@ -9,7 +9,6 @@ from datetime import date, timedelta
 class FlightsForm(FlaskForm):
     direction = SelectField(
         'Direction',
-        validators=[data_required()],
         choices=[
             ("all", "all"),
             ("departures", "departures"),
@@ -20,8 +19,8 @@ class FlightsForm(FlaskForm):
     city = StringField('City')
     airport = StringField('Airport')
     airline = StringField('Airline')
-    date1 = DateField('Start Date', default=date.today(), validators=[Optional()])
-    date2 = DateField('End Date', default=date.today() + timedelta(100), validators=[Optional()])
+    date1 = DateField('Start Date', default=date.today())
+    date2 = DateField('End Date', default=date.today() + timedelta(100))
     sunday = BooleanField('Sunday', default=True)
     monday = BooleanField('Monday', default=True)
     tuesday = BooleanField('Tuesday', default=True)
@@ -37,5 +36,5 @@ class FlightsForm(FlaskForm):
             raise ValidationError("Start date must not be earlier than today.")
 
     def validate_date2(self, field):
-        if field.data > date.today() + timedelta(120):
-            raise ValidationError("Start date must not be too far in the future.")
+        if field.data > date.today() + timedelta(100):
+            raise ValidationError("End date must not be too far in the future.")
