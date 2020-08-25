@@ -47,10 +47,15 @@ public class TestSuite {
         Airport Class Tests
      */
     @Test
-    public void testFileLoadAndSave() throws IOException {
+    public void testFileLoadAndSave() {
         initDefaultAP();
-        ap.save(TEST_FILE);
-        Airport ap2 = new Airport(new File(TEST_FILE));
+        Airport ap2 = null;
+        try {
+            ap.save(TEST_FILE);
+            ap2 = new Airport(new File(TEST_FILE));
+        } catch (IOException e) {
+            fail(e.toString());
+        }
         assertEquals(ap, ap2);
         printSuccess();
     }
@@ -229,7 +234,7 @@ public class TestSuite {
             initAirportFromFile.setAccessible(true);
             initAirportFromFile.invoke(null, Program.DEFAULT_FILE);
         } catch (Exception e) {
-            fail(e.getMessage());
+            fail(e.toString());
         }
         assertTrue(outputStream.toString().contains(Menu.INIT_FROM_FILE_SUCCESS));
 
@@ -249,10 +254,13 @@ public class TestSuite {
     }
 
     @Test
-    public void testInitDefault() throws IOException {
+    public void testInitDefault() {
         System.setOut(outputPrintStream);   //to silence output
-
-        Menu.createDefaultFile();
+        try {
+            Menu.createDefaultFile();
+        } catch (IOException e) {
+            fail(e.toString());
+        }
         assertTrue(outputStream.toString().contains(Menu.CREATE_DEFAULT_FILE_SUCCESS));
 
         resetOutput();
@@ -309,7 +317,7 @@ public class TestSuite {
         try {
             Program.main(args);
         } catch (Exception e) {
-            fail(e.getMessage());
+            fail(e.toString());
         }
 
         String outputString = outputStream.toString();
