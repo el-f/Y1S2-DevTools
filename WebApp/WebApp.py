@@ -64,14 +64,13 @@ def about():
 
 
 def get_url(direction):
-    return "<a href=http://localhost:8000/" + direction.lower() + \
-           "?outformat=html&country=&city=&airport=&airline=&day1=&month1=&year1=" \
-           "&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=>" \
-           + direction + "</a><br>"
+    return f"<a href=http://localhost:8000/{direction.lower()}?outformat=html&country=&city=&airport=&airline=&day1" \
+           f"=&month1=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=" \
+           f">{direction}</a><br>"
 
 
 def go_back_url(step="", outformat=""):
-    return "" if outformat == "text" else "<a href=http://localhost:8000/" + step + ">Go Back</a><br><br>"
+    return "" if outformat == "text" else f"<a href=http://localhost:8000/{step}>Go Back</a><br><br>"
 
 
 @app.route("/legacy")
