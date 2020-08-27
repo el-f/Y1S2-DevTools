@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="col" style="padding-left: 320px; padding-right: 320px;">
-    <div class="content-section">
+<div class="col">
+    <div class="content-section" style="width:60%; margin-left: auto; margin-right: auto;">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
@@ -103,7 +103,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="form-group" style="margin:35px;">
+                <div class="form-group" style="padding-left:15px; margin:30px; width:80%; margin-left: auto;">
                     {{form.sunday(class="checkbox")}}
                     {{form.sunday.label(class="form-control-label")}}
                     &nbsp;
