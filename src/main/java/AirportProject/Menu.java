@@ -76,10 +76,14 @@ public abstract class Menu {
                     System.out.println(airport);
                     break;
                 case 9:
-                    System.out.println("Choose num of flight to remove");
-                    System.out.println(airport);
-                    airport.removeFlight(s.nextInt());
-                    System.out.println("Removed");
+                    if (airport.getFlights().isEmpty())
+                        System.out.println("Empty Flight List!");
+                    else {
+                        System.out.println("Choose num of flight to remove");
+                        System.out.println(airport);
+                        airport.removeFlight(s.nextInt());
+                        System.out.println("Removed");
+                    }
                     break;
                 case 0:
                     System.out.println("~~~end of program~~~");
