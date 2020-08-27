@@ -10,9 +10,9 @@ class FlightsForm(FlaskForm):
     direction = SelectField(
         'Direction',
         choices=[
-            ("all", "all"),
-            ("departures", "departures"),
-            ("arrivals", "arrivals")
+            ("all", "All"),
+            ("departures", "Departures"),
+            ("arrivals", "Arrivals")
         ]
     )
     country = StringField('Country')
