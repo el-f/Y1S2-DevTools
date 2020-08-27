@@ -75,7 +75,7 @@ public class Program {
             String newLine = args[0].equalsIgnoreCase("HTML") ? "<br>" : "\n";
 
             if (results.isEmpty())
-                System.out.print("empty flights list! too much or invalid filters!" + newLine);
+                System.out.print("Empty flights list! Too many or invalid filters!" + newLine);
             else results.forEach(result ->
                     System.out.print(result + newLine)
             );
