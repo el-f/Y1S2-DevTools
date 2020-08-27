@@ -32,21 +32,3 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
-.article-title {
-  color: #444444;
-}
-
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
-}
-
-.article-content {
-  white-space: nowrap;
-}
-
-.article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
-}
-

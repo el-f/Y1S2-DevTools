@@ -2,11 +2,11 @@
 {% block content %}
 {% for flight in flights %}
 {% if flight|length > 0 %}
-<article class="media content-section">
-    <div class="media-body">
-        <p class="article-content">{{ flight }}</p>
+<div class="card border-info mb-3" style="margin:10px; width:100%">
+    <div class="card-body" style="">
+        {{ flight }}
     </div>
-</article>
+</div>
 {% endif %}
 {% endfor %}
 {% endblock content %}
