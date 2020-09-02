@@ -116,3 +116,24 @@ fabric.properties
 
 # eclipse
 
+
+.idea/checkstyleidea-libs/readme.txt
+
+target/maven-archiver/pom.properties
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+
+target/surefire-reports/AirportProject.TestSuite.txt
+
+target/surefire-reports/TEST-AirportProject.TestSuite.xml
+
+WebApp/__pycache__/forms.cpython-38.pyc
+WebApp/__pycache__/
+target/generated-sources/
+target/generated-test-sources/
