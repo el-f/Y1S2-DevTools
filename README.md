@@ -3,18 +3,27 @@
 
 A program to manage flights in the server side and display them by a user chosen filter on the client side.
 
-This project focuses on practicing:
+##### This project focuses on practicing:
 - Code reuse, avoiding duplicates.
 - Server-Client relationship.
 - Development cycle with 4 "sprints" and changing "management" demands.
 - Test Driven Development.
-- Continuous Integration.
+- Continuous Integration (Using ```Maven```).
 - Version Control in a team environment.
 - Communicating across different programming languages.
-- Writing a readable "aesthetically pleasing" code.
+- Writing a readable "aesthetically pleasing" code (Helped by using ```Lombok```).
+
+##### Usage:
+- For 'server' side:
+  - Run Java (AirportProject/Program)
+  - Navigate the CLI menu
+- For 'client' side:
+  - Run Python (WebApp/WebApp.py)
+  - Open a browser and navigate to  ``` localhost:8000 ```
+  - Fill the form presented by the GUI
 
 **Authors:**
-
 - Elazar Fine
 - Gal Karasnty
 - Maor Ofek
+

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, SelectField
-from wtforms.validators import ValidationError
-from wtforms.fields.html5 import DateField
+from wtforms.validators import ValidationError, Optional
+from wtforms.fields.html5 import DateField, IntegerField
 from datetime import date, timedelta
 
 
@@ -14,6 +14,11 @@ class FlightsForm(FlaskForm):
             ("departures", "Departures"),
             ("arrivals", "Arrivals")
         ]
+    )
+    terminal = IntegerField(
+        'Terminal',
+        render_kw={"placeholder": "Valid #: 1-3"},
+        validators=[Optional(strip_whitespace=True)]
     )
     country = StringField('Country')
     city = StringField('City')
@@ -31,10 +36,22 @@ class FlightsForm(FlaskForm):
 
     submit = SubmitField('Show Filtered Flights')
 
+    def validate_terminal(self, field):
+        if field.data < 1 or field.data > 3:
+            raise ValidationError("Invalid Terminal Number! (Valid Terminals: 1-3)")
+
     def validate_date1(self, field):
-        if field.data < date.today():
-            raise ValidationError("Start date must not be earlier than today.")
+        start_date = date.fromisoformat("2020-01-01")
+        if not field.data:
+            raise ValidationError(" - This Field Must Be Filled!")
+        if field.data < start_date:
+            raise ValidationError(f"Start Date Must Not Be Earlier Than {start_date}")
 
     def validate_date2(self, field):
-        if field.data > date.today() + timedelta(100):
-            raise ValidationError("End date must not be too far in the future.")
+        if not field.data:
+            raise ValidationError(" - This Field Must Be Filled!")
+        end_date = date.today() + timedelta(100)
+        if field.data > end_date:
+            raise ValidationError("End Date Must Not Be More Than 100 Days From Today")
+        if self.date1.data and field.data < self.date1.data:
+            raise ValidationError("End Date Must Be After Start Date")

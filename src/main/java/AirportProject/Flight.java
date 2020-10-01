@@ -1,5 +1,7 @@
 package AirportProject;
 
+import lombok.*;
+
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +10,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Flight {
 
     private int terminal;
@@ -42,54 +47,23 @@ public class Flight {
     }
     /*----------------------------------------------------------------------------------------------------------------*/
 
-    String getCompany() {
-        return company;
-    }
-
-    String getCountry() {
-        return country;
-    }
-
-    void setAirportName(String airportName) {
-        this.airportName = airportName;
-    }
-
-    void setCity(String city) {
-        this.city = city;
-    }
-
-    int getTerminal() {
-        return terminal;
-    }
-
-    String getCity() {
-        return city;
-    }
-
-    @SuppressWarnings({"unused", "RedundantSuppression"})
-    LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    String getAirportName() {
-        return airportName;
-    }
-
     Flight(String[] params) {
-        terminal = Integer.parseInt(params[0]);
-        flightNum = params[1];
-        dateTime = LocalDateTime.of(
-                Integer.parseInt(params[2]),
-                Integer.parseInt(params[3]),
-                Integer.parseInt(params[4]),
-                Integer.parseInt(params[5]),
-                Integer.parseInt(params[6])
+        this(
+                Integer.parseInt(params[0]),        /*terminal*/
+                params[1],                          /*flightNum*/
+                LocalDateTime.of(                   /*dateTime*/
+                        Integer.parseInt(params[2]),/*year*/
+                        Integer.parseInt(params[3]),/*month*/
+                        Integer.parseInt(params[4]),/*day*/
+                        Integer.parseInt(params[5]),/*hour*/
+                        Integer.parseInt(params[6]) /*minute*/
+                ),
+                params[7],                          /*country*/
+                params[8],                          /*city*/
+                params[9],                          /*airport*/
+                params[10],                         /*company*/
+                Boolean.parseBoolean(params[11])    /*outgoing?*/
         );
-        country = params[7];
-        city = params[8];
-        airportName = params[9];
-        company = params[10];
-        outgoing = Boolean.parseBoolean(params[11]);
     }
 
     void save(PrintWriter writer) {
@@ -106,7 +80,7 @@ public class Flight {
                 airportName,
                 company
         ).forEach(field -> writer.print(field + ","));
-        writer.println(outgoing);
+        writer.println(outgoing); //adding separately to avoid last comma
     }
 
     static LocalDateTime getDateTimeFromUser(Scanner s) {
@@ -128,54 +102,6 @@ public class Flight {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
 
-    Flight(int _terminal, String _flightNum, LocalDateTime _date, String _country, String _city, String _airportName, String _company, boolean _outgoing) {
-        terminal = _terminal;
-        flightNum = _flightNum;
-        dateTime = _date;
-        country = _country;
-        city = _city;
-        airportName = _airportName;
-        company = _company;
-        outgoing = _outgoing;
-
-    }
-
-    boolean isOutgoing() {
-        return outgoing;
-    }
-
-    void setTerminal(int terminal) {
-        this.terminal = terminal;
-    }
-
-    void setCountry(String country) {
-        this.country = country;
-    }
-
-    void setFlightNum(String flightNum) {
-        this.flightNum = flightNum;
-    }
-
-    void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    void setOutgoing(boolean outgoing) {
-        this.outgoing = outgoing;
-    }
-
-    void setCompany(String company) {
-        this.company = company;
-    }
-
-    Flight() {
-        this(0, "", null, "", "", "", "", false);
-    }
-
-    LocalDateTime getDate() {
-        return dateTime;
-    }
-
     public String toString() {
         String dir = outgoing ? " Departing To" : " Arriving From";
         return flightNum + " | Terminal: " + terminal +
@@ -183,34 +109,4 @@ public class Flight {
                 country + ", city: " + city + ", airport: " + airportName + ")";
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        Flight other = (Flight) obj;
-
-        if (terminal != other.terminal) return false;
-        if (outgoing != other.outgoing) return false;
-        if (!flightNum.equals(other.flightNum)) return false;
-        if (!dateTime.equals(other.dateTime)) return false;
-        if (!country.equals(other.country)) return false;
-        if (!city.equals(other.city)) return false;
-        if (!airportName.equals(other.airportName)) return false;
-        return company.equals(other.company);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = terminal;
-        result = 31 * result + flightNum.hashCode();
-        result = 31 * result + dateTime.hashCode();
-        result = 31 * result + country.hashCode();
-        result = 31 * result + city.hashCode();
-        result = 31 * result + airportName.hashCode();
-        result = 31 * result + company.hashCode();
-        result = 31 * result + (outgoing ? 1 : 0);
-        result = 31 * result + formatter.hashCode();
-        return result;
-    }
 }

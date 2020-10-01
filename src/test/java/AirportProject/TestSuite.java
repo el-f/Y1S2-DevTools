@@ -25,10 +25,15 @@ public class TestSuite {
     private void initDefaultAP() {
         initEmptyAP();
         ap.getFlights().addAll(getDefaultFlights());
+        ap.sortByDateTime();
     }
 
     private void initEmptyAP() {
         ap = new Airport();
+    }
+
+    private void silenceOutput() {
+        System.setOut(outputPrintStream);
     }
 
     private void resetOutput() {
@@ -46,17 +51,21 @@ public class TestSuite {
     /*
         Airport Class Tests
      */
+
     @Test
     public void testFileLoadAndSave() {
         initDefaultAP();
         Airport ap2 = null;
+        File testFile = null;
         try {
             ap.save(TEST_FILE);
-            ap2 = new Airport(new File(TEST_FILE));
+            testFile = new File(TEST_FILE);
+            ap2 = new Airport(testFile);
         } catch (IOException e) {
             fail(e.toString());
         }
         assertEquals(ap, ap2);
+        assertTrue(testFile.delete());
         printSuccess();
     }
 
@@ -86,20 +95,17 @@ public class TestSuite {
     }
 
     @Test
-    public void testArrivalsFilter() {
+    public void testDirectionFilters() {
         initDefaultAP();
-        flightList = Arrays.asList(F2, F4, F6);
-        assertEquals(flightList, ap.getIncomingFlights());
-        assertTrue(ap.getOutgoingFlights().stream().noneMatch(flightList::contains));
-        printSuccess();
-    }
+        flightList = new ArrayList<>(ap.getFlights());
+        Airport.filterByDirection(flightList, "Departures");
+        assertTrue(flightList.containsAll(Airport.getOutgoingFlights(ap.getFlights())));
+        assertTrue(Airport.getIncomingFlights(ap.getFlights()).stream().noneMatch(flightList::contains));
 
-    @Test
-    public void testDeparturesFilter() {
-        initDefaultAP();
-        flightList = Arrays.asList(F1, F3, F5, F7, F8);
-        assertEquals(flightList, ap.getOutgoingFlights());
-        assertTrue(ap.getIncomingFlights().stream().noneMatch(flightList::contains));
+        flightList = new ArrayList<>(ap.getFlights());
+        Airport.filterByDirection(flightList, "Arrivals");
+        assertTrue(flightList.containsAll(Airport.getIncomingFlights(ap.getFlights())));
+        assertTrue(Airport.getOutgoingFlights(ap.getFlights()).stream().noneMatch(flightList::contains));
         printSuccess();
     }
 
@@ -118,9 +124,9 @@ public class TestSuite {
                 flightList,
                 String.format(
                         "%s %s %s",
-                        F3.getDate().getDayOfWeek().name(),
-                        F6.getDate().getDayOfWeek().name(),
-                        F4.getDate().getDayOfWeek().name()
+                        F3.getDateTime().getDayOfWeek().name(),
+                        F6.getDateTime().getDayOfWeek().name(),
+                        F4.getDateTime().getDayOfWeek().name()
                 ).toLowerCase()
         );
         assertEquals(Arrays.asList(F3, F4, F6), flightList);
@@ -154,7 +160,7 @@ public class TestSuite {
     @Test
     public void testDateRangeFilter() {
         flightList = new ArrayList<>(getDefaultFlights());
-        Airport.filterByDateRange(flightList, F3.getDate(), F6.getDate());
+        Airport.filterByDateRange(flightList, F3.getDateTime(), F6.getDateTime());
         assertEquals(Arrays.asList(F3, F4, F6), flightList);
         printSuccess();
     }
@@ -162,7 +168,7 @@ public class TestSuite {
     @Test
     public void testStartDateFilter() {
         flightList = new ArrayList<>(getDefaultFlights());
-        Airport.filterByStartDate(flightList, F3.getDate());
+        Airport.filterByStartDate(flightList, F3.getDateTime());
         assertEquals(Arrays.asList(F3, F4, F5, F6, F8), flightList);
         printSuccess();
     }
@@ -170,7 +176,7 @@ public class TestSuite {
     @Test
     public void testEndDateFilter() {
         flightList = new ArrayList<>(getDefaultFlights());
-        Airport.filterByEndDate(flightList, F3.getDate());
+        Airport.filterByEndDate(flightList, F3.getDateTime());
         assertEquals(Arrays.asList(F1, F2, F3, F7), flightList);
         printSuccess();
     }
@@ -185,7 +191,7 @@ public class TestSuite {
 
     @Test
     public void testGetFlightFromUser() {
-        System.setOut(outputPrintStream);   //to silence output
+        silenceOutput();
 
         initEmptyAP();
         Scanner s = new Scanner("1\nKS9782EL\n 2020\n 11\n 23\n 11\n 16\n UK\n London\n london_airport\n Wizz\n");
@@ -212,9 +218,9 @@ public class TestSuite {
 
     @Test
     public void testGetDateTimeFromUser() {
-        System.setOut(outputPrintStream);   //to silence output
+        silenceOutput();
 
-        assertEquals(F8.getDate(), Flight.getDateTimeFromUser(new Scanner("2020\n 11\n 23\n 11\n 16\n")));
+        assertEquals(F8.getDateTime(), Flight.getDateTimeFromUser(new Scanner("2020\n 11\n 23\n 11\n 16\n")));
 
         resetOutput();
         printSuccess();
@@ -227,16 +233,16 @@ public class TestSuite {
 
     @Test
     public void testInitAirportFromFile() {
-        System.setOut(outputPrintStream);   //to silence output
+        silenceOutput();
         //using Java Reflection to test a private method
         try {
-            Method initAirportFromFile = Menu.class.getDeclaredMethod("initAirportFromFile", String.class);
+            Method initAirportFromFile = Program.class.getDeclaredMethod("initAirportFromFile", String.class);
             initAirportFromFile.setAccessible(true);
             initAirportFromFile.invoke(null, Program.DEFAULT_FILE);
         } catch (Exception e) {
             fail(e.toString());
         }
-        assertTrue(outputStream.toString().contains(Menu.INIT_FROM_FILE_SUCCESS));
+        assertTrue(outputStream.toString().contains(Program.INIT_FROM_FILE_SUCCESS));
 
         resetOutput();
         printSuccess();
@@ -244,10 +250,10 @@ public class TestSuite {
 
     @Test
     public void testScanBoolean() {
-        System.setOut(outputPrintStream);   //to silence output
+        silenceOutput();
 
-        assertTrue(Menu.scanBoolean(new Scanner("y")));
-        assertFalse(Menu.scanBoolean(new Scanner("n")));
+        assertTrue(Program.scanBoolean(new Scanner("y")));
+        assertFalse(Program.scanBoolean(new Scanner("n")));
 
         resetOutput();
         printSuccess();
@@ -255,13 +261,13 @@ public class TestSuite {
 
     @Test
     public void testInitDefault() {
-        System.setOut(outputPrintStream);   //to silence output
+        silenceOutput();
         try {
-            Menu.createDefaultFile();
+            Program.createDefaultFile();
         } catch (IOException e) {
             fail(e.toString());
         }
-        assertTrue(outputStream.toString().contains(Menu.CREATE_DEFAULT_FILE_SUCCESS));
+        assertTrue(outputStream.toString().contains(Program.CREATE_DEFAULT_FILE_SUCCESS));
 
         resetOutput();
         printSuccess();
@@ -272,13 +278,13 @@ public class TestSuite {
         InputStream backupIn = System.in;
 
         /* simulated user input: */
-        String simulatedInput = "6\n 2\n 7\n y\n 2\n n\n n\n n\n n\n y\n 3\n n\n n\n 0\n";
+        String simulatedInput = "6\n 2\n 7\n y\n 2\n n\n n\n n\n n\n n\n n\n y\n 3\n 0\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
 
         System.setIn(inputStream);
-        System.setOut(outputPrintStream);
+        silenceOutput();
 
-        Menu.showMenu(null);
+        Program.showMenu(null);
 
         String outputString = outputStream.toString();
 
@@ -310,8 +316,8 @@ public class TestSuite {
                 "",                             /*airline*/
                 "", "", "",                     /*start date (d/m/y)*/
                 "", "", "",                     /*end date (d/m/y)*/
-                "", "", "", "", "", "", ""      /*weekdays*/
-//                ,""                             /*terminal*/
+                "", "", "", "", "", "", "",     /*weekdays*/
+                ""                              /*terminal*/
         };
         System.setOut(outputPrintStream);
         try {

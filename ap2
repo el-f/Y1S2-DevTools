@@ -1,9 +1,0 @@
-Terminal,#,Year,Month,Day,Hour,Minute,Country,City,Airport,Airline,isOutgoing
-3,SAD1978G,2020,11,20,2,3,Albania,albania_city,albania_airport,AlbaniaAir,true
-1,HASF1238,2020,11,20,2,3,Austria,Austria_city,Austria_airport,EasyJet,false
-2,ASD41IDA,2020,11,21,14,30,Guinea,Guinea_city,Guinea_airpot,Aeroflot,true
-1,W594XF2B,2020,11,22,19,59,Ireland,Ireland_city,Ireland_airport,Lufthansa,false
-2,DFWQ41FC,2020,11,23,11,16,Italy,Italy_city,Italy_airport,Ryan-Air,true
-3,UR24EE5J,2020,11,22,19,59,Laos,Laos_city,Laos_airport,United,false
-1,KSD556Q2,2020,11,20,2,3,Iran,Iran_city,Iran_airport,El-AL,true
-1,KS9782EL,2020,11,23,11,16,UK,London,london_airport,Wizz,true

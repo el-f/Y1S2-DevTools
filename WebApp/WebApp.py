@@ -8,24 +8,21 @@ from forms import FlightsForm
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = secrets.token_hex(16)
-
-path = os.getcwd() + "/../target/classes"  # get parent of working dir then go to classes folder
+app.secret_key = secrets.token_hex(16)
 
 command = [
-    "java", "-classpath", path,
+    "java", "-classpath",
+    os.getcwd() + "/../target/classes",  # get parent of working dir then go to classes folder
     "AirportProject.Program",  # Package.Class_File
 ]
 
 
-def display_results(flights=None):
-    if flights is None:
-        flights = []
-    return render_template("results.html", title="Filtered Results", flights=flights)
-
-
-def get_response_for_args(args):    # decode() - decode bytes to string
-    return display_results(subprocess.check_output(command + ["HTML"] + args).decode().split("<br>"))
+def get_response_for_args(args):  # decode() - decode bytes to string
+    return render_template(
+        "results.html",
+        title="Filtered Results",
+        flights=subprocess.check_output(command + ["HTML"] + args).decode().split("<br>")
+    )
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -52,7 +49,8 @@ def submit():
                 str(form.wednesday.data).lower(),
                 str(form.thursday.data).lower(),
                 str(form.friday.data).lower(),
-                str(form.saturday.data).lower()
+                str(form.saturday.data).lower(),
+                "" if form.terminal.data is None else str(form.terminal.data)
             ]
         )
     return render_template('form.html', title='Submit Filters', form=form)
@@ -60,7 +58,7 @@ def submit():
 
 @app.route("/about")
 def about():
-    return render_template("about.HTML")
+    return render_template("about.html", title='About')
 
 
 def get_url(direction):
