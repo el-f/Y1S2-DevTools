@@ -7,6 +7,11 @@ from datetime import date, timedelta
 
 # noinspection PyMethodMayBeStatic
 class FlightsForm(FlaskForm):
+    #########
+    DEFAULT_START_DATE = date.fromisoformat("2020-01-01")
+    DEFAULT_END_DATE = date.today() + timedelta(100)
+    #########
+
     direction = SelectField(
         'Direction',
         choices=[
@@ -24,8 +29,8 @@ class FlightsForm(FlaskForm):
     city = StringField('City')
     airport = StringField('Airport')
     airline = StringField('Airline')
-    date1 = DateField('Start Date', default=date.today())
-    date2 = DateField('End Date', default=date.today() + timedelta(100))
+    date1 = DateField('Start Date', default=DEFAULT_START_DATE)
+    date2 = DateField('End Date', default=DEFAULT_END_DATE)
     sunday = BooleanField('Sun', default=True)
     monday = BooleanField('Mon', default=True)
     tuesday = BooleanField('Tue', default=True)
@@ -41,17 +46,15 @@ class FlightsForm(FlaskForm):
             raise ValidationError("Invalid Terminal Number! (Valid Terminals: 1-3)")
 
     def validate_date1(self, field):
-        start_date = date.fromisoformat("2020-01-01")
         if not field.data:
             raise ValidationError(" - This Field Must Be Filled!")
-        if field.data < start_date:
-            raise ValidationError(f"Start Date Must Not Be Earlier Than {start_date}")
+        if field.data < self.DEFAULT_START_DATE:
+            raise ValidationError(f"Start Date Must Not Be Earlier Than {self.DEFAULT_START_DATE}")
 
     def validate_date2(self, field):
         if not field.data:
             raise ValidationError(" - This Field Must Be Filled!")
-        end_date = date.today() + timedelta(100)
-        if field.data > end_date:
+        if field.data > self.DEFAULT_END_DATE:
             raise ValidationError("End Date Must Not Be More Than 100 Days From Today")
         if self.date1.data and field.data < self.date1.data:
             raise ValidationError("End Date Must Be After Start Date")

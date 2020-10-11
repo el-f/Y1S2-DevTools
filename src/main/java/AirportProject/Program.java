@@ -53,7 +53,7 @@ public class Program {
         Scanner s = new Scanner(System.in);
         int choice = -1;
         while (choice != 0) try {
-            System.out.println("Menu:");
+            System.out.println("> Menu:");
             System.out.println("1) Create outgoing Flight");
             System.out.println("2) Create incoming Flight");
             System.out.println("3) Show all outgoing flights");
@@ -122,7 +122,10 @@ public class Program {
                     showCustomRangeFlights(s);
                     break;
                 case 8:
-                    System.out.println(airport);
+                    if (airport.getFlights().isEmpty())
+                        System.out.println("Empty Flight List!");
+                    else
+                        System.out.println(airport);
                     break;
                 case 9:
                     if (airport.getFlights().isEmpty()) {
