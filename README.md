@@ -27,3 +27,14 @@ A program to manage flights in the server side and display them by a user chosen
 - Gal Karasnty
 - Maor Ofek
 
+## Screenshots:
+> 'client' interface:
+
+![client image 1](https://user-images.githubusercontent.com/39451680/117015776-b8f81680-acfa-11eb-98f6-c6bacd78a8e1.png)
+![client image 2](https://user-images.githubusercontent.com/39451680/117016024-f492e080-acfa-11eb-9098-39dbf234008f.png)
+
+
+
+> 'server' interface
+
+![server image](https://user-images.githubusercontent.com/39451680/117015869-d0370400-acfa-11eb-9605-99365e7ed2d8.png)
