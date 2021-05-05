@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for flight in flights %}
-{% if flight|length > 0 %}
-<div class="card border-info mb-3" style="margin:10px; width:100%">
-    <div class="card-body" style="">
-        {{ flight }}
-    </div>
-</div>
-{% endif %}
-{% endfor %}
+    {% for flight in flights %}
+        {% if flight|length > 0 %}
+            <div class="card border-info mb-3" style="margin:10px; width:100%">
+                <div class="card-body" style="">
+                    {{ flight }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock content %}

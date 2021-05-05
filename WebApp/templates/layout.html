@@ -14,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
     {% if title %}
-    <title>Flights System - {{ title }}</title>
+        <title>Flights System - {{ title }}</title>
     {% else %}
-    <title>Flights System</title>
+        <title>Flights System</title>
     {% endif %}
 </head>
 <body>
@@ -39,13 +39,13 @@
 </header>
 <main role="main" class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="alert alert-{{ category }}" style="display:inline-block">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" style="display:inline-block">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
     {% endwith %}
     <div class="row">
         {% block content %}{% endblock %}
