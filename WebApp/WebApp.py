@@ -64,7 +64,7 @@ def about():
 def get_url(direction):
     return f"<a href={direction.lower()}?outformat=html&country=&city=&airport=&airline=&day1" \
            f"=&month1=&year1=&day2=&month2=&year2=&sunday=&monday=&tuesday=&wednesday=&thursday=&friday=&saturday=" \
-           f">{direction}</a><br>"
+           f"&terminal=>{direction}</a><br>"
 
 
 def go_back_url(step="", outformat=""):
